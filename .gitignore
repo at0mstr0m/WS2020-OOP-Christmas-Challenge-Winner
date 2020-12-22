@@ -1,0 +1,7 @@
+# IntelliJ
+
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/dictionaries/
+out/
+local/

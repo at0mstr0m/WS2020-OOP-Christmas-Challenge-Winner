@@ -1,6 +1,7 @@
 package config;
 
 import de.ur.mi.oop.colors.Color;
+import de.ur.mi.oop.graphics.Point;
 
 public interface GameConfig {
 
@@ -14,8 +15,26 @@ public interface GameConfig {
     Color ARYLIDE_YELLOW = new Color(236, 217, 105);
     Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
-    int WINDOW_WIDTH = 640;
-    int WINDOW_HEIGHT = 480;
-    Color BACKGROUND_COLOR = LINEN;
+    int BOARD_WIDTH = 800;
+    int BOARD_HEIGHT = 800;
 
+    int BOTTOM_UI_WIDTH = BOARD_WIDTH;
+    int BOTTOM_UI_HEIGHT = 100;
+    int BOTTOM_UI_X_POS = 0;
+    int BOTTOM_UI_Y_POS = BOARD_HEIGHT;
+
+    int WINDOW_WIDTH = 800;
+    int WINDOW_HEIGHT = BOARD_HEIGHT + BOTTOM_UI_HEIGHT;
+    Color BACKGROUND_COLOR = DARK_SEA_GREEN;
+
+    int LINE_WIDTH = 20;
+    Color LINE_COLOR = AMERICAN_PINK;
+    Point waypoints[] = {
+            new Point(BOARD_WIDTH / 6, BOARD_HEIGHT),
+            new Point(BOARD_WIDTH / 6, BOARD_HEIGHT / 6),
+            new Point((BOARD_WIDTH / 6) * 3, BOARD_HEIGHT / 6),
+            new Point((BOARD_WIDTH / 6) * 3, (BOARD_WIDTH / 6) * 5),
+            new Point((BOARD_WIDTH / 6) * 5, (BOARD_WIDTH / 6) * 5),
+            new Point((BOARD_WIDTH / 6) * 5, 0),
+    };
 }

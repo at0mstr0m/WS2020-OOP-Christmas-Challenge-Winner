@@ -4,6 +4,7 @@ import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import ui.BottomUI;
 import ui.ChristmasPresent;
+import ui.ChristmasPresentListener;
 
 import java.util.ArrayList;
 
@@ -14,13 +15,17 @@ import java.util.ArrayList;
  * als ZIP-Datei hoch.
  */
 
-public class ChristmasChallenge extends GraphicsApp implements GameConfig {
-    ArrayList path;
-    BottomUI bottomUI;
-    ChristmasPresent present;
+public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
+    private ArrayList path;
+    private BottomUI bottomUI;
+    private ChristmasPresent[] currentWave;
+    private long start;
+    private long step;
+    private long waveSpacingInMS;
+    private int lastLaunchedIndex;
 
     public static void main(String[] args) {
-        // Instanziiert eine Instanz dieser Klasse und startet die GraphicsApp
+        System.out.println(System.currentTimeMillis());
         GraphicsAppLauncher.launch();
     }
 
@@ -28,18 +33,41 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig {
     public void initialize() {
         path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI();
-        present = new ChristmasPresent();
+        this.currentWave = SantasLittleHelper.fillCurrentWave(5, this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+        waveSpacingInMS = 1000;
+        lastLaunchedIndex = 0;
+        start = System.currentTimeMillis();
     }
 
     @Override
     public void draw() {
         drawBackground(BACKGROUND_COLOR);
+        step = System.currentTimeMillis();
+        if (step - start >= waveSpacingInMS && lastLaunchedIndex < currentWave.length) {
+            lastLaunchedIndex++;
+            start = step;
+        }
+        drawPath();
+        drawWave();
+        bottomUI.draw();
+    }
+
+    private void drawPath() {
         for (int i = 0; i < path.size(); i++) {
             Line element = (Line) path.get(i);
             element.draw();
         }
-        present.draw();
-        bottomUI.draw();
+    }
+
+    private void drawWave() {
+        for (int i = 0; i < lastLaunchedIndex; i++) {
+            currentWave[i].draw();
+        }
+    }
+
+    @Override
+    public void onPresentReachedEnd(ChristmasPresent present) {
+        present = null;
     }
 }

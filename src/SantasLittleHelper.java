@@ -1,12 +1,14 @@
+import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.graphics.Point;
+import ui.ChristmasPresent;
+import ui.ChristmasPresentListener;
 
 import java.util.ArrayList;
 
 import static config.GameConfig.*;
 
-public class SantasLittleHelper {
-
+public final class SantasLittleHelper {
     public static ArrayList setupPath() {
         ArrayList path = new ArrayList();
         for (int i = 0; i < waypoints.length - 1; i++) {
@@ -22,40 +24,15 @@ public class SantasLittleHelper {
         return result;
     }
 
-    public Point moveTowards(Point start, Point end, float speed) {
-        if (start.getXPos() < end.getXPos()) {
-            if (start.getYPos() < end.getYPos()) {
-                start.setLocation(start.getXPos() + speed, start.getYPos() + speed);
-                return start;
-            } else if (start.getYPos() > end.getYPos()) {
-                start.setLocation(start.getXPos() + speed, start.getYPos() - speed);
-                return start;
-            } else if (start.getYPos() == end.getYPos()) {
-                start.setLocation(start.getXPos() + speed, start.getYPos());
-                return start;
-            }
-        } else if (start.getXPos() > end.getXPos()) {
-            if (start.getYPos() < end.getYPos()) {
-                start.setLocation(start.getXPos() - speed, start.getYPos() + speed);
-                return start;
-            } else if (start.getYPos() > end.getYPos()) {
-                start.setLocation(start.getXPos() - speed, start.getYPos() - speed);
-                return start;
-            } else if (start.getYPos() == end.getYPos()) {
-                start.setLocation(start.getXPos() - speed, start.getYPos());
-                return start;
-            }
-        } else if (start.getXPos() == end.getXPos()) {
-            if (start.getYPos() < end.getYPos()) {
-                start.setLocation(start.getXPos(), start.getYPos() + speed);
-                return start;
-            } else if (start.getYPos() > end.getYPos()) {
-                start.setLocation(start.getXPos(), start.getYPos() - speed);
-                return start;
-            } else if (start.getYPos() == end.getYPos()) {
-                return start;
-            }
+    public static ChristmasPresent createRandomPresent(ChristmasPresentListener listener) {
+        return new ChristmasPresent(listener);
+    }
+
+    public static ChristmasPresent[] fillCurrentWave(int waveLength, ChristmasChallenge listener) {
+        ChristmasPresent[] wave = new ChristmasPresent[waveLength];
+        for (int i = 0; i < waveLength; i++) {
+            wave[i] = createRandomPresent(listener);
         }
-        return start;
+        return wave;
     }
 }

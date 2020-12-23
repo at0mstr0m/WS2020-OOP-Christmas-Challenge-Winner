@@ -27,8 +27,8 @@ public interface GameConfig {
     int WINDOW_HEIGHT = BOARD_HEIGHT + BOTTOM_UI_HEIGHT;
     Color BACKGROUND_COLOR = DARK_SEA_GREEN;
 
-    int LINE_WIDTH = 20;
-    Color LINE_COLOR = AMERICAN_PINK;
+    int LINE_WIDTH = 40;
+    Color LINE_COLOR = FLACESCENT;
     Point waypoints[] = {
             new Point(BOARD_WIDTH / 6, BOARD_HEIGHT),
             new Point(BOARD_WIDTH / 6, BOARD_HEIGHT / 6),

@@ -3,6 +3,7 @@ import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import ui.BottomUI;
+import ui.ChristmasPresent;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class ChristmasChallenge extends GraphicsApp implements GameConfig {
     ArrayList path;
     BottomUI bottomUI;
+    ChristmasPresent present;
 
     public static void main(String[] args) {
         // Instanziiert eine Instanz dieser Klasse und startet die GraphicsApp
@@ -24,8 +26,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig {
 
     @Override
     public void initialize() {
-        path = Initializer.setupPath();
+        path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI();
+        present = new ChristmasPresent();
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
@@ -36,6 +39,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig {
             Line element = (Line) path.get(i);
             element.draw();
         }
+        present.draw();
         bottomUI.draw();
     }
 }

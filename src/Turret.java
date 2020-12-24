@@ -1,25 +1,25 @@
 import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Line;
-import ui.ChristmasPresent;
 
-import static config.GameConfig.ARYLIDE_YELLOW;
-import static config.GameConfig.LINEN;
-
-public class Turret {
+public class Turret implements GameConfig{
     private Circle body;
     private Line ray;
+    private int firerate;              //helps adjusting the firerate
 
-    public Turret() {
-        this.body = new Circle(200,500,20, ARYLIDE_YELLOW);
+    public Turret(int xPos, int yPos) {
+        this.body = new Circle(xPos,yPos,20, ARYLIDE_YELLOW);
+        this.firerate = 0;
     }
 
     public void draw() {
+        firerate++;
         ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
         this.body.draw();
-        if (closestPresent != null) {
+        if (closestPresent != null && firerate < 61) {
             this.ray = new Line(this.body.getXPos(), this.body.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
             this.ray.draw();
         }
+        if (firerate == 120) firerate = 0;
     }
 
     private int getIndexOfClosestPresent() {

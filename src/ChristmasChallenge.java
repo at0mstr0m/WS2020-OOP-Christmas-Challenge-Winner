@@ -1,10 +1,8 @@
-import config.GameConfig;
 import de.ur.mi.oop.app.GraphicsApp;
+import de.ur.mi.oop.events.MouseButton;
+import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
-import ui.BottomUI;
-import ui.ChristmasPresent;
-import ui.ChristmasPresentListener;
 
 import java.util.ArrayList;
 
@@ -19,10 +17,11 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private ArrayList path;
     private BottomUI bottomUI;
     private static ChristmasPresent[] currentWave;
-    private Turret turret;
+    private Turret turret0;
+    private Turret turret1;
     private long start;
     private long step;
-    private long waveSpacingInMS;
+    private long waveDelayInMilliseconds;
     private int lastLaunchedIndex;
 
     public static void main(String[] args) {
@@ -31,14 +30,16 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void initialize() {
+        setFrameRate(FRAME_RATE);
         path = SantasLittleHelper.setupPath();
-        bottomUI = new BottomUI();
+        bottomUI = new BottomUI(this);
         currentWave = SantasLittleHelper.fillCurrentWave(5, this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        waveSpacingInMS = 1000;
+        waveDelayInMilliseconds = 1000;
         lastLaunchedIndex = 0;
         start = System.currentTimeMillis();
-        turret = new Turret();
+        turret0 = new Turret(200, 500);
+        turret1 = new Turret(550, 200);
     }
 
     @Override
@@ -47,7 +48,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         drawPath();
         drawWave();
         bottomUI.draw();
-        turret.draw();
+        turret0.draw();
+        turret1.draw();
     }
 
     private void drawPath() {
@@ -59,7 +61,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     private void drawWave() {
         step = System.currentTimeMillis();
-        if (step - start >= waveSpacingInMS && lastLaunchedIndex < currentWave.length) {
+        if (step - start >= waveDelayInMilliseconds && lastLaunchedIndex < currentWave.length) {
             currentWave[lastLaunchedIndex].declareAsVisible();                  //declateAsVisible before Launch
             lastLaunchedIndex++;
             start = step;
@@ -78,7 +80,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         for (int i = 0; i < currentWave.length; i++) {
             if (currentWave[i] == present) {
                 currentWave[i] = null;
-                return;
+                break;
             }
         }
     }
@@ -86,4 +88,16 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     public static ChristmasPresent[] getCurrentWave() {
         return currentWave;
     }
+
+    @Override
+    public void onMousePressed(MousePressedEvent event) {
+        if (event.getButton() == MouseButton.LEFT) {        //only handle left click
+            bottomUI.handleMouseClick(event.getXPos(), event.getYPos());
+        }
+    }
+
+    public void launchNextWave() {
+
+    }
+
 }

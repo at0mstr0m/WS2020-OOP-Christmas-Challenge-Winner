@@ -1,10 +1,5 @@
-package ui;
-
-import config.GameConfig;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.graphics.Rectangle;
-
-import java.io.File;
 
 public class ChristmasPresent implements GameConfig {
     public Rectangle body;

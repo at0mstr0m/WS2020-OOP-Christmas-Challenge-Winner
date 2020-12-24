@@ -1,18 +1,14 @@
 import de.ur.mi.oop.graphics.Line;
-import ui.ChristmasPresent;
-import ui.ChristmasPresentListener;
-
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static config.GameConfig.*;
-
-public class SantasLittleHelper {
+public class SantasLittleHelper implements GameConfig, WaveContent {
     public File[] bottomUIAssets;
+    private static int waveCounter = 0;
 
-    public static ArrayList setupPath() {
-        ArrayList path = new ArrayList();
+    public static ArrayList<Line> setupPath() {
+        ArrayList<Line> path = new ArrayList<>();
         for (int i = 0; i < waypoints.length - 1; i++) {
             path.add(newLine(i));
         }
@@ -20,7 +16,7 @@ public class SantasLittleHelper {
     }
 
     private static Line newLine(int index) {
-        Line result = new Line(0,0,0,0,LINE_COLOR,LINE_WIDTH);
+        Line result = new Line(0,0,0,0, LINE_COLOR, LINE_WIDTH);
         result.setStartPoint(waypoints[index]);
         result.setEndPoint(waypoints[index + 1]);
         return result;
@@ -36,5 +32,14 @@ public class SantasLittleHelper {
             wave[i] = createRandomPresent(listener);
         }
         return wave;
+    }
+
+    public static ArrayList getNextWave() {
+        ArrayList<ChristmasPresent> result = new ArrayList<>();
+        for (int i = 0; i < waves[waveCounter].length; i++) {
+            //waves[waveCounter][i][0];
+        }
+        waveCounter++;
+        return null;
     }
 }

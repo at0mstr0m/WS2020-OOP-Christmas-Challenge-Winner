@@ -21,7 +21,6 @@ public class BottomUI implements GameConfig {
 
     private String[] collectFilesInFolder(String relativeFolderPath) {
         File[] files = new File(relativeFolderPath).listFiles();
-        System.out.println(files.length);
         String[] absFilePaths = new String[files.length];
         for (int i = 0; i < files.length; i++) {
             absFilePaths[i] = files[i].getAbsolutePath();

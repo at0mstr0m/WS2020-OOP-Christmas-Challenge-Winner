@@ -50,4 +50,12 @@ public class ChristmasPresent implements GameConfig {
         float yMovement = sourceY + (float) (Math.sin(angle) * speed);                  // Berechnet den "Bewegungsvektor" auf Basis des berechneten Winkels und der aktuellen Geschwindigkeit
         return new Point(xMovement, yMovement);                                         // Gibt Schritt zurück
     }
+
+    public void declareAsVisible() {
+        this.visible = true;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
 }

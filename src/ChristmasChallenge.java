@@ -18,7 +18,8 @@ import java.util.ArrayList;
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
     private ArrayList path;
     private BottomUI bottomUI;
-    private ChristmasPresent[] currentWave;
+    private static ChristmasPresent[] currentWave;
+    private Turret turret;
     private long start;
     private long step;
     private long waveSpacingInMS;
@@ -32,24 +33,21 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     public void initialize() {
         path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI();
-        this.currentWave = SantasLittleHelper.fillCurrentWave(5, this);
+        currentWave = SantasLittleHelper.fillCurrentWave(5, this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         waveSpacingInMS = 1000;
         lastLaunchedIndex = 0;
         start = System.currentTimeMillis();
+        turret = new Turret();
     }
 
     @Override
     public void draw() {
         drawBackground(BACKGROUND_COLOR);
-        step = System.currentTimeMillis();
-        if (step - start >= waveSpacingInMS && lastLaunchedIndex < currentWave.length) {
-            lastLaunchedIndex++;
-            start = step;
-        }
         drawPath();
         drawWave();
         bottomUI.draw();
+        turret.draw();
     }
 
     private void drawPath() {
@@ -60,6 +58,12 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     private void drawWave() {
+        step = System.currentTimeMillis();
+        if (step - start >= waveSpacingInMS && lastLaunchedIndex < currentWave.length) {
+            currentWave[lastLaunchedIndex].declareAsVisible();                  //declateAsVisible before Launch
+            lastLaunchedIndex++;
+            start = step;
+        }
         for (int i = 0; i < lastLaunchedIndex; i++) {
             if (currentWave[i] != null) currentWave[i].draw();
         }
@@ -68,7 +72,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     @Override
     public void onPresentReachedEndOfPath(ChristmasPresent present) {       // Entfern das Geschenk aus dem Array, um Platz für ein neues zu machen
         removePresentFromArray(present);
-        System.out.println("bump");
     }
 
     private void removePresentFromArray(ChristmasPresent present) {
@@ -78,5 +81,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
                 return;
             }
         }
+    }
+
+    public static ChristmasPresent[] getCurrentWave() {
+        return currentWave;
     }
 }

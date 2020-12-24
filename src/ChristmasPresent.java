@@ -5,16 +5,16 @@ public class ChristmasPresent implements GameConfig {
     public Rectangle body;
     private int waypointIterator;
     private boolean destroyed;
-    private boolean visible;
     private float speed;
+    private int delayCounter;
     private ChristmasPresentListener listener;
 
-    public ChristmasPresent(ChristmasPresentListener listener) {
+    public ChristmasPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
         this.listener = listener;
         this.waypointIterator = 0;
+        this.delayCounter = delayCounter;
         this.destroyed = false;
-        this.visible = false;
-        this.speed = 8f;
+        this.speed = speed;
         body = new Rectangle(0, 0, 20, 20, AMERICAN_PINK);
         body.setPosition(waypoints[0].getXPos(), waypoints[0].getYPos());
     }
@@ -33,9 +33,14 @@ public class ChristmasPresent implements GameConfig {
     }
 
     public void draw() {
-        if (this.body.getBottomBorder() <= 0) listener.onPresentReachedEndOfPath(this);
-        moveAlongPath();
-        this.body.draw();
+        System.out.println(delayCounter);
+        if (this.body.getBottomBorder() <= 0) listener.onPresentReachedEndOfPath(this);     //terminate Instance if end of Path is reached
+        if (delayCounter > 0) {
+            delayCounter--;         //count down ticks until launch
+        } else {
+            moveAlongPath();
+            this.body.draw();
+        }
     }
 
     private Point moveTowards(float sourceX, float sourceY, float targetX, float targetY, float speed) {
@@ -44,13 +49,5 @@ public class ChristmasPresent implements GameConfig {
         float xMovement = sourceX + (float) (Math.cos(angle) * speed);                  // Berechnet den "Bewegungsvektor" auf Basis des berechneten Winkels und der aktuellen Geschwindigkeit
         float yMovement = sourceY + (float) (Math.sin(angle) * speed);                  // Berechnet den "Bewegungsvektor" auf Basis des berechneten Winkels und der aktuellen Geschwindigkeit
         return new Point(xMovement, yMovement);                                         // Gibt Schritt zurück
-    }
-
-    public void declareAsVisible() {
-        this.visible = true;
-    }
-
-    public boolean isVisible() {
-        return visible;
     }
 }

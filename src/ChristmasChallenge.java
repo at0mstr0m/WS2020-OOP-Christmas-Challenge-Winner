@@ -33,7 +33,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         setFrameRate(FRAME_RATE);
         path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI(this);
-        currentWave = SantasLittleHelper.fillCurrentWave(5, this);
+        currentWave = SantasLittleHelper.fillCurrentWave(5,5f,60,this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         waveDelayInMilliseconds = 1000;
         lastLaunchedIndex = 0;
@@ -60,13 +60,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     private void drawWave() {
-        step = System.currentTimeMillis();
-        if (step - start >= waveDelayInMilliseconds && lastLaunchedIndex < currentWave.length) {
-            currentWave[lastLaunchedIndex].declareAsVisible();                  //declateAsVisible before Launch
-            lastLaunchedIndex++;
-            start = step;
-        }
-        for (int i = 0; i < lastLaunchedIndex; i++) {
+        for (int i = 0; i < currentWave.length; i++) {
             if (currentWave[i] != null) currentWave[i].draw();
         }
     }

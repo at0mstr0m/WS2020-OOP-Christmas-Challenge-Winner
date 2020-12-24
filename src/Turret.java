@@ -28,7 +28,7 @@ public class Turret implements GameConfig{
         double shortestDistance = 100000;
         for (int i = 0; i < length; i++) {
             ChristmasPresent currentPresent = ChristmasChallenge.getCurrentWave()[i];
-            if (currentPresent != null && currentPresent.isVisible()) {
+            if (currentPresent != null) {
                 if (this.body.distanceTo(currentPresent.body) < shortestDistance) {
                     shortestDistance = this.body.distanceTo(currentPresent.body);
                     indexOfClosest = i;

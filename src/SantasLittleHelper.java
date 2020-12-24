@@ -22,22 +22,22 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         return result;
     }
 
-    public static ChristmasPresent createRandomPresent(ChristmasPresentListener listener) {
-        return new ChristmasPresent(listener);
+    public static ChristmasPresent createRandomPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
+        return new ChristmasPresent(speed, delayCounter, listener);
     }
 
-    public static ChristmasPresent[] fillCurrentWave(int waveLength, ChristmasChallenge listener) {
+    public static ChristmasPresent[] fillCurrentWave(int waveLength, float speed, int delayCounter, ChristmasChallenge listener) {
         ChristmasPresent[] wave = new ChristmasPresent[waveLength];
         for (int i = 0; i < waveLength; i++) {
-            wave[i] = createRandomPresent(listener);
+            wave[i] = createRandomPresent(speed, i * delayCounter, listener);
         }
         return wave;
     }
 
-    public static ArrayList getNextWave() {
+    public static ArrayList getNextWave(ChristmasPresentListener listener) {
         ArrayList<ChristmasPresent> result = new ArrayList<>();
         for (int i = 0; i < waves[waveCounter].length; i++) {
-            //waves[waveCounter][i][0];
+            //createRandomPresent((Float) waves[waveCounter][i][0], listener);
         }
         waveCounter++;
         return null;

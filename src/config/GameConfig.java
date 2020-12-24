@@ -4,7 +4,6 @@ import de.ur.mi.oop.colors.Color;
 import de.ur.mi.oop.graphics.Point;
 
 public interface GameConfig {
-
     /**
      * Christmassy colors from https://www.schemecolor.com/christmas-carol.php
      */
@@ -22,6 +21,7 @@ public interface GameConfig {
     int BOTTOM_UI_HEIGHT = 100;
     int BOTTOM_UI_X_POS = 0;
     int BOTTOM_UI_Y_POS = BOARD_HEIGHT;
+    String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "assets/ui/playPauseButton";
 
     int WINDOW_WIDTH = 800;
     int WINDOW_HEIGHT = BOARD_HEIGHT + BOTTOM_UI_HEIGHT;

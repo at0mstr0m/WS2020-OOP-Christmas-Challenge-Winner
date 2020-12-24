@@ -1,5 +1,5 @@
 package ui;
 
 public interface ChristmasPresentListener {
-    void onPresentReachedEnd(ChristmasPresent present);
+    void onPresentReachedEndOfPath(ChristmasPresent present);
 }

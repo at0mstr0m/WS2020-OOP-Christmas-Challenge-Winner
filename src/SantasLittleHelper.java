@@ -1,14 +1,16 @@
-import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Line;
-import de.ur.mi.oop.graphics.Point;
 import ui.ChristmasPresent;
 import ui.ChristmasPresentListener;
 
+
+import java.io.File;
 import java.util.ArrayList;
 
 import static config.GameConfig.*;
 
-public final class SantasLittleHelper {
+public class SantasLittleHelper {
+    public File[] bottomUIAssets;
+
     public static ArrayList setupPath() {
         ArrayList path = new ArrayList();
         for (int i = 0; i < waypoints.length - 1; i++) {

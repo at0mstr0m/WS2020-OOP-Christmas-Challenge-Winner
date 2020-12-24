@@ -25,7 +25,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private int lastLaunchedIndex;
 
     public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis());
         GraphicsAppLauncher.launch();
     }
 
@@ -62,12 +61,22 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     private void drawWave() {
         for (int i = 0; i < lastLaunchedIndex; i++) {
-            currentWave[i].draw();
+            if (currentWave[i] != null) currentWave[i].draw();
         }
     }
 
     @Override
-    public void onPresentReachedEnd(ChristmasPresent present) {
-        present = null;
+    public void onPresentReachedEndOfPath(ChristmasPresent present) {       // Entfern das Geschenk aus dem Array, um Platz für ein neues zu machen
+        removePresentFromArray(present);
+        System.out.println("bump");
+    }
+
+    private void removePresentFromArray(ChristmasPresent present) {
+        for (int i = 0; i < currentWave.length; i++) {
+            if (currentWave[i] == present) {
+                currentWave[i] = null;
+                return;
+            }
+        }
     }
 }

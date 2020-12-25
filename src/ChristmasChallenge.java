@@ -19,10 +19,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private static ChristmasPresent[] currentWave;
     private Turret turret0;
     private Turret turret1;
-    private long start;
-    private long step;
-    private long waveDelayInMilliseconds;
-    private int lastLaunchedIndex;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -33,11 +29,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         setFrameRate(FRAME_RATE);
         path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI(this);
-        currentWave = SantasLittleHelper.fillCurrentWave(5,5f,60,this);
+        //currentWave = SantasLittleHelper.fillCurrentWave(5,5f,60,this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-        waveDelayInMilliseconds = 1000;
-        lastLaunchedIndex = 0;
-        start = System.currentTimeMillis();
         turret0 = new Turret(200, 500);
         turret1 = new Turret(550, 200);
     }
@@ -60,8 +53,12 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     private void drawWave() {
-        for (int i = 0; i < currentWave.length; i++) {
-            if (currentWave[i] != null) currentWave[i].draw();
+        System.out.println("currentWaveIsAttacking() = " + currentWaveIsAttacking());
+        if (waveIsOver()) currentWave = null;
+        if (currentWave != null) {
+            for (int i = 0; i < currentWave.length; i++) {
+                if (currentWave[i] != null) currentWave[i].draw();
+            }
         }
     }
 
@@ -77,10 +74,23 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
                 break;
             }
         }
+        System.out.println("waveIsOver() = " + waveIsOver());
+    }
+
+    private boolean waveIsOver() {
+        if (currentWave == null) return true;
+        for (int i = 0; i < currentWave.length; i++) {
+            if (currentWave[i] != null) return false;
+        }
+        return true;
     }
 
     public static ChristmasPresent[] getCurrentWave() {
         return currentWave;
+    }
+
+    public boolean currentWaveIsAttacking() {
+        return currentWave != null;
     }
 
     @Override
@@ -91,7 +101,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     public void launchNextWave() {
-
+        if (currentWave == null){
+            currentWave = SantasLittleHelper.getNextWave(this);
+        }
     }
-
 }

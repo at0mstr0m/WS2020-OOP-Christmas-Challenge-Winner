@@ -33,7 +33,6 @@ public class ChristmasPresent implements GameConfig {
     }
 
     public void draw() {
-        System.out.println(delayCounter);
         if (this.body.getBottomBorder() <= 0) listener.onPresentReachedEndOfPath(this);     //terminate Instance if end of Path is reached
         if (delayCounter > 0) {
             delayCounter--;         //count down ticks until launch

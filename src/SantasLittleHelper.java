@@ -1,11 +1,13 @@
 import de.ur.mi.oop.graphics.Line;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class SantasLittleHelper implements GameConfig, WaveContent {
-    public File[] bottomUIAssets;
     private static int waveCounter = 0;
+
+    public static String getWorkingDirectory() {
+        return System.getProperty("user.dir");
+    }
 
     public static ArrayList<Line> setupPath() {
         ArrayList<Line> path = new ArrayList<>();
@@ -26,20 +28,17 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         return new ChristmasPresent(speed, delayCounter, listener);
     }
 
-    public static ChristmasPresent[] fillCurrentWave(int waveLength, float speed, int delayCounter, ChristmasChallenge listener) {
-        ChristmasPresent[] wave = new ChristmasPresent[waveLength];
-        for (int i = 0; i < waveLength; i++) {
-            wave[i] = createRandomPresent(speed, i * delayCounter, listener);
-        }
-        return wave;
-    }
 
-    public static ArrayList getNextWave(ChristmasPresentListener listener) {
-        ArrayList<ChristmasPresent> result = new ArrayList<>();
-        for (int i = 0; i < waves[waveCounter].length; i++) {
-            //createRandomPresent((Float) waves[waveCounter][i][0], listener);
+    public static ChristmasPresent[] getNextWave(ChristmasPresentListener listener) {
+        ChristmasPresent[] nextWave = new ChristmasPresent[waves[waveCounter].length];
+        int delayAccumulator = 0;
+        for (int i = 0; i < nextWave.length; i++) {
+            float speed = (float) waves[waveCounter][i][0];
+            int delayCounter = (int) waves[waveCounter][i][1];
+            delayAccumulator += delayCounter;
+            nextWave[i] = new ChristmasPresent(speed, delayAccumulator, listener);
         }
         waveCounter++;
-        return null;
+        return nextWave;
     }
 }

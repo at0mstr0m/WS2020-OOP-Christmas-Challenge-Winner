@@ -12,14 +12,16 @@ public class Turret implements GameConfig{
     }
 
     public void draw() {
-        firerate++;
-        ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
         this.body.draw();
-        if (closestPresent != null && firerate < 61) {
-            this.ray = new Line(this.body.getXPos(), this.body.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
-            this.ray.draw();
+        if (ChristmasChallenge.getCurrentWave() != null) {
+            firerate++;
+            ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
+            if (closestPresent != null && firerate < 61) {
+                this.ray = new Line(this.body.getXPos(), this.body.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
+                this.ray.draw();
+            }
+            if (firerate == 120) firerate = 0;
         }
-        if (firerate == 120) firerate = 0;
     }
 
     private int getIndexOfClosestPresent() {

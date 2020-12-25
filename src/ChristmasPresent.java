@@ -8,6 +8,7 @@ public class ChristmasPresent implements GameConfig {
     private float speed;
     private int delayCounter;
     private ChristmasPresentListener listener;
+    private Point[] waypoints;
 
     public ChristmasPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
         this.listener = listener;
@@ -16,6 +17,7 @@ public class ChristmasPresent implements GameConfig {
         this.destroyed = false;
         this.speed = speed;
         body = new Rectangle(0, 0, 20, 20, AMERICAN_PINK);
+        waypoints = SantasLittleHelper.getPresentWaypoints(20,20);
         body.setPosition(waypoints[0].getXPos(), waypoints[0].getYPos());
     }
 

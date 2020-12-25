@@ -1,4 +1,5 @@
 import de.ur.mi.oop.graphics.Line;
+import de.ur.mi.oop.graphics.Point;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
 
     public static ArrayList<Line> setupPath() {
         ArrayList<Line> path = new ArrayList<>();
-        for (int i = 0; i < waypoints.length - 1; i++) {
+        for (int i = 0; i < pathWaypoints.length - 1; i++) {
             path.add(newLine(i));
         }
         return path;
@@ -19,8 +20,8 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
 
     private static Line newLine(int index) {
         Line result = new Line(0,0,0,0, LINE_COLOR, LINE_WIDTH);
-        result.setStartPoint(waypoints[index]);
-        result.setEndPoint(waypoints[index + 1]);
+        result.setStartPoint(pathWaypoints[index]);
+        result.setEndPoint(pathWaypoints[index + 1]);
         return result;
     }
 
@@ -40,5 +41,16 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         }
         waveCounter++;
         return nextWave;
+    }
+
+    public static Point[] getPresentWaypoints(float presentWidth, float presentHeight) {
+        presentWidth /= 2;
+        presentHeight /= 2;
+        Point[] result = new Point[pathWaypoints.length];
+        result[0] = new Point(pathWaypoints[0].getXPos() - presentWidth, pathWaypoints[0].getYPos());
+        for (int i = 1; i < pathWaypoints.length; i++) {
+            result[i] = new Point(pathWaypoints[i].getXPos() - presentWidth, pathWaypoints[i].getYPos() - presentHeight);
+        }
+        return result;
     }
 }

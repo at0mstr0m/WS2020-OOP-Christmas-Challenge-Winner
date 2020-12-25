@@ -19,7 +19,7 @@ public interface GameConfig {
     int BOTTOM_UI_HEIGHT = 100;
     int BOTTOM_UI_X_POS = 0;
     int BOTTOM_UI_Y_POS = BOARD_HEIGHT;
-    String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "assets/ui/playPauseButton";
+    String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\playPauseButton\\";
 
     int FRAME_RATE = 60;
     int WINDOW_WIDTH = 800;
@@ -28,7 +28,7 @@ public interface GameConfig {
 
     int LINE_WIDTH = 40;
     Color LINE_COLOR = FLACESCENT;
-    Point waypoints[] = {
+    Point pathWaypoints[] = {
             new Point(BOARD_WIDTH / 6, BOARD_HEIGHT),
             new Point(BOARD_WIDTH / 6, BOARD_HEIGHT / 6),
             new Point((BOARD_WIDTH / 6) * 3, BOARD_HEIGHT / 6),

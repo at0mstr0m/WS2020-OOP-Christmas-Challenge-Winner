@@ -7,10 +7,11 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import java.util.ArrayList;
 
 /**
- * Auf Basis dieses Grundgerüst können Sie Ihr eigenes Spiel entwickeln. In der GameConfig finden Sie
- * für den Fall der Fälle eine Sammlung weihnachtlicher Farbwerte. Bitte füllen Sie vor der Abgabe Ihres
- * Beitrags die Readme-Datei in diesem Projektverzeichnis aus und laden Sie erst dann das gesamte Projekt
- * als ZIP-Datei hoch.
+ * TODO:    Implement lifepoints of ChristmasPresents
+ * TODO:    Implement damage dealt by Turrets
+ * TODO:    Implement different types of ChristmasPresents
+ * TODO:    Implement different types of Turrets
+ * TODO:    Add Assets
  */
 
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
@@ -29,7 +30,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         setFrameRate(FRAME_RATE);
         path = SantasLittleHelper.setupPath();
         bottomUI = new BottomUI(this);
-        //currentWave = SantasLittleHelper.fillCurrentWave(5,5f,60,this);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         turret0 = new Turret(200, 500);
         turret1 = new Turret(550, 200);
@@ -53,8 +53,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     private void drawWave() {
-        System.out.println("currentWaveIsAttacking() = " + currentWaveIsAttacking());
-        if (waveIsOver()) currentWave = null;
+        if (waveIsOver()) {
+            currentWave = null;
+        }
         if (currentWave != null) {
             for (int i = 0; i < currentWave.length; i++) {
                 if (currentWave[i] != null) currentWave[i].draw();
@@ -63,7 +64,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     @Override
-    public void onPresentReachedEndOfPath(ChristmasPresent present) {       // Entfern das Geschenk aus dem Array, um Platz für ein neues zu machen
+    public void onPresentReachedEndOfPath(ChristmasPresent present) {       //remove ChristmasPresent from Array
         removePresentFromArray(present);
     }
 
@@ -74,7 +75,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
                 break;
             }
         }
-        System.out.println("waveIsOver() = " + waveIsOver());
+        if (waveIsOver()) bottomUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
+
     }
 
     private boolean waveIsOver() {

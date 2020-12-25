@@ -1,5 +1,7 @@
 import de.ur.mi.oop.colors.Color;
+import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Point;
+import de.ur.mi.oop.graphics.Rectangle;
 
 public interface GameConfig {
     /**
@@ -28,12 +30,17 @@ public interface GameConfig {
 
     int LINE_WIDTH = 40;
     Color LINE_COLOR = FLACESCENT;
-    Point pathWaypoints[] = {
-            new Point(BOARD_WIDTH / 6, BOARD_HEIGHT),
-            new Point(BOARD_WIDTH / 6, BOARD_HEIGHT / 6),
-            new Point((BOARD_WIDTH / 6) * 3, BOARD_HEIGHT / 6),
-            new Point((BOARD_WIDTH / 6) * 3, (BOARD_WIDTH / 6) * 5),
-            new Point((BOARD_WIDTH / 6) * 5, (BOARD_WIDTH / 6) * 5),
-            new Point((BOARD_WIDTH / 6) * 5, 0),
-    };
+
+    int FUNDAMENT_WIDTH = 64;
+    int FUNDAMENT_HEIGHT = 64;
+    int FUNDAMENT_HEIGHT_MIDDLE = FUNDAMENT_HEIGHT / 2;
+    int FUNDAMENT_WIDTH_MIDDLE = FUNDAMENT_WIDTH / 2;
+    int FUNDAMENTS_IN_ROW = 8;
+    int FUNDAMENTS_IN_COLUMN = FUNDAMENTS_IN_ROW;
+    int FUNDAMENT_DISTANCE_FROM_BORDER = 18;
+    int FUNDAMENT_DISTANCE_BETWEEN_FUNDAMENTS = FUNDAMENT_DISTANCE_FROM_BORDER * 2;
+    int FUNDAMENT_CENTER_DISTANCE = FUNDAMENT_WIDTH + FUNDAMENT_DISTANCE_BETWEEN_FUNDAMENTS;
+    int MAX_NUM_OF_FUNDAMENTS = FUNDAMENTS_IN_ROW * FUNDAMENTS_IN_COLUMN;
+
+    int[] unusableBuildingSiteIndexes = {6,9,10,11,12,14,17,20,22,25,28,30,33,36,38,41,44,46,49,52,53,54,57};
 }

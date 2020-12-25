@@ -7,17 +7,20 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import java.util.ArrayList;
 
 /**
+ * TODO:    Implement multiple places for turrets
+ * TODO:    Make turrets hit the middle of a Christmas Present
  * TODO:    Implement lifepoints of ChristmasPresents
  * TODO:    Implement damage dealt by Turrets
- * TODO:    Implement different types of ChristmasPresents
- * TODO:    Implement different types of Turrets
+ * TODO:    Make Presents destructible
+ * TODO:    Add different types of ChristmasPresents
+ * TODO:    Add different types of Turrets
  * TODO:    Add Assets
  */
 
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
-    private ArrayList path;
     private BottomUI bottomUI;
     private static ChristmasPresent[] currentWave;
+    private Board board;
     private Turret turret0;
     private Turret turret1;
 
@@ -28,34 +31,26 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     @Override
     public void initialize() {
         setFrameRate(FRAME_RATE);
-        path = SantasLittleHelper.setupPath();
+        SantasLittleHelper.fillAnchorPoints();
+        board = new Board(this);
         bottomUI = new BottomUI(this);
-        setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         turret0 = new Turret(200, 500);
         turret1 = new Turret(550, 200);
+        setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
     @Override
     public void draw() {
         drawBackground(BACKGROUND_COLOR);
-        drawPath();
+        board.draw();
         drawWave();
         bottomUI.draw();
         turret0.draw();
         turret1.draw();
     }
 
-    private void drawPath() {
-        for (int i = 0; i < path.size(); i++) {
-            Line element = (Line) path.get(i);
-            element.draw();
-        }
-    }
-
     private void drawWave() {
-        if (waveIsOver()) {
-            currentWave = null;
-        }
+        if (waveIsOver()) currentWave = null;
         if (currentWave != null) {
             for (int i = 0; i < currentWave.length; i++) {
                 if (currentWave[i] != null) currentWave[i].draw();
@@ -76,7 +71,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
             }
         }
         if (waveIsOver()) bottomUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
-
     }
 
     private boolean waveIsOver() {

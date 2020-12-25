@@ -4,23 +4,25 @@ import de.ur.mi.oop.graphics.Line;
 public class Turret implements GameConfig{
     private Circle body;
     private Line ray;
-    private int firerate;              //helps adjusting the firerate
+    private int fireCounter;              //helps adjusting the firerate
+    private int fireCooldown;             //how long turret can fire without
 
     public Turret(int xPos, int yPos) {
         this.body = new Circle(xPos,yPos,20, ARYLIDE_YELLOW);
-        this.firerate = 0;
+        this.fireCounter = 0;
+        this.fireCooldown = 60;
     }
 
     public void draw() {
         this.body.draw();
         if (ChristmasChallenge.getCurrentWave() != null) {
-            firerate++;
+            fireCounter++;
             ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
-            if (closestPresent != null && firerate < 61) {
+            if (closestPresent != null && fireCounter < fireCooldown + 1) {
                 this.ray = new Line(this.body.getXPos(), this.body.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
                 this.ray.draw();
             }
-            if (firerate == 120) firerate = 0;
+            if (fireCounter == fireCooldown * 2) fireCounter = 0;
         }
     }
 

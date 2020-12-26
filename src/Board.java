@@ -53,7 +53,7 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
     }
 
     private void drawBuiltTurrets() {
-        if (builtTurrets != null || builtTurrets.size() != 0) {
+        if (builtTurrets.size() != 0) {
             for (int i = 0; i < builtTurrets.size(); i++) {
                 builtTurrets.get(i).draw();
             }

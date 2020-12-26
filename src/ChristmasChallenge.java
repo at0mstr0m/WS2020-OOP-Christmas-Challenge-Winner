@@ -19,8 +19,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private RightUI rightUI;
     private static ChristmasPresent[] currentWave;
     private Board board;
-    private Turret turret0;
-    private Turret turret1;
     private Point currentMousePosition;
 
     public static void main(String[] args) {
@@ -33,8 +31,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         SantasLittleHelper.fillAnchorPoints();
         rightUI = new RightUI(this);
         board = new Board(this, rightUI);
-        turret0 = new Turret(200, 500);
-        turret1 = new Turret(550, 200);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     }
 
@@ -44,8 +40,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         board.draw();
         drawWave();
         rightUI.draw();
-        turret0.draw();
-        turret1.draw();
     }
 
     private void drawWave() {

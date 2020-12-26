@@ -1,10 +1,13 @@
 import de.ur.mi.oop.colors.Colors;
+import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.graphics.Rectangle;
 
 import java.util.ArrayList;
 
-public class Board implements GameConfig, InputEventListener, BoardListener{
+public class Board implements GameConfig, InputEventListener {
+    private final String backgroundAsset =SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_BACKGROUND + "board.png";
+    private Image background;
     public Line[] path;
     private ArrayList<Rectangle> buildingSites;
     private ChristmasChallenge mainProgListener;
@@ -12,6 +15,7 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
     private ArrayList<Turret> builtTurrets;
 
     public Board(ChristmasChallenge mainProgListener, RightUI rightUIListener) {
+        this.background = new Image(0,0,backgroundAsset);
         this.builtTurrets = new ArrayList<>();
         this.mainProgListener = mainProgListener;
         this.rightUIListener = rightUIListener;
@@ -47,7 +51,8 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
     }
 
     public void draw() {
-        drawPath();
+        background.draw();
+        //drawPath();
         drawBuildingSites();
         drawBuiltTurrets();
     }

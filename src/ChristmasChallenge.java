@@ -88,6 +88,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
             rightUI.handleMouseClick(event.getXPos(), event.getYPos()); //pass on click event information to rightUI
             board.handleMouseClick(event.getXPos(), event.getYPos());   //pass on click event information to
         }
+        System.out.println("x = " + event.getXPos() + " y = " + event.getYPos());
     }
 
     public void onMouseMoved(MouseMovedEvent event) {

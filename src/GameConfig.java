@@ -30,6 +30,7 @@ public interface GameConfig {
     int BUTTON_SPACE_INCL_OFFSET = 100;
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
+    String PATH_TO_ASSET_BACKGROUND = "\\assets\\ui\\";
 
     int FRAME_RATE = 60;
     int WINDOW_WIDTH = BOARD_WIDTH + RIGHT_UI_WIDTH;

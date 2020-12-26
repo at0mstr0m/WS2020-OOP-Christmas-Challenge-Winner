@@ -29,7 +29,7 @@ public class TurretButton implements GameConfig {
     public void draw() {
         background.draw();
         if (buildMode)
-            body.setPosition(mainProgListener.currentMousePosition.getXPos() - BUTTON_WIDTH_MIDDLE, mainProgListener.currentMousePosition.getYPos() - BUTTON_HEIGHT_MIDDLE);
+            body.setPosition(mainProgListener.getCurrentMouseXPos() - BUTTON_WIDTH_MIDDLE, mainProgListener.getCurrentMouseYPos() - BUTTON_HEIGHT_MIDDLE);
         body.draw();
     }
 

@@ -4,11 +4,10 @@ import de.ur.mi.oop.graphics.Rectangle;
 
 import java.util.ArrayList;
 
-public class Board implements GameConfig, BoardListener{
+public class Board implements GameConfig, InputEventListener, BoardListener{
     public Line[] path;
     private ArrayList<Rectangle> buildingSites;
     private ChristmasChallenge listener;
-    private TurretButton turretButtonOne;
 
     public Board(ChristmasChallenge listener) {
         this.listener = listener;
@@ -45,10 +44,12 @@ public class Board implements GameConfig, BoardListener{
         for (int i = 0; i < buildingSites.size(); i++) {
             boolean unusable = false;
             for (int j = 0; j < unusableBuildingSiteIndexes.length; j++) {
-                if (unusableBuildingSiteIndexes[j] == i) unusable = true;
+                if (unusableBuildingSiteIndexes[j] == i) {
+                    unusable = true;
+                    break;
+                }
             }
             if (!unusable) buildingSites.get(i).draw();
-
         }
     }
 
@@ -56,5 +57,10 @@ public class Board implements GameConfig, BoardListener{
         for (int i = 0; i < path.length; i++) {
             path[i].draw();
         }
+    }
+
+    @Override
+    public void handleMouseClick(int x, int y) {
+
     }
 }

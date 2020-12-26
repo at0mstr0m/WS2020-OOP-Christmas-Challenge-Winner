@@ -21,7 +21,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private Board board;
     private Turret turret0;
     private Turret turret1;
-    public Point currentMousePosition;
+    private Point currentMousePosition;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -90,8 +90,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void onMousePressed(MousePressedEvent event) {
-        if (event.getButton() == MouseButton.LEFT) {        //only handle left click
-            rightUI.handleMouseClick(event.getXPos(), event.getYPos());
+        if (event.getButton() == MouseButton.LEFT) {                    //only handle left click
+            rightUI.handleMouseClick(event.getXPos(), event.getYPos()); //pass on click event information to rightUI
+            board.handleMouseClick(event.getXPos(), event.getYPos());   //pass on click event information to
         }
     }
 
@@ -104,5 +105,13 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         if (currentWave == null){
             currentWave = SantasLittleHelper.getNextWave(this);
         }
+    }
+
+    public float getCurrentMouseXPos() {
+        return currentMousePosition.getXPos();
+    }
+
+    public float getCurrentMouseYPos() {
+        return currentMousePosition.getYPos();
     }
 }

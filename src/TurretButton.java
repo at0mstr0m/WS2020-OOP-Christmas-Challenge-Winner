@@ -1,3 +1,4 @@
+import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Rectangle;
 
@@ -12,7 +13,7 @@ public class TurretButton implements GameConfig{
 
     public TurretButton (ChristmasChallenge listener, int index) {
         this.listener = listener;
-
+        this.background = new Rectangle(BUTTONS_X_POS,resolveYPos(index),BUTTON_WIDTH,BUTTON_HEIGHT, ARYLIDE_YELLOW);
         this.body = new Image(BUTTONS_X_POS,resolveYPos(index),turretButtonAssets[index]);
     }
 
@@ -21,6 +22,7 @@ public class TurretButton implements GameConfig{
     }
 
     public void draw() {
+        background.draw();
         body.draw();
     }
 }

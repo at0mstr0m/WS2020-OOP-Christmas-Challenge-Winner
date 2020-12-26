@@ -1,7 +1,10 @@
 import de.ur.mi.oop.graphics.Image;
 
 public class StartButton implements GameConfig {
-    private String startButtonAssets[] = {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button1.png", SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button2.png"};
+    private String startButtonAssets[] = {
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button1.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button2.png"
+    };
     private Image buttonImage;
     private String assetInUse;
 

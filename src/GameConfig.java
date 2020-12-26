@@ -21,6 +21,8 @@ public interface GameConfig {
     int RIGHT_UI_Y_POS = 0;
     int START_BUTTON_Y_POS = 18;
     int BUTTONS_X_POS = BOARD_WIDTH + START_BUTTON_Y_POS;
+    int BUTTON_WIDTH = 64;
+    int BUTTON_HEIGHT = BUTTON_WIDTH ;
     int BUTTON_SPACE_INCL_OFFSET = 100;
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";

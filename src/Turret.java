@@ -17,20 +17,31 @@ public class Turret implements GameConfig{
         this.body = new Image(xPos,yPos,turretAssets[type]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
-        this.fireCooldown = 60;
+        this.fireCooldown = 1;
     }
 
     public void draw() {
-        this.body.draw();
         if (ChristmasChallenge.getCurrentWave() != null) {
             fireCounter++;
             ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
             if (closestPresent != null && fireCounter < fireCooldown + 1) {
-                this.ray = new Line(this.turretCenter.getXPos(), this.turretCenter.getYPos(), closestPresent.getCenterPoint().getXPos(), closestPresent.getCenterPoint().getYPos(), LINEN, 5);
+                float rayStartX = this.turretCenter.getXPos();
+                float rayStartY = this.turretCenter.getYPos();
+                float rayEndX = closestPresent.getCenterPoint().getXPos();
+                float rayEndY = closestPresent.getCenterPoint().getYPos();
+                this.ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, LINEN, 5);
                 this.ray.draw();
+                adjustRotation(rayStartX, rayStartY, rayEndX, rayEndY);
             }
             if (fireCounter == fireCooldown * 2) fireCounter = 0;
         }
+        this.body.draw();
+    }
+
+    private void adjustRotation(float rayStartX, float rayStartY, float rayEndX, float rayEndY) {
+        double angle = Math.atan2(rayEndY - rayStartY, rayEndX - rayStartX);         // Berechnet den Winkel zwischen den beiden Punkten im Bogenmaß
+        angle = angle * (360 / (2 * Math.PI)) + TURRET_ROTATION_OFFSET;
+        this.body.setRotationAngle(angle);
     }
 
     private int getIndexOfClosestPresent() {

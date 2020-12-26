@@ -27,8 +27,8 @@ public interface GameConfig {
     int BUTTON_WIDTH_MIDDLE = BUTTON_WIDTH / 2;
     int BUTTON_HEIGHT = BUTTON_WIDTH ;
     int BUTTON_HEIGHT_MIDDLE = BUTTON_HEIGHT / 2;
-
     int BUTTON_SPACE_INCL_OFFSET = 100;
+
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
     String PATH_TO_ASSET_BACKGROUND = "\\assets\\ui\\";
@@ -40,6 +40,7 @@ public interface GameConfig {
     Color BACKGROUND_COLOR = DARK_SEA_GREEN;
 
     int NUM_OF_TURRETS = 2;
+    int TURRET_ROTATION_OFFSET = 90;
 
     int LINE_WIDTH = 40;
     Color LINE_COLOR = FLACESCENT;

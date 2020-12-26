@@ -46,7 +46,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private void drawWave() {
         if (waveIsOver()) currentWave = null;
         if (currentWave != null) {
-            for (int i = 0; i < currentWave.length; i++) {
+            for (int i = currentWave.length - 1; i >= 0; i--) {
                 if (currentWave[i] != null) currentWave[i].draw();
             }
         }

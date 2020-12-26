@@ -1,6 +1,8 @@
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.MouseButton;
+import de.ur.mi.oop.events.MouseMovedEvent;
 import de.ur.mi.oop.events.MousePressedEvent;
+import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
 /**
@@ -19,6 +21,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private Board board;
     private Turret turret0;
     private Turret turret1;
+    public Point currentMousePosition;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -91,6 +94,11 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
             rightUI.handleMouseClick(event.getXPos(), event.getYPos());
         }
     }
+
+    public void onMouseMoved(MouseMovedEvent event) {
+        currentMousePosition = new Point(event.getXPos(), event.getYPos());
+    }
+
 
     public void launchNextWave() {
         if (currentWave == null){

@@ -17,30 +17,35 @@ public class Turret implements GameConfig{
         this.body = new Image(xPos,yPos,turretAssets[type]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
-        this.fireCooldown = 1;
+        this.fireCooldown = 20;
     }
 
     public void draw() {
-        if (ChristmasChallenge.getCurrentWave() != null) {
-            fireCounter++;
-            ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
-            if (closestPresent != null && fireCounter < fireCooldown + 1) {
-                float rayStartX = this.turretCenter.getXPos();
-                float rayStartY = this.turretCenter.getYPos();
-                float rayEndX = closestPresent.getCenterPoint().getXPos();
-                float rayEndY = closestPresent.getCenterPoint().getYPos();
-                this.ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, LINEN, 5);
-                this.ray.draw();
-                adjustRotation(rayStartX, rayStartY, rayEndX, rayEndY);
-            }
-            if (fireCounter == fireCooldown * 2) fireCounter = 0;
+        if (ChristmasChallenge.currentWaveIsAttacking()) {      //if there is a wave atacking, fire
+            fire();
         }
         this.body.draw();
     }
 
-    private void adjustRotation(float rayStartX, float rayStartY, float rayEndX, float rayEndY) {
+    private void fire() {
+        fireCounter++;
+        ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
+        if (closestPresent != null && fireCounter < fireCooldown + 1) {
+            float rayStartX = this.turretCenter.getXPos();
+            float rayStartY = this.turretCenter.getYPos();
+            float rayEndX = closestPresent.getCenterPoint().getXPos();
+            float rayEndY = closestPresent.getCenterPoint().getYPos();
+            this.ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, LINEN, 5);
+            this.ray.draw();
+            adjustTurretRotation(rayStartX, rayStartY, rayEndX, rayEndY);
+        }
+        if (fireCounter == fireCooldown * 2) fireCounter = 0;
+    }
+
+    private void adjustTurretRotation(float rayStartX, float rayStartY, float rayEndX, float rayEndY) {
         double angle = Math.atan2(rayEndY - rayStartY, rayEndX - rayStartX);         // Berechnet den Winkel zwischen den beiden Punkten im Bogenmaß
         angle = angle * (360 / (2 * Math.PI)) + TURRET_ROTATION_OFFSET;
+        if (angle < 0) angle += 360;                //if angle becomes negative, ad 360° to reach the correct values
         this.body.setRotationAngle(angle);
     }
 

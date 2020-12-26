@@ -46,7 +46,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private void drawWave() {
         if (waveIsOver()) currentWave = null;
         if (currentWave != null) {
-            for (int i = currentWave.length - 1; i >= 0; i--) {
+            for (int i = currentWave.length - 1; i >= 0; i--) {     //drawn from back to the front so the ChristmasPresent at the front position is not overdrawn
                 if (currentWave[i] != null) currentWave[i].draw();
             }
         }
@@ -79,7 +79,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         return currentWave;
     }
 
-    public boolean currentWaveIsAttacking() {
+    public static boolean currentWaveIsAttacking() {
         return currentWave != null;
     }
 

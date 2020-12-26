@@ -1,8 +1,7 @@
-public interface WaveContent {//[wave][ChristmasPresent][speed, delay in ticks, lifepoints]
+public interface WaveContent {  //[wave][ChristmasPresent][speed, delay in ticks, lifepoints]
     Object[][][] waves = {
         {
-            {5f, 60, 200},
-            {5f, 60, 200},
+            {5f, 30, 200},
         },{
             {0.8f, 40, 300},
             {0.8f, 40, 300},

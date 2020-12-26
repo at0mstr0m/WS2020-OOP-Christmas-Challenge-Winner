@@ -18,7 +18,14 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
     private ArrayList<Rectangle> getFittingBuildingSites() {
         ArrayList<Rectangle> result = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_OF_FUNDAMENTS; i++) {
-            result.add(new Rectangle(resolveXPos(i),resolveYPos(i),FUNDAMENT_WIDTH,FUNDAMENT_HEIGHT, Colors.GREY));
+            boolean unusable = false;
+            for (int j = 0; j < unusableBuildingSiteIndexes.length; j++) {  //sort out unusable spots that are lying on the path.
+                if (unusableBuildingSiteIndexes[j] == i) {
+                    unusable = true;
+                    break;
+                }
+            }
+            if (!unusable) result.add(new Rectangle(resolveXPos(i),resolveYPos(i),FUNDAMENT_WIDTH,FUNDAMENT_HEIGHT, Colors.GREY));
         }
         return result;
     }
@@ -42,14 +49,7 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
 
     private void drawBuildingSites() {
         for (int i = 0; i < buildingSites.size(); i++) {
-            boolean unusable = false;
-            for (int j = 0; j < unusableBuildingSiteIndexes.length; j++) {
-                if (unusableBuildingSiteIndexes[j] == i) {
-                    unusable = true;
-                    break;
-                }
-            }
-            if (!unusable) buildingSites.get(i).draw();
+            buildingSites.get(i).draw();
         }
     }
 

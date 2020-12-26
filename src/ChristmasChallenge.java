@@ -1,13 +1,9 @@
 import de.ur.mi.oop.app.GraphicsApp;
 import de.ur.mi.oop.events.MouseButton;
 import de.ur.mi.oop.events.MousePressedEvent;
-import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
-import java.util.ArrayList;
-
 /**
- * TODO:    Implement multiple places for turrets
  * TODO:    Make turrets hit the middle of a Christmas Present
  * TODO:    Implement lifepoints of ChristmasPresents
  * TODO:    Implement damage dealt by Turrets
@@ -18,7 +14,7 @@ import java.util.ArrayList;
  */
 
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
-    private BottomUI bottomUI;
+    private RightUI rightUI;
     private static ChristmasPresent[] currentWave;
     private Board board;
     private Turret turret0;
@@ -33,7 +29,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         setFrameRate(FRAME_RATE);
         SantasLittleHelper.fillAnchorPoints();
         board = new Board(this);
-        bottomUI = new BottomUI(this);
+        rightUI = new RightUI(this);
         turret0 = new Turret(200, 500);
         turret1 = new Turret(550, 200);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -44,7 +40,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         drawBackground(BACKGROUND_COLOR);
         board.draw();
         drawWave();
-        bottomUI.draw();
+        rightUI.draw();
         turret0.draw();
         turret1.draw();
     }
@@ -70,7 +66,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
                 break;
             }
         }
-        if (waveIsOver()) bottomUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
+        if (waveIsOver()) rightUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
     }
 
     private boolean waveIsOver() {
@@ -92,7 +88,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     @Override
     public void onMousePressed(MousePressedEvent event) {
         if (event.getButton() == MouseButton.LEFT) {        //only handle left click
-            bottomUI.handleMouseClick(event.getXPos(), event.getYPos());
+            rightUI.handleMouseClick(event.getXPos(), event.getYPos());
         }
     }
 

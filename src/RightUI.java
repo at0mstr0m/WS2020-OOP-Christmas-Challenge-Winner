@@ -1,26 +1,29 @@
 import de.ur.mi.oop.graphics.Rectangle;
 
-import java.io.File;
-
-public class BottomUI implements GameConfig, BottomUIListener {
+public class RightUI implements GameConfig, InputEventListener {
     private ChristmasChallenge listener;
     private Rectangle body;
     public StartButton startButton;
+    private TurretButton turretButtonOne;
+    private TurretButton turretButtonTwo;
 
-    public BottomUI(ChristmasChallenge listener) {
+    public RightUI(ChristmasChallenge listener) {
         this.listener = listener;
-        this.body = new Rectangle(BOTTOM_UI_X_POS, BOTTOM_UI_Y_POS, BOTTOM_UI_WIDTH, BOTTOM_UI_HEIGHT, FIRE_OPAL);
+        this.body = new Rectangle(RIGHT_UI_X_POS, RIGHT_UI_Y_POS, RIGHT_UI_WIDTH, RIGHT_UI_HEIGHT, FIRE_OPAL);
         this.startButton = new StartButton(listener);
+        this.turretButtonOne = new TurretButton(listener,0);
+        this.turretButtonTwo = new TurretButton(listener,1);
     }
 
     public void changeStartButtonAsset() {
-        System.out.println("Bump");
         this.startButton.changeAsset();
     }
 
     public void draw() {
         body.draw();
         startButton.draw();
+        turretButtonOne.draw();
+        turretButtonTwo.draw();
     }
 
     @Override

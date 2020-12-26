@@ -1,11 +1,9 @@
 import de.ur.mi.oop.colors.Color;
-import de.ur.mi.oop.colors.Colors;
-import de.ur.mi.oop.graphics.Point;
-import de.ur.mi.oop.graphics.Rectangle;
 
 public interface GameConfig {
     /**
      * Christmassy colors from https://www.schemecolor.com/christmas-carol.php
+     * Turret sprites from https://opengameart.org/content/tower-defense-300-tilessprites
      */
     Color FIRE_OPAL = new Color(235, 92, 95);
     Color AMERICAN_PINK = new Color(250, 149, 148);
@@ -17,15 +15,19 @@ public interface GameConfig {
     int BOARD_WIDTH = 800;
     int BOARD_HEIGHT = 800;
 
-    int BOTTOM_UI_WIDTH = BOARD_WIDTH;
-    int BOTTOM_UI_HEIGHT = 100;
-    int BOTTOM_UI_X_POS = 0;
-    int BOTTOM_UI_Y_POS = BOARD_HEIGHT;
-    String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\playPauseButton\\";
+    int RIGHT_UI_WIDTH = 100;
+    int RIGHT_UI_HEIGHT = BOARD_HEIGHT;
+    int RIGHT_UI_X_POS = BOARD_WIDTH;
+    int RIGHT_UI_Y_POS = 0;
+    int START_BUTTON_Y_POS = 18;
+    int BUTTONS_X_POS = BOARD_WIDTH + START_BUTTON_Y_POS;
+    int BUTTON_SPACE_INCL_OFFSET = 100;
+    String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
+    String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
 
     int FRAME_RATE = 60;
-    int WINDOW_WIDTH = 800;
-    int WINDOW_HEIGHT = BOARD_HEIGHT + BOTTOM_UI_HEIGHT;
+    int WINDOW_WIDTH = BOARD_WIDTH + RIGHT_UI_WIDTH;
+    int WINDOW_HEIGHT = BOARD_HEIGHT;
     Color BACKGROUND_COLOR = DARK_SEA_GREEN;
 
     int LINE_WIDTH = 40;

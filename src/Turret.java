@@ -36,12 +36,13 @@ public class Turret implements GameConfig{
     private int getIndexOfClosestPresent() {
         int length = ChristmasChallenge.getCurrentWave().length;
         int indexOfClosest = 0;
-        double shortestDistance = 100000;
+        double shortestDistanceFound = 100000;
         for (int i = 0; i < length; i++) {
             ChristmasPresent currentPresent = ChristmasChallenge.getCurrentWave()[i];
             if (currentPresent != null) {
-                if (this.body.distanceTo(currentPresent.body) < shortestDistance) {
-                    shortestDistance = this.body.distanceTo(currentPresent.body);
+                double distanceToCurrentPresent = this.body.distanceTo(currentPresent.getBody());
+                if (distanceToCurrentPresent < shortestDistanceFound) {
+                    shortestDistanceFound = distanceToCurrentPresent;
                     indexOfClosest = i;
                 }
             }

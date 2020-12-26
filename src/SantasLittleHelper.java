@@ -4,6 +4,28 @@ import de.ur.mi.oop.graphics.Point;
 public class SantasLittleHelper implements GameConfig, WaveContent {
     private static int waveCounter = 0;
     public static Point[] anchorPoints = new Point[MAX_NUM_OF_FUNDAMENTS];
+    static final String[] christmasPresentAssets = {
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "candy_cane.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_hat.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_tree.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "drum.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "mistletoe.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "snowflake.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "star.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "candy_cane_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_hat_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_tree_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "drum_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "mistletoe_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "snowflake_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "star_big.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet_big.png",
+    };
 
     public static void fillAnchorPoints() {
         for (int i = 0; i < anchorPoints.length; i++) {

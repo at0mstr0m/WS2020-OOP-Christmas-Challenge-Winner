@@ -4,6 +4,7 @@ public interface GameConfig {
     /**
      * Christmassy colors from https://www.schemecolor.com/christmas-carol.php
      * Turret sprites from https://opengameart.org/content/tower-defense-300-tilessprites
+     * ChristmasPresents sprites from https://akari21.itch.io/christmas
      */
     Color FIRE_OPAL = new Color(235, 92, 95);
     Color AMERICAN_PINK = new Color(250, 149, 148);
@@ -31,6 +32,7 @@ public interface GameConfig {
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
     String PATH_TO_ASSET_BACKGROUND = "\\assets\\ui\\";
+    String PATH_TO_ASSET_CHRISTMAS_PRESENTS = "\\assets\\christmasPresents\\";
 
     int FRAME_RATE = 60;
     int WINDOW_WIDTH = BOARD_WIDTH + RIGHT_UI_WIDTH;

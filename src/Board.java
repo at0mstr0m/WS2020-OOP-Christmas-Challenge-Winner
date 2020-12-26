@@ -6,7 +6,7 @@ import de.ur.mi.oop.graphics.Line;
 import java.util.ArrayList;
 
 public class Board implements GameConfig, InputEventListener {
-    private final String backgroundAsset =SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_BACKGROUND + "board.png";
+    private final String backgroundAsset =SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_BACKGROUND + "board_snow.png";
     private Image background;
     public Line[] path;
     private ArrayList<Circle> buildingSites;

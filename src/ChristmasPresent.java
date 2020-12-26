@@ -1,8 +1,10 @@
+import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class ChristmasPresent implements GameConfig {
-    public Rectangle body;
+    //private Rectangle body;
+    private Image body;
     private int waypointIterator;
     private boolean destroyed;
     private float speed;
@@ -16,9 +18,10 @@ public class ChristmasPresent implements GameConfig {
         this.delayCounter = delayCounter;
         this.destroyed = false;
         this.speed = speed;
-        body = new Rectangle(0, 0, 20, 20, AMERICAN_PINK);
-        waypoints = SantasLittleHelper.getPresentWaypoints(20,20);
-        body.setPosition(waypoints[0].getXPos(), waypoints[0].getYPos());
+        this.body = new Image(0,0,SantasLittleHelper.christmasPresentAssets[0]);     //initializedwith pseudo x & y
+        waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
+        this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
+        //body = new Rectangle(waypoints[0].getXPos(),waypoints[0].getYPos(),20,20,AMERICAN_PINK);
     }
 
     private void moveAlongPath() {
@@ -54,5 +57,9 @@ public class ChristmasPresent implements GameConfig {
 
     public Point getCenterPoint() {
         return new Point(body.getXPos() + (body.getWidth() / 2), body.getYPos() + (body.getHeight() / 2));
+    }
+
+    public Image getBody() {
+        return body;
     }
 }

@@ -26,7 +26,7 @@ public class Turret implements GameConfig{
             fireCounter++;
             ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
             if (closestPresent != null && fireCounter < fireCooldown + 1) {
-                this.ray = new Line(this.turretCenter.getXPos(), this.turretCenter.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
+                this.ray = new Line(this.turretCenter.getXPos(), this.turretCenter.getYPos(), closestPresent.getCenterPoint().getXPos(), closestPresent.getCenterPoint().getYPos(), LINEN, 5);
                 this.ray.draw();
             }
             if (fireCounter == fireCooldown * 2) fireCounter = 0;

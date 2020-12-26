@@ -52,7 +52,7 @@ public class ChristmasPresent implements GameConfig {
         return new Point(xMovement, yMovement);                                         // Gibt Schritt zurück
     }
 
-    //public Point getCenterPoint() {
-        //return new Point(body.);
-    //}
+    public Point getCenterPoint() {
+        return new Point(body.getXPos() + (body.getWidth() / 2), body.getYPos() + (body.getHeight() / 2));
+    }
 }

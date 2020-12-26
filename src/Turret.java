@@ -1,14 +1,21 @@
-import de.ur.mi.oop.graphics.Circle;
+import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Line;
+import de.ur.mi.oop.graphics.Point;
 
 public class Turret implements GameConfig{
-    private Circle body;
+    private Image body;
     private Line ray;
     private int fireCounter;              //helps adjusting the firerate
     private int fireCooldown;             //how long turret can fire without
+    private final String[] turretAssets = {
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png"
+    };
+    private Point turretCenter;
 
-    public Turret(float xPos, float yPos) {
-        this.body = new Circle(xPos,yPos,20, ARYLIDE_YELLOW);
+    public Turret(float xPos, float yPos, int type) {
+        this.body = new Image(xPos,yPos,turretAssets[type]);
+        this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
         this.fireCooldown = 60;
     }
@@ -19,7 +26,7 @@ public class Turret implements GameConfig{
             fireCounter++;
             ChristmasPresent closestPresent = ChristmasChallenge.getCurrentWave()[getIndexOfClosestPresent()];
             if (closestPresent != null && fireCounter < fireCooldown + 1) {
-                this.ray = new Line(this.body.getXPos(), this.body.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
+                this.ray = new Line(this.turretCenter.getXPos(), this.turretCenter.getYPos(), closestPresent.body.getXPos(), closestPresent.body.getYPos(), LINEN, 5);
                 this.ray.draw();
             }
             if (fireCounter == fireCooldown * 2) fireCounter = 0;

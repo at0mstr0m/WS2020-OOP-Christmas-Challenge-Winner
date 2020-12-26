@@ -79,8 +79,8 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
                 if (buildingSites.get(i).hitTest(x,y)) {
                     float xPos = buildingSites.get(i).getXPos();
                     float yPos = buildingSites.get(i).getYPos();
-                    int type = rightUIListener.currentlyPlacingTurretButtonInstance.getIndex();
-                    builtTurrets.add(new Turret(xPos,yPos));
+                    int type = rightUIListener.currentlyPlacingTurretButtonInstance.getType();
+                    builtTurrets.add(new Turret(xPos,yPos,type));
                     buildingSites.remove(i);
                     buildingSites.trimToSize();
                 }

@@ -2,7 +2,7 @@ import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class TurretButton implements GameConfig {
-    private int index;
+    private int type;
     private final ChristmasChallenge mainProgListener;
     private final RightUI uIListener;
     private Image body;
@@ -14,7 +14,7 @@ public class TurretButton implements GameConfig {
     private boolean buildMode;
 
     public TurretButton(ChristmasChallenge mainProgListener, RightUI uIListener, int index) {
-        this.index = index;
+        this.type = index;
         this.mainProgListener = mainProgListener;
         this.uIListener = uIListener;
         this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(index), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
@@ -44,11 +44,11 @@ public class TurretButton implements GameConfig {
         } else {
             buildMode = false;
             uIListener.currentlyPlacingTurretButtonInstance = null;
-            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.index), turretButtonAssets[this.index]);
+            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.type), turretButtonAssets[this.type]);
         }
     }
 
-    public int getIndex() {
-        return index;
+    public int getType() {
+        return this.type;
     }
 }

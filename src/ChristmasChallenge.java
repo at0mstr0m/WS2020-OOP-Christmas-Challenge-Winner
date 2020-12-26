@@ -31,8 +31,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     public void initialize() {
         setFrameRate(FRAME_RATE);
         SantasLittleHelper.fillAnchorPoints();
-        board = new Board(this);
         rightUI = new RightUI(this);
+        board = new Board(this, rightUI);
         turret0 = new Turret(200, 500);
         turret1 = new Turret(550, 200);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);

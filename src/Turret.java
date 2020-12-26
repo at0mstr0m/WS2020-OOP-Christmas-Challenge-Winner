@@ -7,7 +7,7 @@ public class Turret implements GameConfig{
     private int fireCounter;              //helps adjusting the firerate
     private int fireCooldown;             //how long turret can fire without
 
-    public Turret(int xPos, int yPos) {
+    public Turret(float xPos, float yPos) {
         this.body = new Circle(xPos,yPos,20, ARYLIDE_YELLOW);
         this.fireCounter = 0;
         this.fireCooldown = 60;

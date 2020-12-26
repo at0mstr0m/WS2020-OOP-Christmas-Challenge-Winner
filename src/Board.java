@@ -7,10 +7,14 @@ import java.util.ArrayList;
 public class Board implements GameConfig, InputEventListener, BoardListener{
     public Line[] path;
     private ArrayList<Rectangle> buildingSites;
-    private ChristmasChallenge listener;
+    private ChristmasChallenge mainProgListener;
+    private RightUI rightUIListener;
+    private ArrayList<Turret> builtTurrets;
 
-    public Board(ChristmasChallenge listener) {
-        this.listener = listener;
+    public Board(ChristmasChallenge mainProgListener, RightUI rightUIListener) {
+        this.builtTurrets = new ArrayList<>();
+        this.mainProgListener = mainProgListener;
+        this.rightUIListener = rightUIListener;
         this.path = SantasLittleHelper.getPath();
         this.buildingSites = getFittingBuildingSites();
     }
@@ -45,6 +49,15 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
     public void draw() {
         drawPath();
         drawBuildingSites();
+        drawBuiltTurrets();
+    }
+
+    private void drawBuiltTurrets() {
+        if (builtTurrets != null || builtTurrets.size() != 0) {
+            for (int i = 0; i < builtTurrets.size(); i++) {
+                builtTurrets.get(i).draw();
+            }
+        }
     }
 
     private void drawBuildingSites() {
@@ -61,6 +74,17 @@ public class Board implements GameConfig, InputEventListener, BoardListener{
 
     @Override
     public void handleMouseClick(int x, int y) {
-
+        if (rightUIListener.currentlyPlacingTurretButtonInstance != null) {     //checking only necessary if player is currently building a turret
+            for (int i = 0; i < buildingSites.size(); i++) {
+                if (buildingSites.get(i).hitTest(x,y)) {
+                    float xPos = buildingSites.get(i).getXPos();
+                    float yPos = buildingSites.get(i).getYPos();
+                    int type = rightUIListener.currentlyPlacingTurretButtonInstance.getIndex();
+                    builtTurrets.add(new Turret(xPos,yPos));
+                    buildingSites.remove(i);
+                    buildingSites.trimToSize();
+                }
+            }
+        }
     }
 }

@@ -1,15 +1,18 @@
-import de.ur.mi.oop.colors.Colors;
+import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class TurretContextMenu implements GameConfig {
+    private final String upgradeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "upgrade_button.png";
+    private final String sellButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "sell_button.png";
+    private final String closeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "close_button.png";
     private Turret turretWithContextMenu;
     private Board board;
     private Rectangle body;
     private float xPos;
     private float yPos;
-    private Rectangle upgradeButton;
-    private Rectangle sellButton;
-    private Rectangle closeButton;
+    private Image upgradeButton;
+    private Image sellButton;
+    private Image closeButton;
 
     public TurretContextMenu(Turret turretWithContextMenu, Board board) {
         this.turretWithContextMenu = turretWithContextMenu;
@@ -27,9 +30,9 @@ public class TurretContextMenu implements GameConfig {
         }
         this.body.setBorderColor(AMERICAN_PINK);
         this.body.setBorderWeight(3);
-        this.upgradeButton = new Rectangle(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, TURRET_CONTEXT_MENU_BUTTON_WIDTH, TURRET_CONTEXT_MENU_BUTTON_HEIGHT, Colors.BLACK);
-        this.sellButton = new Rectangle(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 2 + TURRET_CONTEXT_MENU_BUTTON_WIDTH, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, TURRET_CONTEXT_MENU_BUTTON_WIDTH, TURRET_CONTEXT_MENU_BUTTON_HEIGHT, Colors.PINK);
-        this.closeButton = new Rectangle(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 3 + TURRET_CONTEXT_MENU_BUTTON_WIDTH * 2, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, TURRET_CONTEXT_MENU_BUTTON_WIDTH, TURRET_CONTEXT_MENU_BUTTON_HEIGHT, Colors.GREEN);
+        this.upgradeButton = new Image(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, upgradeButtonAsset);
+        this.sellButton = new Image(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 2 + TURRET_CONTEXT_MENU_BUTTON_WIDTH, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, sellButtonAsset);
+        this.closeButton = new Image(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 3 + TURRET_CONTEXT_MENU_BUTTON_WIDTH * 2, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, closeButtonAsset);
     }
 
     public void draw() {

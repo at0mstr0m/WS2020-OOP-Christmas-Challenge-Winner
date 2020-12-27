@@ -90,10 +90,10 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void onMousePressed(MousePressedEvent event) {
-        if (event.getButton() == MouseButton.LEFT) {                    //only handle left click
+        if (event.getButton() == MouseButton.LEFT) {                    //only handle left click for rightUI
             rightUI.handleMouseClick(event.getXPos(), event.getYPos()); //pass on click event information to rightUI
-            board.handleMouseClick(event.getXPos(), event.getYPos());   //pass on click event information to
         }
+        board.handleMouseClick(event);   //pass on click event information to Board
         System.out.println("x = " + event.getXPos() + " y = " + event.getYPos());
     }
 

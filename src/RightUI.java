@@ -1,3 +1,4 @@
+import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class RightUI implements GameConfig, InputEventListener {
@@ -47,5 +48,10 @@ public class RightUI implements GameConfig, InputEventListener {
                 }
             }
         }
+    }
+
+    @Override
+    public void handleMouseClick(MousePressedEvent event) {
+
     }
 }

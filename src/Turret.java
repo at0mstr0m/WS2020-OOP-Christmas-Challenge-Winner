@@ -11,9 +11,10 @@ public class Turret implements GameConfig{
     private Line ray;
     private int fireCounter;                //helps adjusting the firerate
     private int fireCooldown;               //how long turret can fire without
-    private Point turretCenter;
-    private double dmgPerTick;                 // damage dealt by turret in one draw() cycle
 
+    private Point turretCenter;
+
+    private double dmgPerTick;                 // damage dealt by turret in one draw() cycle
     public Turret(float xPos, float yPos, int type) {
         this.body = new Image(xPos, yPos, turretAssets[type]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
@@ -67,5 +68,13 @@ public class Turret implements GameConfig{
             }
         }
         return indexOfClosest;
+    }
+
+    public boolean hitTest(int x, int y) {
+        return this.body.hitTest(x,y);
+    }
+
+    public Point getTurretCenter() {
+        return turretCenter;
     }
 }

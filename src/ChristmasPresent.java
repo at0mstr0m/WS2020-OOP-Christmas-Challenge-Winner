@@ -12,17 +12,19 @@ public class ChristmasPresent implements GameConfig {
     private ChristmasPresentListener listener;
     private Point[] waypoints;
     private double lifepoints;
+    private int type;
 
-    public ChristmasPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
+    public ChristmasPresent(float speed, int delayCounter, int type, ChristmasPresentListener listener) {
+        this.type = type;
         this.listener = listener;
         this.waypointIterator = 0;
         this.delayCounter = delayCounter;
         this.destroyed = false;
         this.speed = speed;
-        this.body = new Image(0,0,SantasLittleHelper.christmasPresentAssets[0]);     //initializedwith pseudo x & y
-        waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
+        this.body = new Image(0,0,SantasLittleHelper.christmasPresentAssets[type]);     //initialized with pseudo x & y
+        this.waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
         this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
-        this.lifepoints = 1000;
+        this.lifepoints = 100 * type + 1;
     }
 
     private void moveAlongPath() {

@@ -19,7 +19,7 @@ public class Turret implements GameConfig{
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
         this.fireCooldown = 20;
-        this.dmgPerTick = 1;
+        this.dmgPerTick = 0.1;
     }
 
     public void draw() {

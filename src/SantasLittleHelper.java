@@ -74,8 +74,9 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         for (int i = 0; i < nextWave.length; i++) {
             float speed = (float) waves[waveCounter][i][0];
             int delayCounter = (int) waves[waveCounter][i][1];
+            int type = (int) waves[waveCounter][i][2];
             delayAccumulator += delayCounter;
-            nextWave[i] = new ChristmasPresent(speed, delayAccumulator, listener);
+            nextWave[i] = new ChristmasPresent(speed, delayAccumulator, type, listener);
         }
         waveCounter++;
         return nextWave;

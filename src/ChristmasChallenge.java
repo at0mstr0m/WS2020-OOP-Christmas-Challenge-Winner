@@ -8,6 +8,7 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 /**
  * TODO:    Implement lifepoints of ChristmasPresents
  * TODO:    Implement damage dealt by Turrets
+ * TODO:    Add Context menu for turrets
  * TODO:    Reset Cooldown after wave
  * TODO:    Make Presents destructible
  * TODO:    Add different types of ChristmasPresents

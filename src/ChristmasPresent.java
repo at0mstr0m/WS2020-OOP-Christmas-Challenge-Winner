@@ -13,6 +13,7 @@ public class ChristmasPresent implements GameConfig {
     private Point[] waypoints;
     private double lifepoints;
     private int type;
+    private int worth;
 
     public ChristmasPresent(float speed, int delayCounter, int type, ChristmasPresentListener listener) {
         this.type = type;
@@ -25,6 +26,7 @@ public class ChristmasPresent implements GameConfig {
         this.waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
         this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
         this.lifepoints = 100 * type + 1;
+        this.worth = (int) (this.lifepoints / 75);
     }
 
     private void moveAlongPath() {
@@ -70,5 +72,9 @@ public class ChristmasPresent implements GameConfig {
         this.lifepoints -= dmgPerTick;                                      // subtract damage dealt from this.lifepoints
         System.out.println(this.lifepoints);
         if (this.lifepoints <= 0) this.listener.onPresentDestroyed(this);   // if lifepoints are down, the present is destroyed and must be removed
+    }
+
+    public int getWorth() {
+        return worth;
     }
 }

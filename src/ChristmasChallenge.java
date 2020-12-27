@@ -6,15 +6,15 @@ import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
 /**
- * TODO:    Implement lifepoints of ChristmasPresents
- * TODO:    Implement damage dealt by Turrets
- * TODO:    Add Money and Money Label
- * TODO:    Implement getting money from destroyed ChristmasPresents
+ * TODO:    improve lifepoints of ChristmasPresents
+ * TODO:    improve damage dealt by Turrets
+ * TODO:    improve money added from destroyed ChristmasPresents
+ * TODO:    Implement costs for Turrets
+ * TODO:    Add different types of Turrets
  * TODO:    Make Turrets upgradable
  * TODO:    Make Turrets sellable
  * TODO:    Reset Cooldown after wave
  * TODO:    Implement attack range of Turrets
- * TODO:    Add different types of Turrets
  * TODO:    Add Assets
  */
 
@@ -64,6 +64,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     @Override
     public void onPresentDestroyed(ChristmasPresent present) {
         removePresentFromArray(present);
+        money += present.getWorth();        //add worth of destroyed present to money
     }
 
     private void removePresentFromArray(ChristmasPresent present) {

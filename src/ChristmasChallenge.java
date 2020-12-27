@@ -6,7 +6,6 @@ import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
 /**
- * TODO:    Make turrets hit the middle of a Christmas Present
  * TODO:    Implement lifepoints of ChristmasPresents
  * TODO:    Implement damage dealt by Turrets
  * TODO:    Reset Cooldown after wave
@@ -54,6 +53,11 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void onPresentReachedEndOfPath(ChristmasPresent present) {       //remove ChristmasPresent from Array
+        removePresentFromArray(present);
+    }
+
+    @Override
+    public void onPresentDestroyed(ChristmasPresent present) {
         removePresentFromArray(present);
     }
 

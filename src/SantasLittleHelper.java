@@ -60,9 +60,12 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         return path;
     }
 
+    /*
     public static ChristmasPresent createRandomPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
         return new ChristmasPresent(speed, delayCounter, listener);
     }
+
+    */
 
 
     public static ChristmasPresent[] getNextWave(ChristmasPresentListener listener) {

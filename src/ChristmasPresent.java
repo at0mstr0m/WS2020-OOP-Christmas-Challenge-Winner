@@ -11,6 +11,7 @@ public class ChristmasPresent implements GameConfig {
     private int delayCounter;
     private ChristmasPresentListener listener;
     private Point[] waypoints;
+    private double lifepoints;
 
     public ChristmasPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
         this.listener = listener;
@@ -21,7 +22,7 @@ public class ChristmasPresent implements GameConfig {
         this.body = new Image(0,0,SantasLittleHelper.christmasPresentAssets[0]);     //initializedwith pseudo x & y
         waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
         this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
-        //body = new Rectangle(waypoints[0].getXPos(),waypoints[0].getYPos(),20,20,AMERICAN_PINK);
+        this.lifepoints = 1000;
     }
 
     private void moveAlongPath() {
@@ -61,5 +62,11 @@ public class ChristmasPresent implements GameConfig {
 
     public Image getBody() {
         return body;
+    }
+
+    public void takeDamage(double dmgPerTick) {
+        this.lifepoints -= dmgPerTick;                                      // subtract damage dealt from this.lifepoints
+        System.out.println(this.lifepoints);
+        if (this.lifepoints <= 0) this.listener.onPresentDestroyed(this);   // if lifepoints are down, the present is destroyed and must be removed
     }
 }

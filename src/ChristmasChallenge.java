@@ -8,10 +8,12 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 /**
  * TODO:    Implement lifepoints of ChristmasPresents
  * TODO:    Implement damage dealt by Turrets
- * TODO:    Add Context menu for turrets
+ * TODO:    Add Money and Money Label
+ * TODO:    Implement getting money from destroyed ChristmasPresents
+ * TODO:    Make Turrets upgradable
+ * TODO:    Make Turrets sellable
  * TODO:    Reset Cooldown after wave
- * TODO:    Make Presents destructible
- * TODO:    Add different types of ChristmasPresents
+ * TODO:    Implement attack range of Turrets
  * TODO:    Add different types of Turrets
  * TODO:    Add Assets
  */
@@ -21,6 +23,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private static ChristmasPresent[] currentWave;
     private Board board;
     private Point currentMousePosition;
+    private int money;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -28,6 +31,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void initialize() {
+        money = START_MONEY;
         setFrameRate(FRAME_RATE);
         SantasLittleHelper.fillAnchorPoints();
         rightUI = new RightUI(this);
@@ -114,5 +118,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     public float getCurrentMouseYPos() {
         return currentMousePosition.getYPos();
+    }
+
+    public String getMoneyAsString() {
+        return "$ " + money;
     }
 }

@@ -13,6 +13,8 @@ public interface GameConfig {
     Color ARYLIDE_YELLOW = new Color(236, 217, 105);
     Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
+    int START_MONEY = 1000;
+
     int BOARD_WIDTH = 800;
     int BOARD_HEIGHT = 800;
 
@@ -28,6 +30,11 @@ public interface GameConfig {
     int BUTTON_HEIGHT = BUTTON_WIDTH ;
     int BUTTON_HEIGHT_MIDDLE = BUTTON_HEIGHT / 2;
     int BUTTON_SPACE_INCL_OFFSET = 100;
+
+    int MONEY_LABEL_X_POS = BOARD_WIDTH + 8;
+    int MONEY_LABEL_Y_POS = BOARD_HEIGHT - 40;
+    int MONEY_LABEL_FONT_SIZE = 23;
+    Color MONEY_LABEL_FONT_COLOR = DARK_SEA_GREEN;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";

@@ -82,9 +82,7 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     @Override
-    public void handleMouseClick(int x, int y) {
-
-    }
+    public void handleMouseClick(int x, int y) {}
 
     public void handleMouseClick(MousePressedEvent event) {
         int x = event.getXPos();
@@ -100,7 +98,10 @@ public class Board implements GameConfig, InputEventListener {
          * Player must not be placing turrets and there must already be torrets on the board
          * to make TurretContextMenu relevant.
          */
-        else if (event.getButton() == MouseButton.RIGHT && !turretsOnTheBoard.isEmpty()) openTurretContextMenu(x, y);
+        else if (rightUIListener.currentlyPlacingTurretButtonInstance == null && event.getButton() == MouseButton.RIGHT && !turretsOnTheBoard.isEmpty()) openTurretContextMenu(x, y);
+        if (event.getButton() == MouseButton.LEFT && contextMenu != null) {
+            contextMenu.handleMouseClick(x,y);
+        }
     }
 
     private void openTurretContextMenu(int x, int y) {
@@ -131,5 +132,9 @@ public class Board implements GameConfig, InputEventListener {
                 break;      //only one buildingSite can be clicked at a time
             }
         }
+    }
+
+    public void closeTurretContextMenu() {
+        this.contextMenu = null;
     }
 }

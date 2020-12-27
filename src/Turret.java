@@ -14,14 +14,16 @@ public class Turret implements GameConfig{
     private int fireCounter;                //helps adjusting the firerate
     private int fireCooldown;               //how long turret can fire without
     private Point turretCenter;
-    private double dmgPerTick;                 // damage dealt by turret in one draw() cycle
+    private double dmgPerTick;              // damage dealt by turret in one draw() cycle
     private int type;
     private int level;
     private int worth;
     private float xPos;
     private float yPos;
+    private ChristmasChallenge mainProgListener;
 
-    public Turret(float xPos, float yPos, int type) {
+    public Turret(float xPos, float yPos, int type, ChristmasChallenge mainProgListener) {
+        this.mainProgListener = mainProgListener;
         this.xPos = xPos;
         this.yPos = yPos;
         this.type = type;
@@ -30,7 +32,7 @@ public class Turret implements GameConfig{
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
         this.fireCooldown = 20;
-        this.dmgPerTick = 0.1;
+        this.dmgPerTick = 0.75;
         this.worth = turretBuildingPrices[type][0];
     }
 
@@ -95,7 +97,8 @@ public class Turret implements GameConfig{
 
     public void levelUp() {
         this.level++;
-        System.out.println(level);
+        this.dmgPerTick *= 1.5;
+        mainProgListener.spendMoney(turretBuildingPrices[type][level]);
         //this.body = new Image(xPos, yPos, turretAssets[type][level]);
     }
 

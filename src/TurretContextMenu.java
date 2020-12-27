@@ -58,11 +58,11 @@ public class TurretContextMenu implements GameConfig {
     }
 
     public void handleMouseClick(int x, int y) {
-        if (upgradeButton != null && upgradeButton.hitTest(x,y)) {
+        if (upgradeButton != null && upgradeButton.hitTest(x,y)) {  // click on upgradeButton
             turretWithContextMenu.levelUp();
             board.closeTurretContextMenu();
         }
-        else if (sellButton.hitTest(x,y)) {
+        else if (sellButton.hitTest(x,y)) {                         // click on sellButton
             board.sellTurret(turretWithContextMenu);
             board.closeTurretContextMenu();
         }

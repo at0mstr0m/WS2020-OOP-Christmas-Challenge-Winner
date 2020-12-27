@@ -14,6 +14,7 @@ public interface GameConfig {
     Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
     int START_MONEY = 1000;
+    int START_LIFES = 200;
 
     int BOARD_WIDTH = 800;
     int BOARD_HEIGHT = 800;
@@ -35,6 +36,9 @@ public interface GameConfig {
     int MONEY_LABEL_Y_POS = BOARD_HEIGHT - 40;
     int MONEY_LABEL_FONT_SIZE = 23;
     Color MONEY_LABEL_FONT_COLOR = DARK_SEA_GREEN;
+    int LIFES_LABEL_X_POS = MONEY_LABEL_X_POS;
+    int LIFES_LABEL_Y_POS = MONEY_LABEL_Y_POS - 20;
+    int LIFES_LABEL_FONT_SIZE = 16;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
@@ -63,10 +67,10 @@ public interface GameConfig {
     Color TURRET_CONTEXT_MENU_BORDER_COLOR = AMERICAN_PINK;
 
     int turretBuildingPrices[][] = {
-            {300,100},
-            {750,100},
-            {800,100},
-            {1200,100}};
+            {300,200},
+            {750,400},
+            {800,550},
+            {1200,750}};
 
     int FUNDAMENT_WIDTH = 64;
     int FUNDAMENT_HEIGHT = 64;

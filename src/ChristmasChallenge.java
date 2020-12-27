@@ -9,10 +9,9 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
  * TODO:    improve lifepoints of ChristmasPresents
  * TODO:    improve damage dealt by Turrets
  * TODO:    improve money added from destroyed ChristmasPresents
+ * TODO:    add GameOver
  * TODO:    Implement costs for Turrets
- * TODO:    Add different types of Turrets
- * TODO:    Make Turrets upgradable
- * TODO:    Make Turrets sellable
+ * TODO:    Implement different types of Turrets
  * TODO:    Reset Cooldown after wave
  * TODO:    Implement attack range of Turrets
  * TODO:    Add Assets
@@ -24,6 +23,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private Board board;
     private Point currentMousePosition;
     private int money;
+    private int lifes;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -32,6 +32,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     @Override
     public void initialize() {
         money = START_MONEY;
+        lifes = START_LIFES;
         setFrameRate(FRAME_RATE);
         SantasLittleHelper.fillAnchorPoints();
         rightUI = new RightUI(this);
@@ -58,6 +59,7 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void onPresentReachedEndOfPath(ChristmasPresent present) {       //remove ChristmasPresent from Array
+        lifes--;                            //one life lost
         removePresentFromArray(present);
     }
 
@@ -122,6 +124,10 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     public String getMoneyAsString() {
         return "$ " + money;
+    }
+
+    public int getLifes() {
+        return lifes;
     }
 
     public void spendMoney(int price) {

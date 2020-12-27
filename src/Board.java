@@ -117,7 +117,7 @@ public class Board implements GameConfig, InputEventListener {
                     mainProgListener.spendMoney(price);
                     float xPos = buildingSites.get(i).getXPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
                     float yPos = buildingSites.get(i).getYPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
-                    turretsOnTheBoard.add(new Turret(xPos,yPos,type));
+                    turretsOnTheBoard.add(new Turret(xPos,yPos,type,mainProgListener));
                     buildingSites.remove(i);
                     buildingSites.trimToSize();
                 }

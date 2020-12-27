@@ -8,6 +8,7 @@ public class RightUI implements GameConfig, InputEventListener {
     public StartButton startButton;
     private TurretButton[] turretButtons;
     private Label moneyLabel;
+    private Label lifesLabel;
     public TurretButton currentlyPlacingTurretButtonInstance;
 
     public RightUI(ChristmasChallenge listener) {
@@ -20,6 +21,8 @@ public class RightUI implements GameConfig, InputEventListener {
         }
         this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString(),MONEY_LABEL_FONT_COLOR);
         this.moneyLabel.setFontSize(MONEY_LABEL_FONT_SIZE);
+        this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifes(),MONEY_LABEL_FONT_COLOR);
+        this.lifesLabel.setFontSize(LIFES_LABEL_FONT_SIZE);
     }
 
     public void changeStartButtonAsset() {
@@ -32,6 +35,7 @@ public class RightUI implements GameConfig, InputEventListener {
         drawTurretButtons();
         moneyLabel.setText(listener.getMoneyAsString());    //refresh current Money
         moneyLabel.draw();
+        lifesLabel.draw();
     }
 
     private void drawTurretButtons() {

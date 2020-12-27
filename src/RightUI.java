@@ -18,9 +18,8 @@ public class RightUI implements GameConfig, InputEventListener {
         for (int i = 0; i < turretButtons.length; i++) {
             turretButtons[i] = new TurretButton(listener,this, i);
         }
-        this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString());
+        this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString(),MONEY_LABEL_FONT_COLOR);
         this.moneyLabel.setFontSize(MONEY_LABEL_FONT_SIZE);
-        this.moneyLabel.setColor(MONEY_LABEL_FONT_COLOR);
     }
 
     public void changeStartButtonAsset() {
@@ -51,7 +50,7 @@ public class RightUI implements GameConfig, InputEventListener {
         for (int i = 0; i < turretButtons.length; i++) {
             if (turretButtons[i].hitTest(x,y)){
                 if (turretButtons[i] == currentlyPlacingTurretButtonInstance || currentlyPlacingTurretButtonInstance == null) {
-                    turretButtons[i].toggleBuildMode(x, y);
+                    turretButtons[i].toggleBuildMode();
                 }
             }
         }

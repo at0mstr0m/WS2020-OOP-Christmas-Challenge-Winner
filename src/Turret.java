@@ -26,12 +26,12 @@ public class Turret implements GameConfig{
         this.yPos = yPos;
         this.type = type;
         this.level = 0;
-        this.body = new Image(xPos, yPos, turretAssets[this.type][this.level]);
+        this.body = new Image(this.xPos, this.yPos, turretAssets[this.type][this.level]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
         this.fireCooldown = 20;
         this.dmgPerTick = 0.1;
-        this.worth = turretBuildingPrices[type];
+        this.worth = turretBuildingPrices[type][0];
     }
 
     public void draw() {
@@ -97,5 +97,13 @@ public class Turret implements GameConfig{
         this.level++;
         System.out.println(level);
         //this.body = new Image(xPos, yPos, turretAssets[type][level]);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

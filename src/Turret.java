@@ -3,24 +3,35 @@ import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.graphics.Point;
 
 public class Turret implements GameConfig{
-    private final String[] turretAssets = {
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png"
+    private final String[][] turretAssets = {
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1.png"},
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png"},
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_3.png"},
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_4.png"},
     };
     private Image body;
     private Line ray;
     private int fireCounter;                //helps adjusting the firerate
     private int fireCooldown;               //how long turret can fire without
-
     private Point turretCenter;
-
     private double dmgPerTick;                 // damage dealt by turret in one draw() cycle
+    private int type;
+    private int level;
+    private int worth;
+    private float xPos;
+    private float yPos;
+
     public Turret(float xPos, float yPos, int type) {
-        this.body = new Image(xPos, yPos, turretAssets[type]);
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.type = type;
+        this.level = 0;
+        this.body = new Image(xPos, yPos, turretAssets[this.type][this.level]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.fireCounter = 0;
         this.fireCooldown = 20;
         this.dmgPerTick = 0.1;
+        this.worth = turretBuildingPrices[type];
     }
 
     public void draw() {
@@ -76,5 +87,15 @@ public class Turret implements GameConfig{
 
     public Point getTurretCenter() {
         return turretCenter;
+    }
+
+    public int getWorth() {
+        return worth;
+    }
+
+    public void levelUp() {
+        this.level++;
+        System.out.println(level);
+        //this.body = new Image(xPos, yPos, turretAssets[type][level]);
     }
 }

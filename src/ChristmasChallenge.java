@@ -106,7 +106,6 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
         currentMousePosition = new Point(event.getXPos(), event.getYPos());
     }
 
-
     public void launchNextWave() {
         if (currentWave == null){
             currentWave = SantasLittleHelper.getNextWave(this);
@@ -123,5 +122,20 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     public String getMoneyAsString() {
         return "$ " + money;
+    }
+
+    public void spendMoney(int price) {
+        if (price > 0) money -= price;
+    }
+
+    /*
+     * When selling a Turret only half of its value is returned.
+     */
+    public void earnMoneyFromSelling(int value) {
+        if (value > 0) money += value / 2;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

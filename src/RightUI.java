@@ -51,7 +51,7 @@ public class RightUI implements GameConfig, InputEventListener {
         for (int i = 0; i < turretButtons.length; i++) {
             if (turretButtons[i].hitTest(x,y)){
                 if (turretButtons[i] == currentlyPlacingTurretButtonInstance || currentlyPlacingTurretButtonInstance == null) {
-                    turretButtons[i].lockOrUnlockAsset(x, y);
+                    turretButtons[i].toggleBuildMode(x, y);
                 }
             }
         }

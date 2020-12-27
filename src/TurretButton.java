@@ -9,17 +9,21 @@ public class TurretButton implements GameConfig {
     private final Rectangle background;
     private final String[] turretButtonAssets = {
             SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png"
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_3.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_4.png",
     };
     private boolean buildMode;
+    private int price;
 
-    public TurretButton(ChristmasChallenge mainProgListener, RightUI uIListener, int index) {
-        this.type = index;
+    public TurretButton(ChristmasChallenge mainProgListener, RightUI uIListener, int type) {
+        this.type = type;
         this.mainProgListener = mainProgListener;
         this.uIListener = uIListener;
-        this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(index), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
-        this.body = new Image(BUTTONS_X_POS, resolveYPos(index), turretButtonAssets[index]);
+        this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(type), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
+        this.body = new Image(BUTTONS_X_POS, resolveYPos(type), turretButtonAssets[type]);
         this.buildMode = false;
+        this.price = turretBuildingPrices[type];
     }
 
     private int resolveYPos(int index) {
@@ -37,7 +41,7 @@ public class TurretButton implements GameConfig {
         return this.background.hitTest(x, y);    //aim at background which is the whole button
     }
 
-    public void lockOrUnlockAsset(int x, int y) {
+    public void toggleBuildMode(int x, int y) {
         if (!buildMode) {
             buildMode = true;
             uIListener.currentlyPlacingTurretButtonInstance = this;

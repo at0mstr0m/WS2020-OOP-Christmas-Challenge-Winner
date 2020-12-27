@@ -41,18 +41,6 @@ public class Board implements GameConfig, InputEventListener {
         return result;
     }
 
-    private int resolveXPos(int index) {
-        int x = index % FUNDAMENTS_IN_ROW;
-        x = FUNDAMENT_DISTANCE_FROM_BORDER + (FUNDAMENT_WIDTH  + FUNDAMENT_DISTANCE_BETWEEN_FUNDAMENTS) * x;
-        return x;
-    }
-
-    private int resolveYPos(int index) {
-        int y = index / FUNDAMENTS_IN_ROW;
-        y = FUNDAMENT_DISTANCE_FROM_BORDER + (FUNDAMENT_HEIGHT  + FUNDAMENT_DISTANCE_BETWEEN_FUNDAMENTS) * y;
-        return y;
-    }
-
     public void draw() {
         background.draw();
         //drawPath();
@@ -123,12 +111,16 @@ public class Board implements GameConfig, InputEventListener {
     private void placeTurretOnBoard(int x, int y) {
         for (int i = 0; i < buildingSites.size(); i++) {
             if (buildingSites.get(i).hitTest(x, y)) {
-                float xPos = buildingSites.get(i).getXPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
-                float yPos = buildingSites.get(i).getYPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
                 int type = rightUIListener.currentlyPlacingTurretButtonInstance.getType();
-                turretsOnTheBoard.add(new Turret(xPos,yPos,type));
-                buildingSites.remove(i);
-                buildingSites.trimToSize();
+                int price = turretBuildingPrices[type];
+                if (mainProgListener.getMoney() >= price) {            //only turrets tat can be afforded can be placed
+                    mainProgListener.spendMoney(price);
+                    float xPos = buildingSites.get(i).getXPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
+                    float yPos = buildingSites.get(i).getYPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
+                    turretsOnTheBoard.add(new Turret(xPos,yPos,type));
+                    buildingSites.remove(i);
+                    buildingSites.trimToSize();
+                }
                 break;      //only one buildingSite can be clicked at a time
             }
         }
@@ -136,5 +128,11 @@ public class Board implements GameConfig, InputEventListener {
 
     public void closeTurretContextMenu() {
         this.contextMenu = null;
+    }
+
+    public void sellTurret(Turret turretWithContextMenu) {
+        mainProgListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());
+        turretsOnTheBoard.trimToSize();
+        turretsOnTheBoard.remove(turretWithContextMenu);
     }
 }

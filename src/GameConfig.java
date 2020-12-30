@@ -41,7 +41,7 @@ public interface GameConfig {
     int LIFES_LABEL_FONT_SIZE = 16;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
-    String PATH_TO_ASSETS_TURRET_BUTTON = "\\assets\\ui\\turrets\\";
+    String PATH_TO_ASSETS_TURRETS = "\\assets\\turrets\\";
     String PATH_TO_ASSET_BACKGROUND = "\\assets\\ui\\";
     String PATH_TO_ASSET_CHRISTMAS_PRESENTS = "\\assets\\christmasPresents\\";
     String PATH_TO_ASSET_TURRET_CONTEXT_MENU = "\\assets\\ui\\turretContextMenu\\";

@@ -9,11 +9,11 @@ public abstract class Turret implements GameConfig{
     private int fireCooldown;               //how long turret can fire without
     private Point turretCenter;
     private double dmgPerTick;              // damage dealt by turret in one draw() cycle
-    protected int type;
-    protected int level;
-    protected int worth;
-    protected float xPos;
-    protected float yPos;
+    private int type;
+    private int level;
+    private int worth;
+    private float xPos;
+    private float yPos;
     private ChristmasChallenge mainClassListener;
 
     public Turret(float xPos, float yPos, int type, ChristmasChallenge mainClassListener) {

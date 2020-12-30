@@ -6,6 +6,7 @@ public class TurretContextMenu implements GameConfig {
     private final String upgradeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "upgrade_button.png";
     private final String sellButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "sell_button.png";
     private final String closeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "close_button.png";
+    private final String sellLabelText = "Sell for Half";
     private Turret turretWithContextMenu;
     private Board board;
     private Rectangle body;
@@ -35,7 +36,7 @@ public class TurretContextMenu implements GameConfig {
         this.body.setBorderColor(TURRET_CONTEXT_MENU_BORDER_COLOR);
         this.body.setBorderWeight(TURRET_CONTEXT_MENU_BORDER_WEIGHT);
         this.sellButton = new Image(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 2 + TURRET_CONTEXT_MENU_BUTTON_WIDTH, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, sellButtonAsset);
-        this.sellLabel = new Label(0, this.sellButton.getBottomBorder() - 7, "Sell for Half", DARK_SEA_GREEN);
+        this.sellLabel = new Label(0, this.sellButton.getBottomBorder() - 7, sellLabelText, DARK_SEA_GREEN);
         this.sellLabel.setFontSize(15);
         this.sellLabel.setXPos(this.sellButton.getLeftBorder() + BUTTON_WIDTH / 2 - (sellLabel.getWidthEstimate() / 2));
         this.closeButton = new Image(this.xPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER * 3 + TURRET_CONTEXT_MENU_BUTTON_WIDTH * 2, this.yPos + TURRET_CONTEXT_MENU_DISTANCE_FROM_BORDER, closeButtonAsset);
@@ -59,8 +60,7 @@ public class TurretContextMenu implements GameConfig {
 
     public void handleMouseClick(int x, int y) {
         if (upgradeButton != null && upgradeButton.hitTest(x,y)) {  // click on upgradeButton
-            turretWithContextMenu.levelUp();
-            board.closeTurretContextMenu();
+            if (turretWithContextMenu.levelUp()) board.closeTurretContextMenu();
         }
         else if (sellButton.hitTest(x,y)) {                         // click on sellButton
             board.sellTurret(turretWithContextMenu);

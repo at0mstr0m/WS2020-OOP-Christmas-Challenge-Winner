@@ -23,6 +23,8 @@ public interface GameConfig {
     int RIGHT_UI_HEIGHT = BOARD_HEIGHT;
     int RIGHT_UI_X_POS = BOARD_WIDTH;
     int RIGHT_UI_Y_POS = 0;
+    Color RIGHT_UI_COLOR = FIRE_OPAL;
+
     int START_BUTTON_Y_POS = 18;
 
     int BUTTONS_X_POS = BOARD_WIDTH + START_BUTTON_Y_POS;

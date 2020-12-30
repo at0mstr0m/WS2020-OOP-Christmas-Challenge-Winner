@@ -3,7 +3,6 @@ import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class ChristmasPresent implements GameConfig {
-    //private Rectangle body;
     private Image body;
     private int waypointIterator;
     private boolean destroyed;

@@ -69,7 +69,9 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     @Override
-    public void handleMouseClick(int x, int y) {}
+    public void handleMouseClick(int x, int y) {
+
+    }
 
     public void handleMouseClick(MousePressedEvent event) {
         int x = event.getXPos();

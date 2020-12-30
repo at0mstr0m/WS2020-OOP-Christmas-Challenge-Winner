@@ -13,7 +13,7 @@ public class RightUI implements GameConfig, InputEventListener {
 
     public RightUI(ChristmasChallenge listener) {
         this.listener = listener;
-        this.body = new Rectangle(RIGHT_UI_X_POS, RIGHT_UI_Y_POS, RIGHT_UI_WIDTH, RIGHT_UI_HEIGHT, FIRE_OPAL);
+        this.body = new Rectangle(RIGHT_UI_X_POS, RIGHT_UI_Y_POS, RIGHT_UI_WIDTH, RIGHT_UI_HEIGHT, RIGHT_UI_COLOR);
         this.startButton = new StartButton(listener);
         turretButtons = new TurretButton[NUM_OF_TURRETS];
         for (int i = 0; i < turretButtons.length; i++) {

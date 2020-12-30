@@ -61,7 +61,6 @@ public abstract class Turret implements GameConfig{
     }
 
     protected ChristmasPresent getClosestPresent(double fireRange) {
-        ChristmasPresent closestPresent = null;
         int length = mainClassListener.getCurrentWave().length;
         int indexOfClosest = 0;
         double shortestDistanceFound = fireRange;

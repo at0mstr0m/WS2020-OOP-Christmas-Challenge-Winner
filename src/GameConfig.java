@@ -13,7 +13,7 @@ public interface GameConfig {
     Color ARYLIDE_YELLOW = new Color(236, 217, 105);
     Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
-    int START_MONEY = 1000;
+    int START_MONEY = 3000;
     int START_LIFES = 200;
 
     int BOARD_WIDTH = 800;
@@ -67,10 +67,11 @@ public interface GameConfig {
     Color TURRET_CONTEXT_MENU_BORDER_COLOR = AMERICAN_PINK;
 
     int turretBuildingPrices[][] = {
-            {300,200},
-            {750,400},
-            {800,550},
-            {1200,750}};
+            {300,200,200,200,200,200},
+            {750,400,400,400,400,400},
+            {800,550,550,550,550,550},
+            {1200,750,750,750,750,750}
+    };
 
     int FUNDAMENT_WIDTH = 64;
     int FUNDAMENT_HEIGHT = 64;

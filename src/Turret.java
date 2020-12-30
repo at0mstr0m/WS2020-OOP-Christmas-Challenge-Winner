@@ -2,38 +2,32 @@ import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.graphics.Point;
 
-public class Turret implements GameConfig{
-    private final String[][] turretAssets = {
-            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_1.png"},
-            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2_1.png"},
-            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_3.png"},
-            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_4.png"},
-    };
+public abstract class Turret implements GameConfig{
     private Image body;
     private Line ray;
     private int fireCounter;                //helps adjusting the firerate
     private int fireCooldown;               //how long turret can fire without
     private Point turretCenter;
     private double dmgPerTick;              // damage dealt by turret in one draw() cycle
-    private int type;
-    private int level;
-    private int worth;
-    private float xPos;
-    private float yPos;
-    private ChristmasChallenge mainProgListener;
+    protected int type;
+    protected int level;
+    protected int worth;
+    protected float xPos;
+    protected float yPos;
+    private ChristmasChallenge mainClassListener;
 
-    public Turret(float xPos, float yPos, int type, ChristmasChallenge mainProgListener) {
-        this.mainProgListener = mainProgListener;
+    public Turret(float xPos, float yPos, int type, ChristmasChallenge mainClassListener) {
+        this.mainClassListener = mainClassListener;
         this.xPos = xPos;
         this.yPos = yPos;
         this.type = type;
         this.level = 0;
-        this.body = new Image(this.xPos, this.yPos, turretAssets[this.type][this.level]);
+        this.body = new Image(this.xPos, this.yPos, SantasLittleHelper.turretAssets[this.type][this.level]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
+        this.worth = turretBuildingPrices[this.type][this.level];
         this.fireCounter = 0;
         this.fireCooldown = 20;
         this.dmgPerTick = 0.75;
-        this.worth = turretBuildingPrices[type][0];
     }
 
     public void draw() {
@@ -98,8 +92,8 @@ public class Turret implements GameConfig{
     public void levelUp() {
         this.level++;
         this.dmgPerTick *= 1.5;
-        mainProgListener.spendMoney(turretBuildingPrices[type][level]);
-        //this.body = new Image(xPos, yPos, turretAssets[type][level]);
+        mainClassListener.spendMoney(turretBuildingPrices[type][level]);
+        this.body = new Image(xPos, yPos, SantasLittleHelper.turretAssets[type][level]);
     }
 
     public int getType() {

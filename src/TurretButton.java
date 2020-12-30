@@ -8,12 +8,6 @@ public class TurretButton implements GameConfig {
     private final RightUI uIListener;
     private Image body;
     private final Rectangle background;
-    private final String[] turretButtonAssets = {
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_3.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_4.png",
-    };
     private boolean buildMode;
     private int price;
     private Label pricetag;
@@ -23,7 +17,8 @@ public class TurretButton implements GameConfig {
         this.mainProgListener = mainProgListener;
         this.uIListener = uIListener;
         this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(type), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
-        this.body = new Image(BUTTONS_X_POS, resolveYPos(type), turretButtonAssets[type]);
+        System.out.println("type: " + this.type);
+        this.body = new Image(BUTTONS_X_POS, resolveYPos(type), SantasLittleHelper.turretAssets[type][0]);
         this.buildMode = false;
         this.price = turretBuildingPrices[type][0];
         this.pricetag = new Label(0, body.getBottomBorder(), "$ " + this.price, DARK_SEA_GREEN);
@@ -54,7 +49,7 @@ public class TurretButton implements GameConfig {
         } else {
             buildMode = false;
             uIListener.currentlyPlacingTurretButtonInstance = null;
-            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.type), turretButtonAssets[this.type]);
+            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.type), SantasLittleHelper.turretAssets[this.type][0]);
         }
     }
 

@@ -12,15 +12,15 @@ public class Board implements GameConfig, InputEventListener {
     private Image background;
     public Line[] path;
     private ArrayList<Circle> buildingSites;
-    private ChristmasChallenge mainProgListener;
+    private ChristmasChallenge mainClassListener;
     private RightUI rightUIListener;
     private ArrayList<Turret> turretsOnTheBoard;
     private TurretContextMenu contextMenu;
 
-    public Board(ChristmasChallenge mainProgListener, RightUI rightUIListener) {
+    public Board(ChristmasChallenge mainClassListener, RightUI rightUIListener) {
         this.background = new Image(0,0,backgroundAsset);
         this.turretsOnTheBoard = new ArrayList<>();
-        this.mainProgListener = mainProgListener;
+        this.mainClassListener = mainClassListener;
         this.rightUIListener = rightUIListener;
         this.path = SantasLittleHelper.getPath();
         this.buildingSites = getFittingBuildingSites();
@@ -43,7 +43,6 @@ public class Board implements GameConfig, InputEventListener {
 
     public void draw() {
         background.draw();
-        //drawPath();
         drawBuildingSites();
         drawBuiltTurrets();
         drawContextMenu();
@@ -112,12 +111,18 @@ public class Board implements GameConfig, InputEventListener {
         for (int i = 0; i < buildingSites.size(); i++) {
             if (buildingSites.get(i).hitTest(x, y)) {
                 int type = rightUIListener.currentlyPlacingTurretButtonInstance.getType();
+                System.out.println("Type: " + type);
                 int price = turretBuildingPrices[type][0];
-                if (mainProgListener.getMoney() >= price) {            //only turrets tat can be afforded can be placed
-                    mainProgListener.spendMoney(price);
+                if (mainClassListener.getMoney() >= price) {            //only turrets that can be afforded can be placed
+                    mainClassListener.spendMoney(price);                //substract price from current money
                     float xPos = buildingSites.get(i).getXPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
                     float yPos = buildingSites.get(i).getYPos() - FUNDAMENT_OFFSET_FROM_ANCHOR_POINT;
-                    turretsOnTheBoard.add(new Turret(xPos,yPos,type,mainProgListener));
+                    switch (type) {
+                        case 0 -> turretsOnTheBoard.add(new TurretZero(xPos, yPos, mainClassListener));
+                        case 1 -> turretsOnTheBoard.add(new TurretOne(xPos, yPos, mainClassListener));
+                        case 2 -> turretsOnTheBoard.add(new TurretTwo(xPos, yPos, mainClassListener));
+                        case 3 -> turretsOnTheBoard.add(new TurretThree(xPos, yPos, mainClassListener));
+                    }
                     buildingSites.remove(i);
                     buildingSites.trimToSize();
                 }
@@ -131,7 +136,7 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     public void sellTurret(Turret turretWithContextMenu) {
-        mainProgListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                        //give money from selling
+        mainClassListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                       //give money from selling
         buildingSites.add(new Circle(turretWithContextMenu.getTurretCenter(), FUNDAMENT_RADIUS, Colors.TRANSPARENT));   //readd buildingsite to buildingSites
         turretsOnTheBoard.remove(turretWithContextMenu);                                                                //remove sold Turret from turretsOnTheBoard
         turretsOnTheBoard.trimToSize();                                                                                 //avoid errors by trimming size

@@ -27,6 +27,26 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
             SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet_big.png",
     };
 
+
+    static String[][] turretAssets = {{
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_0.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_1.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_2.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_3.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_4.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_0_5.png",
+        },{
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_0.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_1.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_2.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_3.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_4.png",
+            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_1_5.png",
+        },
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_2_0.png"},
+            {SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_TURRET_BUTTON + "turret_3_0.png"},
+    };
+
     public static void fillAnchorPoints() {
         for (int i = 0; i < anchorPoints.length; i++) {
             //if (!Arrays.stream(unusableBuildingSiteIndexes).anyMatch(x -> x == i))
@@ -60,14 +80,6 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         return path;
     }
 
-    /*
-    public static ChristmasPresent createRandomPresent(float speed, int delayCounter, ChristmasPresentListener listener) {
-        return new ChristmasPresent(speed, delayCounter, listener);
-    }
-
-    */
-
-
     public static ChristmasPresent[] getNextWave(ChristmasPresentListener listener) {
         ChristmasPresent[] nextWave = new ChristmasPresent[waves[waveCounter].length];
         int delayAccumulator = 0;
@@ -81,6 +93,7 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         waveCounter++;
         return nextWave;
     }
+
     public static Point[] getPresentWaypoints(float presentWidth, float presentHeight) {
         presentWidth /= 2;
         presentHeight /= 2;

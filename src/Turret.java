@@ -42,46 +42,26 @@ public abstract class Turret implements GameConfig{
         this.body.setRotationAngle(angle);
     }
 
-    protected int getIndexOfClosestPresent(double fireRange) {
-        int length = mainClassListener.getCurrentWave().length;
-        System.out.println("length = " + length);
-        int indexOfClosest = 0;
-        double shortestDistanceFound = 100000;
-        for (int i = 0; i < length; i++) {
-            ChristmasPresent currentPresent = mainClassListener.getCurrentWave()[i];
-            if (currentPresent != null) {
-                double distanceToCurrentPresent = this.body.distanceTo(currentPresent.getBody());
-                if (distanceToCurrentPresent < shortestDistanceFound) {
-                    shortestDistanceFound = distanceToCurrentPresent;
-                    indexOfClosest = i;
-                }
-            }
-        }
-        return indexOfClosest;
-    }
-
     protected ChristmasPresent getClosestPresent(double fireRange) {
-        int length = mainClassListener.getCurrentWave().length;
+        int length = mainClassListener.getCurrentWave().size();
         int indexOfClosest = 0;
         double shortestDistanceFound = fireRange;
         for (int i = 0; i < length; i++) {
-            ChristmasPresent currentPresent = mainClassListener.getCurrentWave()[i];
-            if (currentPresent != null) {
-                double distanceToCurrentPresent = this.body.distanceTo(currentPresent.getBody());
-                if (distanceToCurrentPresent < shortestDistanceFound) {
-                    shortestDistanceFound = distanceToCurrentPresent;
-                    indexOfClosest = i;
-                }
+            ChristmasPresent currentPresent = mainClassListener.getCurrentWave().get(i);
+            double distanceToCurrentPresent = this.body.distanceTo(currentPresent.getBody());
+            if (distanceToCurrentPresent < shortestDistanceFound) {
+                shortestDistanceFound = distanceToCurrentPresent;
+                indexOfClosest = i;
             }
         }
-        if (this.body.distanceTo(mainClassListener.getCurrentWave()[indexOfClosest].getBody()) > fireRange) return null;
-        else return mainClassListener.getCurrentWave()[indexOfClosest];
+        if (this.body.distanceTo(mainClassListener.getCurrentWave().get(indexOfClosest).getBody()) > fireRange) return null;
+        else return mainClassListener.getCurrentWave().get(indexOfClosest);
     }
 
     protected ChristmasPresent getFirstPresentOfWave() {
-        int length = mainClassListener.getCurrentWave().length;
+        int length = mainClassListener.getCurrentWave().size();
         for (int i = 0; i < length; i++) {
-            ChristmasPresent currentPresent = mainClassListener.getCurrentWave()[i];
+            ChristmasPresent currentPresent = mainClassListener.getCurrentWave().get(i);
             if (currentPresent != null) return currentPresent;
         }
         return null;

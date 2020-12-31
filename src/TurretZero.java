@@ -1,3 +1,4 @@
+import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Line;
 
 public class TurretZero extends Turret {
@@ -27,7 +28,7 @@ public class TurretZero extends Turret {
             float rayStartY = this.turretCenter.getYPos();
             float rayEndX = closestPresent.getCenterPoint().getXPos();
             float rayEndY = closestPresent.getCenterPoint().getYPos();
-            Line ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, LINEN, 5);
+            Line ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, Colors.getRandomColor(), 5);
             ray.draw();
             adjustTurretRotation(rayStartX, rayStartY, rayEndX, rayEndY);
             closestPresent.takeDamage(this.dmgPerTick);

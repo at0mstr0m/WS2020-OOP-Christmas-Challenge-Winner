@@ -1,6 +1,8 @@
 import de.ur.mi.oop.graphics.Line;
 import de.ur.mi.oop.graphics.Point;
 
+import java.util.ArrayList;
+
 public class SantasLittleHelper implements GameConfig, WaveContent {
     private static int waveCounter = 0;
     public static Point[] anchorPoints = new Point[MAX_NUM_OF_FUNDAMENTS];
@@ -90,18 +92,18 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         return path;
     }
 
-    public static ChristmasPresent[] getNextWave(ChristmasPresentListener listener) {
-        ChristmasPresent[] nextWave = new ChristmasPresent[waves[waveCounter].length];
+    public static ArrayList<ChristmasPresent> getNextWave(ChristmasPresentListener listener) {
+        ArrayList<ChristmasPresent> nextwave = new ArrayList<>();
         int delayAccumulator = 0;
-        for (int i = 0; i < nextWave.length; i++) {
+        for (int i = 0; i < waves[waveCounter].length; i++) {
             float speed = (float) waves[waveCounter][i][0];
             int delayCounter = (int) waves[waveCounter][i][1];
             int type = (int) waves[waveCounter][i][2];
             delayAccumulator += delayCounter;
-            nextWave[i] = new ChristmasPresent(speed, delayAccumulator, type, listener);
+            nextwave.add(new ChristmasPresent(speed, delayAccumulator, type, listener));
         }
         waveCounter++;
-        return nextWave;
+        return nextwave;
     }
 
     public static Point[] getPresentWaypoints(float presentWidth, float presentHeight) {

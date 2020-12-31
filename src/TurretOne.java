@@ -20,7 +20,7 @@ public class TurretOne extends Turret {
 
     private void fire() {
         this.countShots();
-        ChristmasPresent closestPresent = mainClassListener.getCurrentWave()[getIndexOfClosestPresent(this.fireRange)];
+        ChristmasPresent closestPresent = getClosestPresent(this.fireRange);
         if (closestPresent != null && this.fireCounter < this.fireCooldown + 1) {
             float rayStartX = this.turretCenter.getXPos();
             float rayStartY = this.turretCenter.getYPos();

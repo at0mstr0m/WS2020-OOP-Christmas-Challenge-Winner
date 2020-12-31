@@ -5,6 +5,8 @@ import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
+import java.util.ArrayList;
+
 /**
  * TODO:    improve lifepoints of ChristmasPresents
  * TODO:    improve damage dealt by Turrets
@@ -19,7 +21,7 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
     private RightUI rightUI;
-    private static ChristmasPresent[] currentWave;
+    private static ArrayList<ChristmasPresent> currentWave;
     private Board board;
     private Point currentMousePosition;
     private int money;
@@ -55,8 +57,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
              * drawn from back to the front so the ChristmasPresent
              * at the front position is not overdrawn
              */
-            for (int i = currentWave.length - 1; i >= 0; i--) {
-                if (currentWave[i] != null) currentWave[i].draw();
+            for (int i = currentWave.size() - 1; i >= 0; i--) {
+                currentWave.get(i).draw();
             }
         }
     }
@@ -74,24 +76,20 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     }
 
     private void removePresentFromArray(ChristmasPresent present) {
-        for (int i = 0; i < currentWave.length; i++) {
-            if (currentWave[i] == present) {
-                currentWave[i] = null;
-                break;
-            }
-        }
+        currentWave.remove(present);
+        currentWave.trimToSize();
         if (waveIsOver()) rightUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
     }
 
     private boolean waveIsOver() {
         if (currentWave == null) return true;
-        for (int i = 0; i < currentWave.length; i++) {
-            if (currentWave[i] != null) return false;
-        }
-        return true;
+        if (currentWave.size() == 0) {
+            currentWave = null;
+            return true;
+        } else return false;
     }
 
-    public ChristmasPresent[] getCurrentWave() {
+    public ArrayList<ChristmasPresent> getCurrentWave() {
         return currentWave;
     }
 

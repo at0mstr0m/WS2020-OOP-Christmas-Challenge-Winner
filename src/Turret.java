@@ -38,7 +38,6 @@ public abstract class Turret implements GameConfig{
     protected void adjustTurretRotation(float rayStartX, float rayStartY, float rayEndX, float rayEndY) {
         double angle = Math.atan2(rayEndY - rayStartY, rayEndX - rayStartX);    // Berechnet den Winkel zwischen den beiden Punkten im Bogenmaß
         angle = TURRET_ROTATION_OFFSET + (angle * (360 / (2 * Math.PI)));       // convert angle unit from Rad to Degrees
-        if (angle < 0) angle += 360;                                            // if angle becomes negative, ad 360° to reach the correct values
         this.body.setRotationAngle(angle);
     }
 
@@ -98,5 +97,9 @@ public abstract class Turret implements GameConfig{
 
     public int getLevel() {
         return this.level;
+    }
+
+    protected double getRotationAngle() {
+        return this.body.getRotationAngle();
     }
 }

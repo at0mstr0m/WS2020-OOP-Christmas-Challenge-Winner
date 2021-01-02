@@ -39,7 +39,7 @@ public interface GameConfig {
     int MONEY_LABEL_FONT_SIZE = 23;
     Color MONEY_LABEL_FONT_COLOR = DARK_SEA_GREEN;
     int LIFES_LABEL_X_POS = MONEY_LABEL_X_POS;
-    int LIFES_LABEL_Y_POS = MONEY_LABEL_Y_POS - 20;
+    int LIFES_LABEL_Y_POS = MONEY_LABEL_Y_POS - 24;
     int LIFES_LABEL_FONT_SIZE = 16;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
@@ -47,6 +47,7 @@ public interface GameConfig {
     String PATH_TO_ASSET_BACKGROUND = "\\assets\\ui\\";
     String PATH_TO_ASSET_CHRISTMAS_PRESENTS = "\\assets\\christmasPresents\\";
     String PATH_TO_ASSET_TURRET_CONTEXT_MENU = "\\assets\\ui\\turretContextMenu\\";
+    String PATH_TO_ASSET_ROCKET = "\\assets\\rocket\\";
 
     int FRAME_RATE = 60;
     int WINDOW_WIDTH = BOARD_WIDTH + RIGHT_UI_WIDTH;
@@ -89,4 +90,7 @@ public interface GameConfig {
     int MAX_NUM_OF_FUNDAMENTS = FUNDAMENTS_IN_ROW * FUNDAMENTS_IN_COLUMN;
 
     int[] unusableBuildingSiteIndexes = {6,9,10,11,12,14,17,20,22,25,28,30,33,36,38,41,44,46,49,52,53,54,57};
+
+    int ROCKET_X_OFFSET = 9;
+    int ROCKET_Y_OFFSET = 10;
 }

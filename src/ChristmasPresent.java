@@ -80,4 +80,8 @@ public class ChristmasPresent implements GameConfig {
     public int getWorth() {
         return worth;
     }
+
+    public boolean hitTest(float x, float y) {
+        return this.body.hitTest(x,y);
+    }
 }

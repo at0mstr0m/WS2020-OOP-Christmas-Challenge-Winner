@@ -5,8 +5,8 @@ public class TurretOne extends Turret {
     public TurretOne(float xPos, float yPos, ChristmasChallenge mainClassListener) {
         super(xPos, yPos, 1, mainClassListener);
         this.fireCounter = 0;
-        this.fireCooldown = 20;
-        this.dmgPerTick = 0.75;
+        this.fireCooldown = TURRET_ONE_COOLDOWN;
+        this.dmgPerTick = TURRET_ONE_DMG;
         this.fireRange = 500;
     }
 
@@ -20,8 +20,8 @@ public class TurretOne extends Turret {
 
     private void fire() {
         this.countShots();
-        ChristmasPresent closestPresent = getClosestPresent(this.fireRange);
-        if (closestPresent != null && this.fireCounter < this.fireCooldown + 1) {
+        ChristmasPresent closestPresent = getFirstPresentOfWave();
+        if (closestPresent != null && this.fireCounter < this.fireCooldown + 1 && this.body.distanceTo(closestPresent.getBody()) <= this.fireRange) {
             float rayStartX = this.turretCenter.getXPos();
             float rayStartY = this.turretCenter.getYPos();
             float rayEndX = closestPresent.getCenterPoint().getXPos();

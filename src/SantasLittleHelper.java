@@ -21,14 +21,13 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_hat_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_tree_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "drum_big.png",
-            getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1_big.png",
-            getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "mistletoe_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "snowflake_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "star_big.png",
             getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet_big.png",
+            getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1_big.png",
+            getWorkingDirectory() + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2_big.png",
     };
-
     static String[][] turretAssets = {{
             getWorkingDirectory() + PATH_TO_ASSETS_TURRETS + "turret_0_0.png",
             getWorkingDirectory() + PATH_TO_ASSETS_TURRETS + "turret_0_1.png",
@@ -117,5 +116,13 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
         }
         result[result.length - 1] = new Point(path[path.length - 1].getEndpointX() - presentWidth, path[path.length - 1].getEndpointY());
         return result;
+    }
+
+    public static int getWaveCounter() {
+        return waveCounter;
+    }
+
+    public static String getWaveCounterAsString() {
+        return "Wave: " + waveCounter;
     }
 }

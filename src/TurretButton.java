@@ -17,7 +17,6 @@ public class TurretButton implements GameConfig {
         this.mainProgListener = mainProgListener;
         this.uIListener = uIListener;
         this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(type), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
-        System.out.println("type: " + this.type);
         this.body = new Image(BUTTONS_X_POS, resolveYPos(type), SantasLittleHelper.turretAssets[type][0]);
         this.buildMode = false;
         this.price = turretBuildingPrices[type][0];
@@ -34,8 +33,8 @@ public class TurretButton implements GameConfig {
         background.draw();
         if (buildMode)
             body.setPosition(mainProgListener.getCurrentMouseXPos() - BUTTON_WIDTH_MIDDLE, mainProgListener.getCurrentMouseYPos() - BUTTON_HEIGHT_MIDDLE);
-        body.draw();
         pricetag.draw();
+        body.draw();
     }
 
     public boolean hitTest(int x, int y) {

@@ -12,8 +12,8 @@ public class Rocket implements GameConfig{
 
     public Rocket(Point turretCenter, double rotationAngle, ChristmasPresent target, TurretTwo listener) {
         this.listener = listener;
-        this.xPos = turretCenter.getXPos() - 16;
-        this.yPos = turretCenter.getYPos() - 16;
+        this.xPos = turretCenter.getXPos() - ROCKET_X_OFFSET;
+        this.yPos = turretCenter.getYPos() - ROCKET_Y_OFFSET;
         this.body = new Image(this.xPos, this.yPos, rocketAsset);
         this.body.setRotationAngle(rotationAngle);
         this.target = target;
@@ -25,9 +25,9 @@ public class Rocket implements GameConfig{
     }
 
     private void moveTowardsTarget() {
-        if (Math.abs(target.getCenterPoint().getXPos() - 16 - body.getXPos()) <= speed && Math.abs(target.getCenterPoint().getYPos() - 16 - body.getYPos()) <= speed) body.setPosition(target.getCenterPoint().getXPos(), target.getCenterPoint().getYPos());
+        if (Math.abs(target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos()) <= speed && Math.abs(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos()) <= speed) body.setPosition(target.getCenterPoint().getXPos(), target.getCenterPoint().getYPos());
         else {
-            double angle = Math.atan2(target.getCenterPoint().getYPos() - 16 - body.getYPos(), target.getCenterPoint().getXPos() - 16 - body.getXPos());
+            double angle = Math.atan2(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos(), target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos());
             float xMovement = (float) (Math.cos(angle) * speed);
             float yMovement = (float) (Math.sin(angle) * speed);
             this.xPos += xMovement;

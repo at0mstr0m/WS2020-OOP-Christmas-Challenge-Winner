@@ -1,13 +1,12 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class TurretTwo extends Turret {
     ArrayList<Rocket> rockets = new ArrayList();
     public TurretTwo(float xPos, float yPos, ChristmasChallenge mainClassListener) {
         super(xPos, yPos, 2, mainClassListener);
         this.fireCounter = 0;
-        this.fireCooldown = 30;
-        this.dmgPerTick = 20;
+        this.fireCooldown = TURRET_TWO_COOLDOWN;
+        this.dmgPerTick = TURRET_TWO_DMG;
         this.fireRange = 1000000;
         System.out.println("size: " + rockets.size());
     }
@@ -40,15 +39,15 @@ public class TurretTwo extends Turret {
 
     private void fire() {
         this.countShots();
-        ChristmasPresent closestPresent = getFirstPresentOfWave();
-        if (closestPresent != null && canFire()) {
-            this.rockets.add(new Rocket(this.getTurretCenter(), this.getRotationAngle(), closestPresent, this));
-            adjustTurretRotation(this.turretCenter.getXPos(), this.turretCenter.getYPos(), closestPresent.getCenterPoint().getXPos(), closestPresent.getCenterPoint().getYPos());
+        ChristmasPresent firstPresentOfWave = getFirstPresentOfWave();
+        if (firstPresentOfWave != null && canFire()) {
+            this.rockets.add(new Rocket(this.getTurretCenter(), this.getRotationAngle(), firstPresentOfWave, this));
+            adjustTurretRotation(this.turretCenter.getXPos(), this.turretCenter.getYPos(), firstPresentOfWave.getCenterPoint().getXPos(), firstPresentOfWave.getCenterPoint().getYPos());
         }
     }
 
     private boolean canFire() {
-        return fireCounter == 0;
+        return fireCounter == 0;    //only shoot once after fire cooldown
     }
 
     @Override

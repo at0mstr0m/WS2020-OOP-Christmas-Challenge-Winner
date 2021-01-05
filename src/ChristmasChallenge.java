@@ -1,7 +1,9 @@
 import de.ur.mi.oop.app.GraphicsApp;
+import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.events.MouseButton;
 import de.ur.mi.oop.events.MouseMovedEvent;
 import de.ur.mi.oop.events.MousePressedEvent;
+import de.ur.mi.oop.graphics.Label;
 import de.ur.mi.oop.graphics.Point;
 import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
@@ -16,7 +18,6 @@ import java.util.ArrayList;
  * TODO:    Implement different types of Turrets
  * TODO:    Reset Cooldown after wave
  * TODO:    Implement attack range of Turrets
- * TODO:    Add Assets
  */
 
 public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
@@ -26,6 +27,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private Point currentMousePosition;
     private int money;
     private int lifes;
+    private boolean gameOver;
+    private boolean hasWon;
+    private Label finalLabel;
 
     public static void main(String[] args) {
         GraphicsAppLauncher.launch();
@@ -33,6 +37,8 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void initialize() {
+        gameOver = false;
+        hasWon = false;
         money = START_MONEY;
         lifes = START_LIFES;
         setFrameRate(FRAME_RATE);
@@ -44,10 +50,18 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void draw() {
-        drawBackground(BACKGROUND_COLOR);
-        board.draw();
-        drawWave();
-        rightUI.draw();
+        if (!gameOver) {
+            drawBackground(BACKGROUND_COLOR);
+            board.draw();
+            drawWave();
+            rightUI.draw();
+        } else {
+            if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasLittleHelper.getWaveCounter() + " waves!", Colors.BLACK);
+            else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all Christmas celebrations!", Colors.BLACK);
+            finalLabel.setFontSize(20);
+            finalLabel.setXPos(WINDOW_WIDTH_MIDDLE - (finalLabel.getWidthEstimate() / 2));
+            finalLabel.draw();
+        }
     }
 
     private void drawWave() {
@@ -65,8 +79,9 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     @Override
     public void onPresentReachedEndOfPath(ChristmasPresent present) {       //remove ChristmasPresent from Array
-        lifes--;                            //one life lost
         removePresentFromArray(present);
+        lifes--;                            //one life lost
+        if (lifes == 0) gameOver = true;
     }
 
     @Override
@@ -78,7 +93,14 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
     private void removePresentFromArray(ChristmasPresent present) {
         currentWave.remove(present);
         currentWave.trimToSize();
-        if (waveIsOver()) rightUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
+        if (waveIsOver()) {
+            rightUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
+            money += 50;
+            if (SantasLittleHelper.getWaveCounter() == SantasLittleHelper.waves.length) {
+                gameOver = true;
+                hasWon = true;
+            }
+        }
     }
 
     private boolean waveIsOver() {
@@ -130,6 +152,10 @@ public class ChristmasChallenge extends GraphicsApp implements GameConfig, Chris
 
     public int getLifes() {
         return lifes;
+    }
+
+    public String getLifesAsString() {
+        return "Lifes: " + lifes;
     }
 
     public void spendMoney(int price) {

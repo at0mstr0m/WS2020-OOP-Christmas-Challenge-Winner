@@ -4,7 +4,7 @@ import de.ur.mi.oop.graphics.Point;
 public abstract class Turret implements GameConfig{
     protected ChristmasChallenge mainClassListener;
     protected Point turretCenter;
-    private Image body;
+    protected Image body;
     private int type;
     private int level;
     private int worth;
@@ -38,7 +38,6 @@ public abstract class Turret implements GameConfig{
     protected void adjustTurretRotation(float rayStartX, float rayStartY, float rayEndX, float rayEndY) {
         double angle = Math.atan2(rayEndY - rayStartY, rayEndX - rayStartX);    // Berechnet den Winkel zwischen den beiden Punkten im Bogenmaß
         angle = TURRET_ROTATION_OFFSET + (angle * (360 / (2 * Math.PI)));       // convert angle unit from Rad to Degrees
-        System.out.println("angle = " + angle);
         if (angle < 0) angle += 360;
         this.body.setRotationAngle(angle);
     }
@@ -87,6 +86,7 @@ public abstract class Turret implements GameConfig{
         if (mainClassListener.getMoney() >= turretBuildingPrices[this.type][this.level + 1]) {
             this.level++;
             this.dmgPerTick *= 1.5;
+            this.fireRange += 30;
             mainClassListener.spendMoney(turretBuildingPrices[type][level]);
             this.body = new Image(xPos, yPos, SantasLittleHelper.turretAssets[type][level]);
             return true;

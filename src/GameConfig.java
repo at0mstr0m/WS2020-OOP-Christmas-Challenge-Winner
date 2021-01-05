@@ -13,9 +13,6 @@ public interface GameConfig {
     Color ARYLIDE_YELLOW = new Color(236, 217, 105);
     Color DARK_SEA_GREEN = new Color(153, 211, 136);
 
-    int START_MONEY = 3000;
-    int START_LIFES = 200;
-
     int BOARD_WIDTH = 800;
     int BOARD_HEIGHT = 800;
 
@@ -41,6 +38,9 @@ public interface GameConfig {
     int LIFES_LABEL_X_POS = MONEY_LABEL_X_POS;
     int LIFES_LABEL_Y_POS = MONEY_LABEL_Y_POS - 24;
     int LIFES_LABEL_FONT_SIZE = 16;
+    int WAVE_LABEL_X_POS = MONEY_LABEL_X_POS;
+    int WAVE_LABEL_Y_POS = LIFES_LABEL_Y_POS - 24;
+    int WAVE_LABEL_FONT_SIZE = 16;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRETS = "\\assets\\turrets\\";
@@ -52,6 +52,8 @@ public interface GameConfig {
     int FRAME_RATE = 60;
     int WINDOW_WIDTH = BOARD_WIDTH + RIGHT_UI_WIDTH;
     int WINDOW_HEIGHT = BOARD_HEIGHT;
+    int WINDOW_WIDTH_MIDDLE = WINDOW_WIDTH / 2;
+    int WINDOW_HEIGHT_MIDDLE = WINDOW_HEIGHT / 2;
     Color BACKGROUND_COLOR = DARK_SEA_GREEN;
 
     int NUM_OF_TURRETS = 4;
@@ -71,7 +73,7 @@ public interface GameConfig {
 
     int turretBuildingPrices[][] = {
             {300,200,200,200,200,200},
-            {750,400,400,400,400,400},
+            {750,500,500,500,500,500},
             {800,550,550,550,550,550},
             {1200,750,750,750,750,750}
     };
@@ -93,4 +95,16 @@ public interface GameConfig {
 
     int ROCKET_X_OFFSET = 9;
     int ROCKET_Y_OFFSET = 10;
+
+    int START_MONEY = 700;
+    int START_LIFES = 200;
+
+    double TURRET_ZERO_DMG = 0.75;
+    int TURRET_ZERO_COOLDOWN = 20;
+    double TURRET_ONE_DMG = 1.7;
+    int TURRET_ONE_COOLDOWN = 15;
+    double TURRET_TWO_DMG = 100;
+    int TURRET_TWO_COOLDOWN = 90;
+    double TURRET_THREE_DMG = 40;
+    int TURRET_THREE_COOLDOWN = 60;
 }

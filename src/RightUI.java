@@ -9,6 +9,7 @@ public class RightUI implements GameConfig, InputEventListener {
     private TurretButton[] turretButtons;
     private Label moneyLabel;
     private Label lifesLabel;
+    private Label waveLabel;
     public TurretButton currentlyPlacingTurretButtonInstance;
 
     public RightUI(ChristmasChallenge listener) {
@@ -19,10 +20,12 @@ public class RightUI implements GameConfig, InputEventListener {
         for (int i = 0; i < turretButtons.length; i++) {
             turretButtons[i] = new TurretButton(listener,this, i);
         }
-        this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString(),MONEY_LABEL_FONT_COLOR);
+        this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString(), MONEY_LABEL_FONT_COLOR);
         this.moneyLabel.setFontSize(MONEY_LABEL_FONT_SIZE);
-        this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifes(),MONEY_LABEL_FONT_COLOR);
+        this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifes(), MONEY_LABEL_FONT_COLOR);
         this.lifesLabel.setFontSize(LIFES_LABEL_FONT_SIZE);
+        this.waveLabel = new Label(WAVE_LABEL_X_POS, WAVE_LABEL_Y_POS, "Wave: " + SantasLittleHelper.getWaveCounter(), MONEY_LABEL_FONT_COLOR);
+        this.waveLabel.setFontSize(WAVE_LABEL_FONT_SIZE);
     }
 
     public void changeStartButtonAsset() {
@@ -33,9 +36,16 @@ public class RightUI implements GameConfig, InputEventListener {
         body.draw();
         startButton.draw();
         drawTurretButtons();
+        updateAndDrawLabels();
+    }
+
+    private void updateAndDrawLabels() {
         moneyLabel.setText(listener.getMoneyAsString());    //refresh current Money
         moneyLabel.draw();
+        lifesLabel.setText(listener.getLifesAsString());    //refresh current Lifes
         lifesLabel.draw();
+        waveLabel.setText(SantasLittleHelper.getWaveCounterAsString()); //refresh current WaveCounter
+        waveLabel.draw();
     }
 
     private void drawTurretButtons() {

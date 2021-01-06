@@ -12,12 +12,12 @@ public class Board implements GameConfig, InputEventListener {
     private Image background;
     public Line[] path;
     private ArrayList<Circle> buildingSites;
-    private ChristmasChallenge mainClassListener;
+    private ChristmasDefense mainClassListener;
     private RightUI rightUIListener;
     private ArrayList<Turret> turretsOnTheBoard;
     private TurretContextMenu contextMenu;
 
-    public Board(ChristmasChallenge mainClassListener, RightUI rightUIListener) {
+    public Board(ChristmasDefense mainClassListener, RightUI rightUIListener) {
         this.background = new Image(0,0,backgroundAsset);
         this.turretsOnTheBoard = new ArrayList<>();
         this.mainClassListener = mainClassListener;
@@ -113,7 +113,6 @@ public class Board implements GameConfig, InputEventListener {
         for (int i = 0; i < buildingSites.size(); i++) {
             if (buildingSites.get(i).hitTest(x, y)) {
                 int type = rightUIListener.currentlyPlacingTurretButtonInstance.getType();
-                System.out.println("Type: " + type);
                 int price = turretBuildingPrices[type][0];
                 if (mainClassListener.getMoney() >= price) {            //only turrets that can be afforded can be placed
                     mainClassListener.spendMoney(price);                //substract price from current money

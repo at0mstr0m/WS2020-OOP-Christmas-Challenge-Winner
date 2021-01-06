@@ -2,7 +2,7 @@ import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Point;
 
 public abstract class Turret implements GameConfig{
-    protected ChristmasChallenge mainClassListener;
+    protected ChristmasDefense mainClassListener;
     protected Point turretCenter;
     protected Image body;
     private int type;
@@ -15,7 +15,7 @@ public abstract class Turret implements GameConfig{
     protected double dmgPerTick;              //damage dealt by turret in one draw() cycle
     protected double fireRange;
 
-    public Turret(float xPos, float yPos, int type, ChristmasChallenge mainClassListener) {
+    public Turret(float xPos, float yPos, int type, ChristmasDefense mainClassListener) {
         this.mainClassListener = mainClassListener;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -42,10 +42,10 @@ public abstract class Turret implements GameConfig{
         this.body.setRotationAngle(angle);
     }
 
-    protected ChristmasPresent getClosestPresent(double fireRange) {
+    protected ChristmasPresent getClosestPresent() {
         int length = mainClassListener.getCurrentWave().size();
         int indexOfClosest = 0;
-        double shortestDistanceFound = fireRange;
+        double shortestDistanceFound = this.fireRange;
         for (int i = 0; i < length; i++) {
             ChristmasPresent currentPresent = mainClassListener.getCurrentWave().get(i);
             double distanceToCurrentPresent = this.body.distanceTo(currentPresent.getBody());

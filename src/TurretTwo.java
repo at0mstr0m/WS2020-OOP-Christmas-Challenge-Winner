@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TurretTwo extends Turret {
     ArrayList<Rocket> rockets = new ArrayList();
-    public TurretTwo(float xPos, float yPos, ChristmasChallenge mainClassListener) {
+    public TurretTwo(float xPos, float yPos, ChristmasDefense mainClassListener) {
         super(xPos, yPos, 2, mainClassListener);
         this.fireCounter = 0;
         this.fireCooldown = TURRET_TWO_COOLDOWN;

@@ -74,7 +74,6 @@ public class ChristmasPresent implements GameConfig {
 
     public void takeDamage(double dmgPerTick) {
         this.lifepoints -= dmgPerTick;                                      // subtract damage dealt from this.lifepoints
-        //System.out.println(this.lifepoints);
         if (this.lifepoints <= 0) this.listener.onPresentDestroyed(this);   // if lifepoints are down, the present is destroyed and must be removed
     }
 

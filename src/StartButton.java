@@ -8,7 +8,7 @@ public class StartButton implements GameConfig {
     private Image buttonImage;
     private String assetInUse;
 
-    public StartButton(ChristmasChallenge listener) {
+    public StartButton(ChristmasDefense listener) {
         assetInUse = startButtonAssets[1];
         this.buttonImage = new Image(BUTTONS_X_POS,START_BUTTON_Y_POS, assetInUse);
     }

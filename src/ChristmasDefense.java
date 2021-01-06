@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * TODO:    Implement attack range of Turrets
  */
 
-public class ChristmasChallenge extends GraphicsApp implements GameConfig, ChristmasPresentListener {
+public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener {
     private RightUI rightUI;
     private static ArrayList<ChristmasPresent> currentWave;
     private Board board;

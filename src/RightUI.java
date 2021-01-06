@@ -3,7 +3,7 @@ import de.ur.mi.oop.graphics.Label;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class RightUI implements GameConfig, InputEventListener {
-    private ChristmasChallenge listener;
+    private ChristmasDefense listener;
     private Rectangle body;
     public StartButton startButton;
     private TurretButton[] turretButtons;
@@ -12,7 +12,7 @@ public class RightUI implements GameConfig, InputEventListener {
     private Label waveLabel;
     public TurretButton currentlyPlacingTurretButtonInstance;
 
-    public RightUI(ChristmasChallenge listener) {
+    public RightUI(ChristmasDefense listener) {
         this.listener = listener;
         this.body = new Rectangle(RIGHT_UI_X_POS, RIGHT_UI_Y_POS, RIGHT_UI_WIDTH, RIGHT_UI_HEIGHT, RIGHT_UI_COLOR);
         this.startButton = new StartButton(listener);

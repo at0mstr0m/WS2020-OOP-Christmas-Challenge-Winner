@@ -4,7 +4,7 @@ import de.ur.mi.oop.graphics.Rectangle;
 
 public class TurretButton implements GameConfig {
     private int type;
-    private final ChristmasChallenge mainProgListener;
+    private final ChristmasDefense mainProgListener;
     private final RightUI uIListener;
     private Image body;
     private final Rectangle background;
@@ -12,7 +12,7 @@ public class TurretButton implements GameConfig {
     private int price;
     private Label pricetag;
 
-    public TurretButton(ChristmasChallenge mainProgListener, RightUI uIListener, int type) {
+    public TurretButton(ChristmasDefense mainProgListener, RightUI uIListener, int type) {
         this.type = type;
         this.mainProgListener = mainProgListener;
         this.uIListener = uIListener;

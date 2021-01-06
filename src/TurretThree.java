@@ -2,7 +2,7 @@ import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Line;
 
 public class TurretThree extends Turret {
-    public TurretThree(float xPos, float yPos, ChristmasChallenge mainClassListener) {
+    public TurretThree(float xPos, float yPos, ChristmasDefense mainClassListener) {
         super(xPos, yPos, 3, mainClassListener);
         this.fireCounter = 0;
         this.fireCooldown = TURRET_THREE_COOLDOWN;

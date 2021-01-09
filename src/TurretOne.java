@@ -7,7 +7,7 @@ public class TurretOne extends Turret {
         this.fireCounter = 0;
         this.fireCooldown = TURRET_ONE_COOLDOWN;
         this.dmgPerTick = TURRET_ONE_DMG;
-        this.fireRange = 500;
+        this.fireRange = 300;
     }
 
     @Override

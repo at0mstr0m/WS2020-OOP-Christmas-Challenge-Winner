@@ -142,4 +142,10 @@ public class Board implements GameConfig, InputEventListener {
         turretsOnTheBoard.remove(turretWithContextMenu);                                                                //remove sold Turret from turretsOnTheBoard
         turretsOnTheBoard.trimToSize();                                                                                 //avoid errors by trimming size
     }
+
+    public void resetFireCounters() {
+        for (Turret turret : turretsOnTheBoard) {
+            turret.resetFireCounter();
+        }
+    }
 }

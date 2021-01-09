@@ -23,13 +23,12 @@ public class ChristmasPresent implements GameConfig {
         this.waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
         this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
         this.lifepoints = resolveLifepoints(type);
-        this.worth = type + 5;
-        System.out.println("lifepoints=" + this.lifepoints);
-        System.out.println("worth=" + this.worth);
+        this.worth = 6;
     }
 
     private double resolveLifepoints(int type) {
-        return (70 * (Math.sqrt(type) + 1));
+        return 80 * Math.pow(type + 1, 1 / 1.8);
+        //return (80 * (Math.sqrt(type) + 1));
     }
 
     private void moveAlongPath() {

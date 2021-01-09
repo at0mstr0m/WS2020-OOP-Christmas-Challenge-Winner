@@ -40,7 +40,7 @@ public interface GameConfig {
     int LIFES_LABEL_FONT_SIZE = 16;
     int WAVE_LABEL_X_POS = MONEY_LABEL_X_POS;
     int WAVE_LABEL_Y_POS = LIFES_LABEL_Y_POS - 24;
-    int WAVE_LABEL_FONT_SIZE = 16;
+    int WAVE_LABEL_FONT_SIZE = 15;
 
     String PATH_TO_ASSETS_PLAY_PAUSE_BUTTON = "\\assets\\ui\\startButton\\";
     String PATH_TO_ASSETS_TURRETS = "\\assets\\turrets\\";
@@ -75,7 +75,7 @@ public interface GameConfig {
             {300,200,200,200,200,200},
             {750,500,500,500,500,500},
             {800,550,550,550,550,550},
-            {1200,750,750,750,750,750}
+            {800,550,550,550,550,550},
     };
 
     int FUNDAMENT_WIDTH = 64;
@@ -96,8 +96,8 @@ public interface GameConfig {
     int ROCKET_X_OFFSET = 9;
     int ROCKET_Y_OFFSET = 10;
 
-    int START_MONEY = 700;
-    int START_LIFES = 200;
+    int START_MONEY = 600;
+    int START_LIFES = 100;
 
     double TURRET_ZERO_DMG = 0.75;
     int TURRET_ZERO_COOLDOWN = 20;
@@ -105,6 +105,6 @@ public interface GameConfig {
     int TURRET_ONE_COOLDOWN = 15;
     double TURRET_TWO_DMG = 100;
     int TURRET_TWO_COOLDOWN = 90;
-    double TURRET_THREE_DMG = 40;
+    double TURRET_THREE_DMG = 15;
     int TURRET_THREE_COOLDOWN = 60;
 }

@@ -2,6 +2,8 @@ import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Line;
 
 public class TurretThree extends Turret {
+    ChristmasPresent firstPresentOfWave;
+
     public TurretThree(float xPos, float yPos, ChristmasDefense mainClassListener) {
         super(xPos, yPos, 3, mainClassListener);
         this.fireCounter = 0;
@@ -20,13 +22,13 @@ public class TurretThree extends Turret {
 
     private void fire() {
         this.countShots();
-        ChristmasPresent firstPresentOfWave = getFirstPresentOfWave();
+        if (fireCounter == 0) this.firstPresentOfWave = getFirstPresentOfWave();    // only aim at one present per fire burst
         if (firstPresentOfWave != null && canFire()) {
             float rayStartX = this.turretCenter.getXPos();
             float rayStartY = this.turretCenter.getYPos();
             float rayEndX = firstPresentOfWave.getCenterPoint().getXPos();
             float rayEndY = firstPresentOfWave.getCenterPoint().getYPos();
-            Line ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, Colors.PINK, 3);
+            Line ray = new Line(rayStartX, rayStartY, rayEndX, rayEndY, Colors.BLACK, 3);
             ray.draw();
             adjustTurretRotation(rayStartX, rayStartY, rayEndX, rayEndY);
             firstPresentOfWave.takeDamage(this.dmgPerTick);
@@ -35,13 +37,22 @@ public class TurretThree extends Turret {
 
 
     private boolean canFire() {
-        //only shoot once per second
-        return fireCounter == 0 || fireCounter == 1 || fireCounter == 2 || fireCounter == 3 || fireCounter == 4 || fireCounter == 5 || fireCounter == 6 || fireCounter == 7 || fireCounter == 8 || fireCounter == 9;
+        /*
+         * Only shoot one burst of shots that are visible to the player.
+         * Not very elegant but effective.
+         */
+        return fireCounter == 0 || fireCounter == 1 || fireCounter == 2 || fireCounter == 3 || fireCounter == 4 || fireCounter == 5;
     }
 
     @Override
     protected void countShots() {
         this.fireCounter++;
         if (this.fireCounter == this.fireCooldown) this.fireCounter = 0;
+    }
+
+    @Override
+    public void resetFireCounter() {
+        super.resetFireCounter();
+        this.firstPresentOfWave = null;
     }
 }

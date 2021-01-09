@@ -86,7 +86,7 @@ public abstract class Turret implements GameConfig{
         if (mainClassListener.getMoney() >= turretBuildingPrices[this.type][this.level + 1]) {
             this.level++;
             this.dmgPerTick *= 1.5;
-            this.fireRange += 30;
+            this.fireRange += 10;
             mainClassListener.spendMoney(turretBuildingPrices[type][level]);
             this.body = new Image(xPos, yPos, SantasLittleHelper.turretAssets[type][level]);
             return true;
@@ -103,5 +103,9 @@ public abstract class Turret implements GameConfig{
 
     protected double getRotationAngle() {
         return this.body.getRotationAngle();
+    }
+
+    public void resetFireCounter() {
+        this.fireCounter = 0;
     }
 }

@@ -57,7 +57,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
             rightUI.draw();
         } else {
             if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasLittleHelper.getWaveCounter() + " waves!", Colors.BLACK);
-            else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all Christmas celebrations!", Colors.BLACK);
+            else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all christmas celebrations!", Colors.BLACK);
             finalLabel.setFontSize(20);
             finalLabel.setXPos(WINDOW_WIDTH_MIDDLE - (finalLabel.getWidthEstimate() / 2));
             finalLabel.draw();
@@ -171,5 +171,9 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
 
     public int getMoney() {
         return money;
+    }
+
+    public void resetTurretFireCounters() {
+        this.board.resetFireCounters();
     }
 }

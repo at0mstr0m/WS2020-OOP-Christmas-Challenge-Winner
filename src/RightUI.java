@@ -2,7 +2,7 @@ import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Label;
 import de.ur.mi.oop.graphics.Rectangle;
 
-public class RightUI implements GameConfig, InputEventListener {
+public class RightUI implements GameConfig, InputEventListener, WaveContent {
     private ChristmasDefense listener;
     private Rectangle body;
     public StartButton startButton;
@@ -24,7 +24,7 @@ public class RightUI implements GameConfig, InputEventListener {
         this.moneyLabel.setFontSize(MONEY_LABEL_FONT_SIZE);
         this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifes(), MONEY_LABEL_FONT_COLOR);
         this.lifesLabel.setFontSize(LIFES_LABEL_FONT_SIZE);
-        this.waveLabel = new Label(WAVE_LABEL_X_POS, WAVE_LABEL_Y_POS, "Wave: " + SantasLittleHelper.getWaveCounter(), MONEY_LABEL_FONT_COLOR);
+        this.waveLabel = new Label(WAVE_LABEL_X_POS, WAVE_LABEL_Y_POS, "Wave: " + SantasLittleHelper.getWaveCounter()  + " / " + waves.length, MONEY_LABEL_FONT_COLOR);
         this.waveLabel.setFontSize(WAVE_LABEL_FONT_SIZE);
     }
 
@@ -44,7 +44,7 @@ public class RightUI implements GameConfig, InputEventListener {
         moneyLabel.draw();
         lifesLabel.setText(listener.getLifesAsString());    //refresh current Lifes
         lifesLabel.draw();
-        waveLabel.setText(SantasLittleHelper.getWaveCounterAsString()); //refresh current WaveCounter
+        waveLabel.setText(SantasLittleHelper.getWaveCounterAsString() + " / " + waves.length); //refresh current WaveCounter
         waveLabel.draw();
     }
 

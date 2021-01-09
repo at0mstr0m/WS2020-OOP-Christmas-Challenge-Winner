@@ -10,21 +10,22 @@ public class Rocket implements GameConfig{
     TurretTwo listener;
     ChristmasPresent target;
 
-    public Rocket(Point turretCenter, double rotationAngle, ChristmasPresent target, TurretTwo listener) {
+    public Rocket(Point turretCenter, double rotationAngle, TurretTwo listener) {
         this.listener = listener;
         this.xPos = turretCenter.getXPos() - ROCKET_X_OFFSET;
         this.yPos = turretCenter.getYPos() - ROCKET_Y_OFFSET;
         this.body = new Image(this.xPos, this.yPos, rocketAsset);
         this.body.setRotationAngle(rotationAngle);
-        this.target = target;
+        this.target = listener.getFirstPresentOfWave();
     }
 
     public void draw() {
-        moveTowardsTarget();
+        if (target != null) moveTowardsTarget();
         this.body.draw();
     }
 
     private void moveTowardsTarget() {
+        this.target = listener.getFirstPresentOfWave();
         if (Math.abs(target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos()) <= speed && Math.abs(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos()) <= speed) body.setPosition(target.getCenterPoint().getXPos(), target.getCenterPoint().getYPos());
         else {
             double angle = Math.atan2(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos(), target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos());

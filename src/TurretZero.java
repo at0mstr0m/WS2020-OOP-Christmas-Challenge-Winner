@@ -3,7 +3,6 @@ import de.ur.mi.oop.graphics.Line;
 
 public class TurretZero extends Turret {
 
-
     public TurretZero(float xPos, float yPos, ChristmasDefense mainClassListener) {
         super(xPos, yPos, 0, mainClassListener);
         this.fireCounter = 0;

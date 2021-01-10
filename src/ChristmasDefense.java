@@ -46,6 +46,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         } else {
             if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasStaticHelper.getWaveCounter() + " waves!", Colors.BLACK);
             else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all christmas celebrations!", Colors.BLACK);
+            drawBackground(LINEN);
             finalLabel.setFontSize(20);
             finalLabel.setXPos(WINDOW_WIDTH_MIDDLE - (finalLabel.getWidthEstimate() / 2));
             finalLabel.draw();

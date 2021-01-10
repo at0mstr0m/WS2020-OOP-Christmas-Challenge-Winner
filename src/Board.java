@@ -30,8 +30,8 @@ public class Board implements GameConfig, InputEventListener {
         ArrayList<Circle> result = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_OF_FUNDAMENTS; i++) {
             boolean unusable = false;
-            for (int j = 0; j < unusableBuildingSiteIndexes.length; j++) {  //sort out unusable spots that are lying on the path.
-                if (unusableBuildingSiteIndexes[j] == i) {
+            for (int unusableBuildingSiteIndex : unusableBuildingSiteIndexes) {  //sort out unusable spots that are lying on the path.
+                if (unusableBuildingSiteIndex == i) {
                     unusable = true;
                     break;
                 }
@@ -56,15 +56,15 @@ public class Board implements GameConfig, InputEventListener {
 
     private void drawBuiltTurrets() {
         if (turretsOnTheBoard.size() != 0) {
-            for (int i = 0; i < turretsOnTheBoard.size(); i++) {
-                turretsOnTheBoard.get(i).draw();
+            for (Turret turret : turretsOnTheBoard) {
+                turret.draw();
             }
         }
     }
 
     private void drawBuildingSites() {
-        for (int i = 0; i < buildingSites.size(); i++) {
-            buildingSites.get(i).draw();
+        for (Circle buildingSite : buildingSites) {
+            buildingSite.draw();
         }
     }
 
@@ -94,10 +94,10 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     private void openTurretContextMenu(int x, int y) {
-        for (int i = 0; i < turretsOnTheBoard.size(); i++) {
-            if (turretsOnTheBoard.get(i).hitTest(x, y)) {
+        for (Turret turret : turretsOnTheBoard) {
+            if (turret.hitTest(x, y)) {
                 // Turret turretWithContextMenu = turretsOnTheBoard.get(i);
-                this.contextMenu = new TurretContextMenu(turretsOnTheBoard.get(i), this);
+                this.contextMenu = new TurretContextMenu(turret, this);
                 break;      // only one turret can be clicked at a time
             }
         }

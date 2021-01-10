@@ -9,17 +9,6 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 
 import java.util.ArrayList;
 
-/**
- * TODO:    improve lifepoints of ChristmasPresents
- * TODO:    improve damage dealt by Turrets
- * TODO:    improve money added from destroyed ChristmasPresents
- * TODO:    add GameOver
- * TODO:    Implement costs for Turrets
- * TODO:    Implement different types of Turrets
- * TODO:    Reset Cooldown after wave
- * TODO:    Implement attack range of Turrets
- */
-
 public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener, BoardListener, RightUIListener {
     private RightUI rightUI;
     private static ArrayList<ChristmasPresent> currentWave;

@@ -73,9 +73,9 @@ public interface GameConfig {
 
     int[][] turretBuildingPrices = {
             {300,200,200,200,200,200},
-            {750,500,500,500,500,500},
-            {800,550,550,550,550,550},
-            {800,550,550,550,550,550},
+            {650,400,400,400,400,400},
+            {700,450,450,450,450,450},
+            {750,550,550,550,550,550},
     };
 
     int FUNDAMENT_WIDTH = 64;
@@ -99,12 +99,12 @@ public interface GameConfig {
     int START_MONEY = 600;
     int START_LIFES = 100;
 
-    double TURRET_ZERO_DMG = 0.75;
+    double TURRET_ZERO_DMG = 0.8;
     int TURRET_ZERO_COOLDOWN = 20;
     double TURRET_ONE_DMG = 1.7;
     int TURRET_ONE_COOLDOWN = 15;
     double TURRET_TWO_DMG = 100;
-    int TURRET_TWO_COOLDOWN = 90;
+    int TURRET_TWO_COOLDOWN = 60;
     double TURRET_THREE_DMG = 15;
     int TURRET_THREE_COOLDOWN = 60;
 }

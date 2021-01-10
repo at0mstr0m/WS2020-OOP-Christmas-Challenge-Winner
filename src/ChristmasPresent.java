@@ -73,7 +73,6 @@ public class ChristmasPresent implements GameConfig {
             moveAlongPath();
             this.body.draw();
         }
-        //System.out.println(this.lifepoints);
     }
 
     private Point moveTowards(float sourceX, float sourceY, float targetX, float targetY, float speed) {

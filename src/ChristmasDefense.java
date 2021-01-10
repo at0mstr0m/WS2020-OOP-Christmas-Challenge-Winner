@@ -126,7 +126,6 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
             rightUI.handleMouseClick(event.getXPos(), event.getYPos()); //pass on click event information to rightUI
         }
         board.handleMouseClick(event);   //pass on click event information to Board
-        System.out.println("x = " + event.getXPos() + " y = " + event.getYPos());
     }
 
     public void onMouseMoved(MouseMovedEvent event) {

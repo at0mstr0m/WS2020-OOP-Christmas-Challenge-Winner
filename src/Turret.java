@@ -46,7 +46,7 @@ public abstract class Turret implements GameConfig {
         for (int i = 0; i < boardListener.getCurrentWave().size(); i++) {
             ChristmasPresent currentPresent = boardListener.getCurrentWave().get(i);
             if (currentPresent != null && this.body.distanceTo(currentPresent.getBody()) <= this.fireRange) {
-                if (currentPresent.getBody().getYPos() >= WINDOW_HEIGHT) return null;
+                if (currentPresent.getBody().getYPos() >= WINDOW_HEIGHT) return null;   // currentPresent must be visible to be aimed at
                 return currentPresent;
             }
         }

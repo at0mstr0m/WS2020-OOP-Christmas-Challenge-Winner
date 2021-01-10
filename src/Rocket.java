@@ -6,7 +6,7 @@ public class Rocket implements GameConfig{
     String rocketAsset = System.getProperty("user.dir") + PATH_TO_ASSET_ROCKET + "rocket.png";
     float xPos;
     float yPos;
-    float speed = 3;
+    float speed = 4f;
     RocketListener listener;
     ChristmasPresent target;
 
@@ -20,12 +20,14 @@ public class Rocket implements GameConfig{
     }
 
     public void draw() {
-        if (target != null) moveTowardsTarget();
-        this.body.draw();
+        this.target = listener.getFirstPresentOfWave();
+        if (target != null) {
+            moveTowardsTarget();
+            this.body.draw();
+        }
     }
 
     private void moveTowardsTarget() {
-        this.target = listener.getFirstPresentOfWave();
         if (Math.abs(target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos()) <= speed && Math.abs(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos()) <= speed) body.setPosition(target.getCenterPoint().getXPos(), target.getCenterPoint().getYPos());
         else {
             double angle = Math.atan2(target.getCenterPoint().getYPos() - ROCKET_Y_OFFSET - body.getYPos(), target.getCenterPoint().getXPos() - ROCKET_X_OFFSET - body.getXPos());

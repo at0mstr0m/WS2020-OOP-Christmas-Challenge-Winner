@@ -60,7 +60,6 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
 
     public static void fillAnchorPoints() {
         for (int i = 0; i < anchorPoints.length; i++) {
-            //if (!Arrays.stream(unusableBuildingSiteIndexes).anyMatch(x -> x == i))
             anchorPoints[i] = new Point(resolveXPos(i),resolveYPos(i));
         }
     }
@@ -92,17 +91,17 @@ public class SantasLittleHelper implements GameConfig, WaveContent {
     }
 
     public static ArrayList<ChristmasPresent> getNextWave(ChristmasPresentListener listener) {
-        ArrayList<ChristmasPresent> nextwave = new ArrayList<>();
+        ArrayList<ChristmasPresent> nextWave = new ArrayList<>();
         int delayAccumulator = 0;
         for (int i = 0; i < waves[waveCounter].length; i++) {
             float speed = (float) waves[waveCounter][i][0];
             int delayCounter = (int) waves[waveCounter][i][1];
             int type = (int) waves[waveCounter][i][2];
             delayAccumulator += delayCounter;
-            nextwave.add(new ChristmasPresent(speed, delayAccumulator, type, listener));
+            nextWave.add(new ChristmasPresent(speed, delayAccumulator, type, listener));
         }
         waveCounter++;
-        return nextwave;
+        return nextWave;
     }
 
     public static Point[] getPresentWaypoints(float presentWidth, float presentHeight) {

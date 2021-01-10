@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * TODO:    Implement attack range of Turrets
  */
 
-public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener {
+public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener, BoardListener {
     private RightUI rightUI;
     private static ArrayList<ChristmasPresent> currentWave;
     private Board board;
@@ -51,7 +51,6 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
     @Override
     public void draw() {
         if (!gameOver) {
-            drawBackground(BACKGROUND_COLOR);
             board.draw();
             drawWave();
             rightUI.draw();
@@ -111,10 +110,12 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         } else return false;
     }
 
+    @Override
     public ArrayList<ChristmasPresent> getCurrentWave() {
         return currentWave;
     }
 
+    @Override
     public boolean currentWaveIsAttacking() {
         return currentWave != null;
     }
@@ -158,6 +159,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         return "Lifes: " + lifes;
     }
 
+    @Override
     public void spendMoney(int price) {
         if (price > 0) money -= price;
     }
@@ -165,10 +167,12 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
     /*
      * When selling a Turret only half of its value is returned.
      */
+    @Override
     public void earnMoneyFromSelling(int value) {
         if (value > 0) money += value / 2;
     }
 
+    @Override
     public int getMoney() {
         return money;
     }

@@ -2,8 +2,8 @@ import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Line;
 
 public class TurretOne extends Turret {
-    public TurretOne(float xPos, float yPos, ChristmasDefense mainClassListener) {
-        super(xPos, yPos, 1, mainClassListener);
+    public TurretOne(float xPos, float yPos, BoardListener boardListener) {
+        super(xPos, yPos, 1, boardListener);
         this.fireCounter = 0;
         this.fireCooldown = TURRET_ONE_COOLDOWN;
         this.dmgPerTick = TURRET_ONE_DMG;
@@ -12,7 +12,7 @@ public class TurretOne extends Turret {
 
     @Override
     public void draw() {
-        if (mainClassListener.currentWaveIsAttacking()) {      //if there is a wave attacking, fire
+        if (boardListener.currentWaveIsAttacking()) {      //if there is a wave attacking, fire
             fire();                                             //will fire at ChristmasPresent if not cooling down
         }
         super.draw();

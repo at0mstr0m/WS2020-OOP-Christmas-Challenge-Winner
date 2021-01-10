@@ -2,19 +2,18 @@ import java.util.ArrayList;
 
 public class TurretTwo extends Turret {
     ArrayList<Rocket> rockets;
-    public TurretTwo(float xPos, float yPos, ChristmasDefense mainClassListener) {
-        super(xPos, yPos, 2, mainClassListener);
+    public TurretTwo(float xPos, float yPos, BoardListener boardListener) {
+        super(xPos, yPos, 2, boardListener);
         this.rockets = new ArrayList();
         this.fireCounter = 0;
         this.fireCooldown = TURRET_TWO_COOLDOWN;
         this.dmgPerTick = TURRET_TWO_DMG;
         this.fireRange = 1000000;
-        System.out.println("size: " + rockets.size());
     }
 
     @Override
     public void draw() {
-        if (mainClassListener.currentWaveIsAttacking()) {   //if there is a wave attacking, fire
+        if (boardListener.currentWaveIsAttacking()) {   //if there is a wave attacking, fire
             fire();                                         //will fire at ChristmasPresent if not cooling down
         }
 
@@ -22,7 +21,7 @@ public class TurretTwo extends Turret {
          * Currently haven't found a more elegant solution to avoid a ConcurrentModificationException
          * due to removal of Rockets during Iteration than iterating twice...
          */
-        if (mainClassListener.getCurrentWave() != null) {                   // vanish rockets if currentWave is over
+        if (boardListener.getCurrentWave() != null) {                   // vanish rockets if currentWave is over
             for (int i = 0; i < this.rockets.size(); i++) {                 // check if a rocket has reached its target
                 if (rockets.get(i).hasReachedTarget()) {
                     rockets.get(i).getTarget().takeDamage(this.dmgPerTick); // cause damage to target ChristmasPresent

@@ -71,7 +71,7 @@ public interface GameConfig {
     int TURRET_CONTEXT_MENU_BORDER_WEIGHT = 3;
     Color TURRET_CONTEXT_MENU_BORDER_COLOR = AMERICAN_PINK;
 
-    int turretBuildingPrices[][] = {
+    int[][] turretBuildingPrices = {
             {300,200,200,200,200,200},
             {750,500,500,500,500,500},
             {800,550,550,550,550,550},

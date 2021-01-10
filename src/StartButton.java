@@ -2,15 +2,15 @@ import de.ur.mi.oop.graphics.Image;
 
 public class StartButton implements GameConfig {
     private String startButtonAssets[] = {
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button_1.png",
-            SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button_2.png",
+            System.getProperty("user.dir") + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button_1.png",
+            System.getProperty("user.dir") + PATH_TO_ASSETS_PLAY_PAUSE_BUTTON + "play_button_2.png",
     };
     private Image buttonImage;
     private String assetInUse;
-    private ChristmasDefense mainClassListener;
+    private RightUIListener rightUIListener;
 
-    public StartButton(ChristmasDefense mainClassListener) {
-        this.mainClassListener = mainClassListener;
+    public StartButton(RightUIListener rightUIListener) {
+        this.rightUIListener = rightUIListener;
         assetInUse = startButtonAssets[0];
         this.buttonImage = new Image(BUTTONS_X_POS,START_BUTTON_Y_POS, assetInUse);
     }
@@ -29,7 +29,7 @@ public class StartButton implements GameConfig {
         }
         else if (assetInUse.equals(startButtonAssets[1])) { //switch from running to start
             assetInUse = startButtonAssets[0];
-            mainClassListener.resetTurretFireCounters();
+            rightUIListener.resetTurretFireCounters();
         }
         buttonImage = new Image(BUTTONS_X_POS, START_BUTTON_Y_POS, assetInUse);
     }

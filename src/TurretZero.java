@@ -22,8 +22,7 @@ public class TurretZero extends Turret {
     private void fire() {
         this.countShots();
         ChristmasPresent presentAimedAt = getFirstPresentOfWave();
-        if (presentAimedAt == null) presentAimedAt = getClosestPresent();
-        if (presentAimedAt != null && this.fireCounter < this.fireCooldown + 1 && this.body.distanceTo(presentAimedAt.getBody()) <= this.fireRange) {
+        if (presentAimedAt != null && this.fireCounter < this.fireCooldown + 1) {
             float rayStartX = this.turretCenter.getXPos();
             float rayStartY = this.turretCenter.getYPos();
             float rayEndX = presentAimedAt.getCenterPoint().getXPos();

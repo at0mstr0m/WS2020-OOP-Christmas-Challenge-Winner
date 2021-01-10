@@ -3,14 +3,14 @@ import de.ur.mi.oop.graphics.Point;
 
 public class Rocket implements GameConfig{
     Image body;
-    String rocketAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_ROCKET + "rocket.png";
+    String rocketAsset = System.getProperty("user.dir") + PATH_TO_ASSET_ROCKET + "rocket.png";
     float xPos;
     float yPos;
     float speed = 3;
-    TurretTwo listener;
+    RocketListener listener;
     ChristmasPresent target;
 
-    public Rocket(Point turretCenter, double rotationAngle, TurretTwo listener) {
+    public Rocket(Point turretCenter, double rotationAngle, RocketListener listener) {
         this.listener = listener;
         this.xPos = turretCenter.getXPos() - ROCKET_X_OFFSET;
         this.yPos = turretCenter.getYPos() - ROCKET_Y_OFFSET;

@@ -13,7 +13,7 @@ Bitte füllen Sie diese Tabelle vor der Abgabe Ihrer Lösung aus. Ersetzen Sie d
 
 ## Weitere Informationen zum Spiel
 
-Im Jahre 2020 sind leider viele Dinge, die Spaß machen nicht möglich und verboten. Weihnachten ist da zum Glück keine Ausnahme. 
+Im Jahre 2020 sind leider viele Dinge, die Spaß machen verboten. Weihnachten ist da keine Ausnahme. 
 Beschreiben Sie hier kurz mit einigen Sätzen Ihr Spiel. Notieren Sie alle Informationen, die notwendig sind, um Ihr Spiel auszuführen und zu spielen.
 
 ## Einverständniserklärung

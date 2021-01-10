@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * TODO:    Implement attack range of Turrets
  */
 
-public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener, BoardListener {
+public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener, BoardListener, RightUIListener {
     private RightUI rightUI;
     private static ArrayList<ChristmasPresent> currentWave;
     private Board board;
@@ -42,7 +42,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         money = START_MONEY;
         lifes = START_LIFES;
         setFrameRate(FRAME_RATE);
-        SantasLittleHelper.fillAnchorPoints();
+        SantasStaticHelper.fillAnchorPoints();
         rightUI = new RightUI(this);
         board = new Board(this, rightUI);
         setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -55,7 +55,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
             drawWave();
             rightUI.draw();
         } else {
-            if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasLittleHelper.getWaveCounter() + " waves!", Colors.BLACK);
+            if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasStaticHelper.getWaveCounter() + " waves!", Colors.BLACK);
             else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all christmas celebrations!", Colors.BLACK);
             finalLabel.setFontSize(20);
             finalLabel.setXPos(WINDOW_WIDTH_MIDDLE - (finalLabel.getWidthEstimate() / 2));
@@ -95,7 +95,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         if (waveIsOver()) {
             rightUI.changeStartButtonAsset();    //if wave is now over, change Asset of StartButton
             money += 50;
-            if (SantasLittleHelper.getWaveCounter() == SantasLittleHelper.waves.length) {
+            if (SantasStaticHelper.getWaveCounter() == SantasStaticHelper.waves.length) {
                 gameOver = true;
                 hasWon = true;
             }
@@ -133,28 +133,29 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         currentMousePosition = new Point(event.getXPos(), event.getYPos());
     }
 
+    @Override
     public void launchNextWave() {
         if (currentWave == null){
-            currentWave = SantasLittleHelper.getNextWave(this);
+            currentWave = SantasStaticHelper.getNextWave(this);
         }
     }
 
+    @Override
     public float getCurrentMouseXPos() {
         return currentMousePosition.getXPos();
     }
 
+    @Override
     public float getCurrentMouseYPos() {
         return currentMousePosition.getYPos();
     }
 
+    @Override
     public String getMoneyAsString() {
         return "$ " + money;
     }
 
-    public int getLifes() {
-        return lifes;
-    }
-
+    @Override
     public String getLifesAsString() {
         return "Lifes: " + lifes;
     }
@@ -164,7 +165,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         if (price > 0) money -= price;
     }
 
-    /*
+    /**
      * When selling a Turret only half of its value is returned.
      */
     @Override
@@ -177,6 +178,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         return money;
     }
 
+    @Override
     public void resetTurretFireCounters() {
         this.board.resetFireCounters();
     }

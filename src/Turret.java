@@ -1,7 +1,7 @@
 import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Point;
 
-public abstract class Turret implements GameConfig{
+public abstract class Turret implements GameConfig {
     protected BoardListener boardListener;
     protected Point turretCenter;
     protected Image body;
@@ -21,7 +21,7 @@ public abstract class Turret implements GameConfig{
         this.yPos = yPos;
         this.type = type;
         this.level = 0;
-        this.body = new Image(this.xPos, this.yPos, SantasLittleHelper.turretAssets[this.type][this.level]);
+        this.body = new Image(this.xPos, this.yPos, SantasStaticHelper.turretAssets[this.type][this.level]);
         this.turretCenter = new Point(xPos + 32, yPos + 32);
         this.worth = turretBuildingPrices[this.type][this.level];
     }
@@ -42,6 +42,29 @@ public abstract class Turret implements GameConfig{
         this.body.setRotationAngle(angle);
     }
 
+    public ChristmasPresent getFirstPresentOfWave() {
+        for (int i = 0; i < boardListener.getCurrentWave().size(); i++) {
+            ChristmasPresent currentPresent = boardListener.getCurrentWave().get(i);
+            if (currentPresent != null && this.body.distanceTo(currentPresent.getBody()) <= this.fireRange) {
+                if (currentPresent.getBody().getYPos() >= WINDOW_HEIGHT) return null;
+                return currentPresent;
+            }
+        }
+        return null;
+    }
+
+    protected ChristmasPresent getClosestPresent() {
+        ChristmasPresent closestPresent = null;
+        double shortestDistanceFound = this.fireRange;
+        for (ChristmasPresent currentPresent : boardListener.getCurrentWave()) {
+            if (this.body.distanceTo(currentPresent.getBody()) < shortestDistanceFound) {
+                closestPresent = currentPresent;
+            }
+        }
+        return closestPresent;
+    }
+
+    /*
     protected ChristmasPresent getClosestPresent() {
         int length = boardListener.getCurrentWave().size();
         int indexOfClosest = 0;
@@ -58,7 +81,7 @@ public abstract class Turret implements GameConfig{
         else return boardListener.getCurrentWave().get(indexOfClosest);
     }
 
-    protected ChristmasPresent getFirstPresentOfWave() {
+    public ChristmasPresent getFirstPresentOfWave() {
         int length = boardListener.getCurrentWave().size();
         for (int i = 0; i < length; i++) {
             ChristmasPresent currentPresent = boardListener.getCurrentWave().get(i);
@@ -66,6 +89,7 @@ public abstract class Turret implements GameConfig{
         }
         return null;
     }
+    */
 
     public boolean hitTest(int x, int y) {
         return this.body.hitTest(x,y);
@@ -88,7 +112,7 @@ public abstract class Turret implements GameConfig{
             this.dmgPerTick *= 1.5;
             this.fireRange += 10;
             boardListener.spendMoney(turretBuildingPrices[type][level]);
-            this.body = new Image(xPos, yPos, SantasLittleHelper.turretAssets[type][level]);
+            this.body = new Image(xPos, yPos, SantasStaticHelper.turretAssets[type][level]);
             return true;
         } else return false;
     }

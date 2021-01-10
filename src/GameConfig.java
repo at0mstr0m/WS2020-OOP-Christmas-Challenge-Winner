@@ -96,7 +96,7 @@ public interface GameConfig {
     int ROCKET_X_OFFSET = 9;
     int ROCKET_Y_OFFSET = 10;
 
-    int START_MONEY = 600;
+    int START_MONEY = 5000;
     int START_LIFES = 100;
 
     double TURRET_ZERO_DMG = 0.75;

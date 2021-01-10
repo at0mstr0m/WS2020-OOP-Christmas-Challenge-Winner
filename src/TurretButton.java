@@ -4,20 +4,20 @@ import de.ur.mi.oop.graphics.Rectangle;
 
 public class TurretButton implements GameConfig {
     private int type;
-    private final ChristmasDefense mainProgListener;
-    private final RightUI uIListener;
+    private final RightUIListener rightUIListener;
+    private final TurretButtonListener uIListener;
     private Image body;
     private final Rectangle background;
     private boolean buildMode;
     private int price;
     private Label pricetag;
 
-    public TurretButton(ChristmasDefense mainProgListener, RightUI uIListener, int type) {
+    public TurretButton(RightUIListener rightUIListener, TurretButtonListener turretButtonListener, int type) {
         this.type = type;
-        this.mainProgListener = mainProgListener;
-        this.uIListener = uIListener;
+        this.rightUIListener = rightUIListener;
+        this.uIListener = turretButtonListener;
         this.background = new Rectangle(BUTTONS_X_POS, resolveYPos(type), BUTTON_WIDTH, BUTTON_HEIGHT, ARYLIDE_YELLOW);
-        this.body = new Image(BUTTONS_X_POS, resolveYPos(type), SantasLittleHelper.turretAssets[type][0]);
+        this.body = new Image(BUTTONS_X_POS, resolveYPos(type), SantasStaticHelper.turretAssets[type][0]);
         this.buildMode = false;
         this.price = turretBuildingPrices[type][0];
         this.pricetag = new Label(0, body.getBottomBorder(), "$ " + this.price, DARK_SEA_GREEN);
@@ -32,7 +32,7 @@ public class TurretButton implements GameConfig {
     public void draw() {
         background.draw();
         if (buildMode)
-            body.setPosition(mainProgListener.getCurrentMouseXPos() - BUTTON_WIDTH_MIDDLE, mainProgListener.getCurrentMouseYPos() - BUTTON_HEIGHT_MIDDLE);
+            body.setPosition(rightUIListener.getCurrentMouseXPos() - BUTTON_WIDTH_MIDDLE, rightUIListener.getCurrentMouseYPos() - BUTTON_HEIGHT_MIDDLE);
         pricetag.draw();
         body.draw();
     }
@@ -44,11 +44,11 @@ public class TurretButton implements GameConfig {
     public void toggleBuildMode() {
         if (!buildMode) {
             buildMode = true;
-            uIListener.currentlyPlacingTurretButtonInstance = this;
+            uIListener.setCurrentlyPlacingTurretButtonInstance(this);
         } else {
             buildMode = false;
-            uIListener.currentlyPlacingTurretButtonInstance = null;
-            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.type), SantasLittleHelper.turretAssets[this.type][0]);
+            uIListener.setCurrentlyPlacingTurretButtonInstance(null);
+            this.body = new Image(BUTTONS_X_POS, resolveYPos(this.type), SantasStaticHelper.turretAssets[this.type][0]);
         }
     }
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class TurretTwo extends Turret {
+public class TurretTwo extends Turret implements RocketListener {
     ArrayList<Rocket> rockets;
     public TurretTwo(float xPos, float yPos, BoardListener boardListener) {
         super(xPos, yPos, 2, boardListener);

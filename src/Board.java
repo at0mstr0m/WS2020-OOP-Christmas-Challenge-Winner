@@ -8,7 +8,7 @@ import de.ur.mi.oop.graphics.Line;
 import java.util.ArrayList;
 
 public class Board implements GameConfig, InputEventListener {
-    private final String backgroundAsset =SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_BACKGROUND + "board_snow.png";
+    private final String backgroundAsset = System.getProperty("user.dir") + PATH_TO_ASSET_BACKGROUND + "board_snow.png";
     private Image background;
     public Line[] path;
     private ArrayList<Circle> buildingSites;
@@ -22,7 +22,7 @@ public class Board implements GameConfig, InputEventListener {
         this.turretsOnTheBoard = new ArrayList<>();
         this.boardListener = boardListener;
         this.rightUIListener = rightUIListener;
-        this.path = SantasLittleHelper.getPath();
+        this.path = SantasStaticHelper.getPath();
         this.buildingSites = getFittingBuildingSites();
     }
 
@@ -36,7 +36,7 @@ public class Board implements GameConfig, InputEventListener {
                     break;
                 }
             }
-            if (!unusable) result.add(new Circle(SantasLittleHelper.anchorPoints[i], FUNDAMENT_RADIUS, Colors.TRANSPARENT));
+            if (!unusable) result.add(new Circle(SantasStaticHelper.anchorPoints[i], FUNDAMENT_RADIUS, Colors.TRANSPARENT));
         }
         return result;
     }
@@ -80,14 +80,14 @@ public class Board implements GameConfig, InputEventListener {
          * Must be a LEFT click.
          * checking if turret can be placed is only necessary if player is currently building a turret
          */
-        if (event.getButton() == MouseButton.LEFT && rightUIListener.currentlyPlacingTurretButtonInstance != null) placeTurretOnBoard(x, y);
+        if (event.getButton() == MouseButton.LEFT && rightUIListener.getCurrentlyPlacingTurretButtonInstance() != null) placeTurretOnBoard(x, y);
 
         /*
          * Must be a RIGHT click.
          * Player must not be placing turrets and there must already be torrets on the board
          * to make TurretContextMenu relevant.
          */
-        else if (rightUIListener.currentlyPlacingTurretButtonInstance == null && event.getButton() == MouseButton.RIGHT && !turretsOnTheBoard.isEmpty()) openTurretContextMenu(x, y);
+        else if (rightUIListener.getCurrentlyPlacingTurretButtonInstance() == null && event.getButton() == MouseButton.RIGHT && !turretsOnTheBoard.isEmpty()) openTurretContextMenu(x, y);
         if (event.getButton() == MouseButton.LEFT && contextMenu != null) {
             contextMenu.handleMouseClick(x,y);
         }
@@ -112,7 +112,7 @@ public class Board implements GameConfig, InputEventListener {
     private void placeTurretOnBoard(int x, int y) {
         for (int i = 0; i < buildingSites.size(); i++) {
             if (buildingSites.get(i).hitTest(x, y)) {
-                int type = rightUIListener.currentlyPlacingTurretButtonInstance.getType();
+                int type = rightUIListener.getCurrentlyPlacingTurretButtonInstance().getType();
                 int price = turretBuildingPrices[type][0];
                 if (boardListener.getMoney() >= price) {            //only turrets that can be afforded can be placed
                     boardListener.spendMoney(price);                //substract price from current money
@@ -137,7 +137,7 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     public void sellTurret(Turret turretWithContextMenu) {
-        boardListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                       //give money from selling
+        boardListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                           //give money from selling
         buildingSites.add(new Circle(turretWithContextMenu.getTurretCenter(), FUNDAMENT_RADIUS, Colors.TRANSPARENT));   //readd buildingsite to buildingSites
         turretsOnTheBoard.remove(turretWithContextMenu);                                                                //remove sold Turret from turretsOnTheBoard
         turretsOnTheBoard.trimToSize();                                                                                 //avoid errors by trimming size

@@ -2,17 +2,16 @@ import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Label;
 import de.ur.mi.oop.graphics.Rectangle;
 
-public class RightUI implements GameConfig, InputEventListener, WaveContent {
-    private ChristmasDefense listener;
+public class RightUI implements GameConfig, WaveContent, InputEventListener, TurretButtonListener {
+    private RightUIListener listener;
     private Rectangle body;
     public StartButton startButton;
     private TurretButton[] turretButtons;
     private Label moneyLabel;
     private Label lifesLabel;
     private Label waveLabel;
-    public TurretButton currentlyPlacingTurretButtonInstance;
-
-    public RightUI(ChristmasDefense listener) {
+    private TurretButton currentlyPlacingTurretButtonInstance;
+    public RightUI(RightUIListener listener) {
         this.listener = listener;
         this.body = new Rectangle(RIGHT_UI_X_POS, RIGHT_UI_Y_POS, RIGHT_UI_WIDTH, RIGHT_UI_HEIGHT, RIGHT_UI_COLOR);
         this.startButton = new StartButton(listener);
@@ -22,9 +21,9 @@ public class RightUI implements GameConfig, InputEventListener, WaveContent {
         }
         this.moneyLabel = new Label(MONEY_LABEL_X_POS, MONEY_LABEL_Y_POS, listener.getMoneyAsString(), MONEY_LABEL_FONT_COLOR);
         this.moneyLabel.setFontSize(MONEY_LABEL_FONT_SIZE);
-        this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifes(), MONEY_LABEL_FONT_COLOR);
+        this.lifesLabel = new Label(LIFES_LABEL_X_POS, LIFES_LABEL_Y_POS, "Lifes: " + listener.getLifesAsString(), MONEY_LABEL_FONT_COLOR);
         this.lifesLabel.setFontSize(LIFES_LABEL_FONT_SIZE);
-        this.waveLabel = new Label(WAVE_LABEL_X_POS, WAVE_LABEL_Y_POS, "Wave: " + SantasLittleHelper.getWaveCounter()  + " / " + waves.length, MONEY_LABEL_FONT_COLOR);
+        this.waveLabel = new Label(WAVE_LABEL_X_POS, WAVE_LABEL_Y_POS, "Wave: " + SantasStaticHelper.getWaveCounter()  + " / " + waves.length, MONEY_LABEL_FONT_COLOR);
         this.waveLabel.setFontSize(WAVE_LABEL_FONT_SIZE);
     }
 
@@ -44,7 +43,7 @@ public class RightUI implements GameConfig, InputEventListener, WaveContent {
         moneyLabel.draw();
         lifesLabel.setText(listener.getLifesAsString());    //refresh current Lifes
         lifesLabel.draw();
-        waveLabel.setText(SantasLittleHelper.getWaveCounterAsString() + " / " + waves.length); //refresh current WaveCounter
+        waveLabel.setText(SantasStaticHelper.getWaveCounterAsString() + " / " + waves.length); //refresh current WaveCounter
         waveLabel.draw();
     }
 
@@ -71,7 +70,17 @@ public class RightUI implements GameConfig, InputEventListener, WaveContent {
     }
 
     @Override
+    public void setCurrentlyPlacingTurretButtonInstance(TurretButton currentlyPlacingTurretButtonInstance) {
+        this.currentlyPlacingTurretButtonInstance = currentlyPlacingTurretButtonInstance;
+    }
+
+    @Override
     public void handleMouseClick(MousePressedEvent event) {
 
+    }
+
+    @Override
+    public TurretButton getCurrentlyPlacingTurretButtonInstance() {
+        return currentlyPlacingTurretButtonInstance;
     }
 }

@@ -1,6 +1,5 @@
 import de.ur.mi.oop.graphics.Image;
 import de.ur.mi.oop.graphics.Point;
-import de.ur.mi.oop.graphics.Rectangle;
 
 public class ChristmasPresent implements GameConfig {
     private Image body;
@@ -12,6 +11,28 @@ public class ChristmasPresent implements GameConfig {
     private Point[] waypoints;
     private double lifepoints;
     private int worth;
+    private final String[] christmasPresentAssets = {
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "candy_cane.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_hat.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_tree.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "drum.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "mistletoe.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "snowflake.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "star.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "candy_cane_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_hat_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "christmas_tree_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "drum_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "mistletoe_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "snowflake_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "star_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "trumpet_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_1_big.png",
+            System.getProperty("user.dir") + PATH_TO_ASSET_CHRISTMAS_PRESENTS + "gift_2_big.png",
+    };
 
     public ChristmasPresent(float speed, int delayCounter, int type, ChristmasPresentListener listener) {
         this.listener = listener;
@@ -19,8 +40,8 @@ public class ChristmasPresent implements GameConfig {
         this.delayCounter = delayCounter;
         this.destroyed = false;
         this.speed = speed;
-        this.body = new Image(0,0,SantasLittleHelper.christmasPresentAssets[type]);     //initialized with pseudo x & y
-        this.waypoints = SantasLittleHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
+        this.body = new Image(0,0, christmasPresentAssets[type]);     //initialized with pseudo x & y
+        this.waypoints = SantasStaticHelper.getPresentWaypoints(this.body.getWidth(), this.body.getHeight());
         this.body.setPosition(this.waypoints[0].getXPos(), this.waypoints[0].getYPos());
         this.lifepoints = resolveLifepoints(type);
         this.worth = 6;
@@ -52,7 +73,7 @@ public class ChristmasPresent implements GameConfig {
             moveAlongPath();
             this.body.draw();
         }
-        System.out.println(this.lifepoints);
+        //System.out.println(this.lifepoints);
     }
 
     private Point moveTowards(float sourceX, float sourceY, float targetX, float targetY, float speed) {

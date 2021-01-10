@@ -3,9 +3,9 @@ import de.ur.mi.oop.graphics.Label;
 import de.ur.mi.oop.graphics.Rectangle;
 
 public class TurretContextMenu implements GameConfig {
-    private final String upgradeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "upgrade_button.png";
-    private final String sellButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "sell_button.png";
-    private final String closeButtonAsset = SantasLittleHelper.getWorkingDirectory() + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "close_button.png";
+    private final String upgradeButtonAsset = System.getProperty("user.dir") + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "upgrade_button.png";
+    private final String sellButtonAsset = System.getProperty("user.dir") + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "sell_button.png";
+    private final String closeButtonAsset = System.getProperty("user.dir") + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "close_button.png";
     private final String sellLabelText = "Sell for Half";
     private Turret turretWithContextMenu;
     private Board board;

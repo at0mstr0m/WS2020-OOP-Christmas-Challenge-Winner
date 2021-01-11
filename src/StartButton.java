@@ -24,9 +24,8 @@ public class StartButton implements GameConfig {
     }
 
     public void changeAsset() {
-        if (assetInUse.equals(startButtonAssets[0])) {      //switch from start to running
-            assetInUse = startButtonAssets[1];
-        }
+        //switch from start to running
+        if (assetInUse.equals(startButtonAssets[0])) assetInUse = startButtonAssets[1];
         else if (assetInUse.equals(startButtonAssets[1])) { //switch from running to start
             assetInUse = startButtonAssets[0];
             rightUIListener.resetTurretFireCounters();

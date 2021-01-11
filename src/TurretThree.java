@@ -2,7 +2,7 @@ import de.ur.mi.oop.colors.Colors;
 import de.ur.mi.oop.graphics.Line;
 
 public class TurretThree extends Turret {
-    ChristmasPresent firstPresentOfWave;
+    private ChristmasPresent firstPresentOfWave;
 
     public TurretThree(float xPos, float yPos, BoardListener boardListener) {
         super(xPos, yPos, 3, boardListener);
@@ -14,9 +14,8 @@ public class TurretThree extends Turret {
 
     @Override
     public void draw() {
-        if (boardListener.currentWaveIsAttacking()) {      //if there is a wave attacking, fire
-            fire();                                             //will fire at ChristmasPresent if not cooling down
-        }
+        // if there is a wave attacking, fire
+        if (boardListener.currentWaveIsAttacking()) fire();     // will fire at ChristmasPresent if not cooling down
         super.draw();
     }
 

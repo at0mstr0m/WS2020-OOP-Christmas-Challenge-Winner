@@ -7,31 +7,31 @@ public class TurretContextMenu implements GameConfig {
     private final String sellButtonAsset = System.getProperty("user.dir") + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "sell_button.png";
     private final String closeButtonAsset = System.getProperty("user.dir") + PATH_TO_ASSET_TURRET_CONTEXT_MENU + "close_button.png";
     private final String sellLabelText = "Sell for Half";
-    private Turret turretWithContextMenu;
-    private Board board;
+    private final Turret turretWithContextMenu;
+    private final Board board;
+    private final Image sellButton;
+    private final Image closeButton;
+    private final Label sellLabel;
     private Rectangle body;
     private float xPos;
     private float yPos;
     private Image upgradeButton;
-    private Image sellButton;
-    private Image closeButton;
     private int upgradePrice;
     private Label pricetag;
-    private Label sellLabel;
 
     public TurretContextMenu(Turret turretWithContextMenu, Board board) {
         this.turretWithContextMenu = turretWithContextMenu;
         this.board = board;
         this.xPos = turretWithContextMenu.getTurretCenter().getXPos();
         this.yPos = turretWithContextMenu.getTurretCenter().getYPos();
-        this.body = new Rectangle(xPos, yPos,TURRET_CONTEXT_MENU_WIDTH,TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
-        if (this.body.getBottomBorder() > BOARD_HEIGHT) {
+        this.body = new Rectangle(xPos, yPos, TURRET_CONTEXT_MENU_WIDTH, TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
+        if (this.body.getBottomBorder() > BOARD_HEIGHT) {   // avoids that the ContextMenu is not in the Canvas
             this.yPos -= TURRET_CONTEXT_MENU_HEIGHT;
-            this.body = new Rectangle(xPos, yPos,TURRET_CONTEXT_MENU_WIDTH,TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
+            this.body = new Rectangle(xPos, yPos, TURRET_CONTEXT_MENU_WIDTH, TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
         }
-        if (this.body.getRightBorder() > BOARD_WIDTH) {
+        if (this.body.getRightBorder() > BOARD_WIDTH) {     // avoids that the ContextMenu is not in the Canvas
             this.xPos -= TURRET_CONTEXT_MENU_WIDTH;
-            this.body = new Rectangle(xPos, yPos,TURRET_CONTEXT_MENU_WIDTH,TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
+            this.body = new Rectangle(xPos, yPos, TURRET_CONTEXT_MENU_WIDTH, TURRET_CONTEXT_MENU_HEIGHT, FIRE_OPAL);
         }
         this.body.setBorderColor(TURRET_CONTEXT_MENU_BORDER_COLOR);
         this.body.setBorderWeight(TURRET_CONTEXT_MENU_BORDER_WEIGHT);
@@ -58,14 +58,18 @@ public class TurretContextMenu implements GameConfig {
         closeButton.draw();
     }
 
+    /**
+     * Handles clicks on the buttons. The TurretContextMenu is closed after every click on a button.
+     *
+     * @param x
+     * @param y
+     */
     public void handleMouseClick(int x, int y) {
-        if (upgradeButton != null && upgradeButton.hitTest(x,y)) {  // click on upgradeButton
+        if (upgradeButton != null && upgradeButton.hitTest(x, y)) {             // click on upgradeButton
             if (turretWithContextMenu.levelUp()) board.closeTurretContextMenu();
-        }
-        else if (sellButton.hitTest(x,y)) {                         // click on sellButton
+        } else if (sellButton.hitTest(x, y)) {                                  // click on sellButton
             board.sellTurret(turretWithContextMenu);
             board.closeTurretContextMenu();
-        }
-        else if (closeButton.hitTest(x,y)) board.closeTurretContextMenu();  //close this TurretContextMenu
+        } else if (closeButton.hitTest(x, y)) board.closeTurretContextMenu();   //close this TurretContextMenu
     }
 }

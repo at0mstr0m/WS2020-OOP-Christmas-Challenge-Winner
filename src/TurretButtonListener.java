@@ -1,4 +1,5 @@
 public interface TurretButtonListener {
-    void setCurrentlyPlacingTurretButtonInstance(TurretButton turretButton);
     TurretButton getCurrentlyPlacingTurretButtonInstance();
+
+    void setCurrentlyPlacingTurretButtonInstance(TurretButton turretButton);
 }

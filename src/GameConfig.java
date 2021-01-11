@@ -27,7 +27,7 @@ public interface GameConfig {
     int BUTTONS_X_POS = BOARD_WIDTH + START_BUTTON_Y_POS;
     int BUTTON_WIDTH = 64;
     int BUTTON_WIDTH_MIDDLE = BUTTON_WIDTH / 2;
-    int BUTTON_HEIGHT = BUTTON_WIDTH ;
+    int BUTTON_HEIGHT = BUTTON_WIDTH;
     int BUTTON_HEIGHT_MIDDLE = BUTTON_HEIGHT / 2;
     int BUTTON_SPACE_INCL_OFFSET = 100;
 
@@ -72,10 +72,10 @@ public interface GameConfig {
     Color TURRET_CONTEXT_MENU_BORDER_COLOR = AMERICAN_PINK;
 
     int[][] turretBuildingPrices = {
-            {300,200,200,200,200,200},
-            {650,400,400,400,400,400},
-            {700,450,450,450,450,450},
-            {750,550,550,550,550,550},
+            {300, 200, 200, 200, 200, 200},
+            {650, 400, 400, 400, 400, 400},
+            {700, 450, 450, 450, 450, 450},
+            {750, 550, 550, 550, 550, 550},
     };
 
     int FUNDAMENT_WIDTH = 64;
@@ -91,13 +91,13 @@ public interface GameConfig {
     int FUNDAMENT_CENTER_DISTANCE = FUNDAMENT_WIDTH + FUNDAMENT_DISTANCE_BETWEEN_FUNDAMENTS;
     int MAX_NUM_OF_FUNDAMENTS = FUNDAMENTS_IN_ROW * FUNDAMENTS_IN_COLUMN;
 
-    int[] unusableBuildingSiteIndexes = {6,9,10,11,12,14,17,20,22,25,28,30,33,36,38,41,44,46,49,52,53,54,57};
+    int[] unusableBuildingSiteIndexes = {6, 9, 10, 11, 12, 14, 17, 20, 22, 25, 28, 30, 33, 36, 38, 41, 44, 46, 49, 52, 53, 54, 57};
 
     int ROCKET_X_OFFSET = 9;
-    int ROCKET_Y_OFFSET = 10;
+    int ROCKET_Y_OFFSET = 15;
 
     int START_MONEY = 600;
-    int START_LIFES = 100;
+    int START_LIVES = 100;
 
     double TURRET_ZERO_DMG = 0.8;
     int TURRET_ZERO_COOLDOWN = 20;

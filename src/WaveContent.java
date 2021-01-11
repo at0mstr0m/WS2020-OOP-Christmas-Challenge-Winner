@@ -344,7 +344,7 @@ public interface WaveContent {
             {1f, 60, 2},
             {1f, 60, 2},
             {1f, 60, 2},
-    },{ //9th wave
+        },{ //9th wave
             {1.32f, 60, 7},
             {1.32f, 60, 1},
             {1.32f, 60, 1},
@@ -405,7 +405,7 @@ public interface WaveContent {
             {1.5f, 50, 1},
             {1.5f, 50, 1},
             {1.5f, 50, 1},
-    },{ //11th wave
+        },{ //11th wave
             {1.5f, 60, 4},
             {1.5f, 60, 3},
             {1.5f, 60, 4},
@@ -442,7 +442,7 @@ public interface WaveContent {
             {1.5f, 60, 3},
             {1.5f, 60, 4},
             {1.5f, 60, 3},
-    },{ //12th wave
+        },{ //12th wave
             {1.5f, 60, 6},
             {1.5f, 60, 6},
             {1.5f, 60, 6},

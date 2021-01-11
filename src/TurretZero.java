@@ -13,12 +13,13 @@ public class TurretZero extends Turret {
 
     @Override
     public void draw() {
-        if (boardListener.currentWaveIsAttacking()) {      //if there is a wave attacking, fire
-            fire();                                             //will fire at ChristmasPresent if not cooling down
-        }
+        if (boardListener.currentWaveIsAttacking()) fire(); //if there is a wave attacking, fire
         super.draw();
     }
 
+    /**
+     * will fire at ChristmasPresent if not cooling down
+     */
     private void fire() {
         this.countShots();
         ChristmasPresent presentAimedAt = getFirstPresentOfWave();

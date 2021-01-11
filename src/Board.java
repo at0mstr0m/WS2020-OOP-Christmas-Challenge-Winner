@@ -3,34 +3,38 @@ import de.ur.mi.oop.events.MouseButton;
 import de.ur.mi.oop.events.MousePressedEvent;
 import de.ur.mi.oop.graphics.Circle;
 import de.ur.mi.oop.graphics.Image;
-import de.ur.mi.oop.graphics.Line;
 
 import java.util.ArrayList;
 
 public class Board implements GameConfig, InputEventListener {
     private final String backgroundAsset = System.getProperty("user.dir") + PATH_TO_ASSET_BACKGROUND + "board_snow.png";
-    private Image background;
-    public Line[] path;
-    private ArrayList<Circle> buildingSites;
-    private BoardListener boardListener;
-    private RightUI rightUIListener;
-    private ArrayList<Turret> turretsOnTheBoard;
+    private final Image background;
+    private final ArrayList<Circle> buildingSites;
+    private final BoardListener boardListener;
+    private final RightUI rightUIListener;
+    private final ArrayList<Turret> turretsOnTheBoard;
     private TurretContextMenu contextMenu;
 
     public Board(BoardListener boardListener, RightUI rightUIListener) {
-        this.background = new Image(0,0,backgroundAsset);
+        this.background = new Image(0, 0, backgroundAsset);
         this.turretsOnTheBoard = new ArrayList<>();
         this.boardListener = boardListener;
         this.rightUIListener = rightUIListener;
-        this.path = SantasStaticHelper.getPath();
         this.buildingSites = getFittingBuildingSites();
     }
 
+    /**
+     * Fills buildingSites with Circles.
+     * The Circles in buildingSites are transparent to be used as hitboxes when placing Turrets.
+     * Not very elegant, but it works and is only executed once when starting the game...
+     *
+     * @return
+     */
     private ArrayList<Circle> getFittingBuildingSites() {
         ArrayList<Circle> result = new ArrayList<>();
         for (int i = 0; i < MAX_NUM_OF_FUNDAMENTS; i++) {
             boolean unusable = false;
-            for (int unusableBuildingSiteIndex : unusableBuildingSiteIndexes) {  //sort out unusable spots that are lying on the path.
+            for (int unusableBuildingSiteIndex : unusableBuildingSiteIndexes) {  // sort out unusable spots that are lying on the path.
                 if (unusableBuildingSiteIndex == i) {
                     unusable = true;
                     break;
@@ -49,14 +53,13 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     private void drawContextMenu() {
-        if (contextMenu != null) {
-            contextMenu.draw();
-        }
+        if (contextMenu != null) contextMenu.draw();
     }
 
     private void drawBuiltTurrets() {
-        if (turretsOnTheBoard.size() != 0) {
-            for (Turret turret : turretsOnTheBoard) {
+        if (turretsOnTheBoard.size() != 0) {            // if there are Turrets placed
+            for (Turret turret : turretsOnTheBoard) {   // draw them
+                turret.drawFoot();                      // foot must be drawn before body and ray
                 turret.draw();
             }
         }
@@ -82,23 +85,20 @@ public class Board implements GameConfig, InputEventListener {
          */
         if (event.getButton() == MouseButton.LEFT && rightUIListener.getCurrentlyPlacingTurretButtonInstance() != null) placeTurretOnBoard(x, y);
 
-        /*
-         * Must be a RIGHT click.
-         * Player must not be placing turrets and there must already be torrets on the board
-         * to make TurretContextMenu relevant.
-         */
+            /*
+             * Must be a RIGHT click.
+             * Player must not be placing turrets and there must already be torrets on the board
+             * to make TurretContextMenu relevant.
+             */
         else if (rightUIListener.getCurrentlyPlacingTurretButtonInstance() == null && event.getButton() == MouseButton.RIGHT && !turretsOnTheBoard.isEmpty()) openTurretContextMenu(x, y);
-        if (event.getButton() == MouseButton.LEFT && contextMenu != null) {
-            contextMenu.handleMouseClick(x,y);
-        }
+        if (event.getButton() == MouseButton.LEFT && contextMenu != null) contextMenu.handleMouseClick(x, y);
     }
 
     private void openTurretContextMenu(int x, int y) {
         for (Turret turret : turretsOnTheBoard) {
             if (turret.hitTest(x, y)) {
-                // Turret turretWithContextMenu = turretsOnTheBoard.get(i);
                 this.contextMenu = new TurretContextMenu(turret, this);
-                break;      // only one turret can be clicked at a time
+                break;      // only one turret can be clicked at a time, so iteration can be stopped here
             }
         }
     }
@@ -106,6 +106,7 @@ public class Board implements GameConfig, InputEventListener {
     /**
      * Places Turret on an empty buildingSite and removes the buildingSite from its ArrayList so only one Turret
      * can be placed on one buildingSite.
+     *
      * @param x
      * @param y
      */
@@ -137,10 +138,10 @@ public class Board implements GameConfig, InputEventListener {
     }
 
     public void sellTurret(Turret turretWithContextMenu) {
-        boardListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                           //give money from selling
-        buildingSites.add(new Circle(turretWithContextMenu.getTurretCenter(), FUNDAMENT_RADIUS, Colors.TRANSPARENT));   //readd buildingsite to buildingSites
-        turretsOnTheBoard.remove(turretWithContextMenu);                                                                //remove sold Turret from turretsOnTheBoard
-        turretsOnTheBoard.trimToSize();                                                                                 //avoid errors by trimming size
+        boardListener.earnMoneyFromSelling(turretWithContextMenu.getWorth());                                           // give money from selling
+        buildingSites.add(new Circle(turretWithContextMenu.getTurretCenter(), FUNDAMENT_RADIUS, Colors.TRANSPARENT));   // re-add buildingsite to buildingSites as it is available for placing a Turret again
+        turretsOnTheBoard.remove(turretWithContextMenu);                                                                // remove sold Turret from turretsOnTheBoard
+        turretsOnTheBoard.trimToSize();                                                                                 // avoid errors by trimming size
     }
 
     public void resetFireCounters() {

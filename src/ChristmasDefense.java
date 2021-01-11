@@ -10,12 +10,12 @@ import de.ur.mi.oop.launcher.GraphicsAppLauncher;
 import java.util.ArrayList;
 
 public class ChristmasDefense extends GraphicsApp implements GameConfig, ChristmasPresentListener, BoardListener, RightUIListener {
-    private RightUI rightUI;
     private static ArrayList<ChristmasPresent> currentWave;
+    private RightUI rightUI;
     private Board board;
     private Point currentMousePosition;
     private int money;
-    private int lifes;
+    private int lives;
     private boolean gameOver;
     private boolean hasWon;
     private Label finalLabel;
@@ -29,7 +29,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         gameOver = false;
         hasWon = false;
         money = START_MONEY;
-        lifes = START_LIFES;
+        lives = START_LIVES;
         setFrameRate(FRAME_RATE);
         SantasStaticHelper.fillAnchorPoints();
         rightUI = new RightUI(this);
@@ -46,20 +46,19 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
         } else {
             if (!hasWon) finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Game over after " + SantasStaticHelper.getWaveCounter() + " waves!", Colors.BLACK);
             else finalLabel = new Label(0, WINDOW_HEIGHT_MIDDLE, "Congratulations, you have successfully prevented all christmas celebrations!", Colors.BLACK);
-            drawBackground(LINEN);
+            drawBackground(BACKGROUND_COLOR);
             finalLabel.setFontSize(20);
             finalLabel.setXPos(WINDOW_WIDTH_MIDDLE - (finalLabel.getWidthEstimate() / 2));
             finalLabel.draw();
         }
     }
 
+    /**
+     * Draws Wave from back to the front so the ChristmasPresent at the front position is not overdrawn
+     */
     private void drawWave() {
         if (waveIsOver()) currentWave = null;
         if (currentWave != null) {
-            /*
-             * drawn from back to the front so the ChristmasPresent
-             * at the front position is not overdrawn
-             */
             for (int i = currentWave.size() - 1; i >= 0; i--) {
                 currentWave.get(i).draw();
             }
@@ -69,8 +68,8 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
     @Override
     public void onPresentReachedEndOfPath(ChristmasPresent present) {       //remove ChristmasPresent from Array
         removePresentFromArray(present);
-        lifes--;                            //one life lost
-        if (lifes == 0) gameOver = true;
+        lives--;                            //one life lost
+        if (lives == 0) gameOver = true;
     }
 
     @Override
@@ -124,7 +123,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
 
     @Override
     public void launchNextWave() {
-        if (currentWave == null){
+        if (currentWave == null) {
             currentWave = SantasStaticHelper.getNextWave(this);
         }
     }
@@ -146,7 +145,7 @@ public class ChristmasDefense extends GraphicsApp implements GameConfig, Christm
 
     @Override
     public String getLifesAsString() {
-        return "Lifes: " + lifes;
+        return "Lifes: " + lives;
     }
 
     @Override

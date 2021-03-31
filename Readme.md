@@ -1,9 +1,8 @@
-
-
 # Christmas-Challenge WS2020/21 Winner
 ## Informationen zum Spiel
 
-Im Jahre 2020 sind leider viele Dinge, die Spaß machen verboten. Weihnachten ist keine Ausnahme. Auf dem Pfad werden in Wellen verschiedene weihnachtliche Gegenstände versuchen das Ende unbeschadet zu erreichen, was mittels verschiedenster selbst schießender Türme verhindert werden muss. Das Spiel hat die Christmas-Challenge des Wintersemesters 2020/21 im Kurs *"Einführung in die Programmierung und Programmiersprachen (Einführung in Java/Objektorientierte Programmierung)"* gewonnen.
+Im Jahre 2020 sind leider viele Dinge, die Spaß machen verboten. Weihnachten ist keine Ausnahme. Auf dem Pfad werden in Wellen verschiedene weihnachtliche Gegenstände versuchen das Ende unbeschadet zu erreichen, was mittels verschiedenster selbst schießender Türme verhindert werden muss.
+Das Spiel hat die Christmas-Challenge des Wintersemesters 2020/21 im Kurs *"Einführung in die Programmierung und Programmiersprachen (Einführung in Java/Objektorientierte Programmierung)"* gewonnen.
 
 ## Spielanleitung
 
